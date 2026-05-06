@@ -120,7 +120,7 @@ export default function HomePage() {
             <li key={p.slug}>
               <Bullet>
                 <span className="inline-flex flex-wrap items-center gap-x-1.5">
-                  <Logo src={p.logo} name={p.name} />
+                  {p.logo && <Logo src={p.logo} name={p.name} />}
                   <Link href={`/projects/${p.slug}`} className={linkClass}>
                     {p.name}
                   </Link>

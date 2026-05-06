@@ -47,7 +47,7 @@ export function Logo({
       height={size}
       onError={() => setErrored(true)}
       className={cn(
-        "inline-block rounded-sm object-cover shrink-0 bg-[color:var(--logo-fallback)]",
+        "inline-block rounded-sm object-contain shrink-0",
         className,
       )}
       style={{ width: size, height: size }}

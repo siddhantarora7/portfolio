@@ -46,7 +46,7 @@ export default function ProjectsPage() {
           <Section key={p.slug}>
             <article>
               <h3 className="flex items-center gap-2 text-[16px] font-medium">
-                <Logo src={p.logo} name={p.name} />
+                {p.logo && <Logo src={p.logo} name={p.name} />}
                 <Link href={`/projects/${p.slug}`} className={linkClass}>
                   {p.name}
                 </Link>

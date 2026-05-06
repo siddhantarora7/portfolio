@@ -25,7 +25,7 @@ export type Award = {
 export type ProjectPreview = {
   slug: string;
   name: string;
-  logo: string;
+  logo?: string;
   shortDescription: string;
   result?: string;
 };
@@ -51,7 +51,7 @@ export const currently: CurrentEntry[] = [
     role: "Consultant",
     entity: {
       name: "Verve Consulting",
-      logo: "/logos/verve.png",
+      logo: "/logos/verve.jpeg",
       href: "https://createwithverve.com/",
     },
     period: "Feb 2026 – present",
@@ -79,15 +79,15 @@ export const currently: CurrentEntry[] = [
 export const awards: Award[] = [
   {
     name: "USACO Gold",
-    org: { name: "USACO", logo: "/logos/usaco.png" },
+    org: { name: "USACO", logo: "/logos/usaco2.png" },
   },
   {
     name: "CCC Senior Top 1%",
-    org: { name: "CEMC", logo: "/logos/cemc.png" },
+    org: { name: "CEMC", logo: "/logos/cemc2.png" },
   },
   {
     name: "Alberta High School Mathematics Competition",
-    org: { name: "AHSMC", logo: "/logos/ahsmc.png" },
+    org: { name: "AHSMC", logo: "/logos/uofa.jpeg" },
     result: "Honorable Mention",
   },
   {
@@ -101,7 +101,6 @@ export const projects: Project[] = [
   {
     slug: "glide",
     name: "Glide",
-    logo: "/logos/glide.png",
     shortDescription: "CoPilot for writing",
     techStack: ["Next.js", "TypeScript", "Groq"],
     period: "2025",
@@ -116,7 +115,6 @@ export const projects: Project[] = [
   {
     slug: "spinfilter",
     name: "SpinFilter",
-    logo: "/logos/spinfilter.png",
     shortDescription: "ML misinformation detection",
     result: "3rd at CalgaryHacks",
     techStack: ["Python", "PyTorch", "Next.js", "React.js"],

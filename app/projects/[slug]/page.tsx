@@ -62,7 +62,7 @@ export default function ProjectDetailPage({ params }: Params) {
       </div>
 
       <div className="mt-1 flex items-center gap-2 text-[14px] text-[color:var(--muted)]">
-        <Logo src={project.logo} name={project.name} />
+        {project.logo && <Logo src={project.logo} name={project.name} />}
         <span>{project.techStack.join(" · ")}</span>
         <span aria-hidden>·</span>
         <span>{project.period}</span>
