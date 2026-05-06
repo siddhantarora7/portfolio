@@ -42,62 +42,56 @@ export type Project = ProjectPreview & {
 
 export const hero = {
   name: "Siddhant Arora",
-  age: 16,
-  bio: "high school student in calgary building tools for math competitors and writing software",
+  age: 15,
+  bio: "15yr old from calgary who spents most afternoons shipping code",
 };
 
 export const currently: CurrentEntry[] = [
   {
-    role: "Software Engineering Intern",
+    role: "Consultant",
     entity: {
       name: "Verve Consulting",
       logo: "/logos/verve.png",
-      href: TODO("verve url"),
+      href: "https://createwithverve.com/",
     },
     period: "Feb 2026 – present",
   },
   {
-    role: "Co-founder",
+    role: "Chief Operating Officer, Software Engineer",
     entity: {
       name: "usamo.guide",
       logo: "/logos/usamoguide.png",
-      href: "https://usamo.guide",
+      href: "https://www.usamoguide.com/",
     },
     period: "Jan 2026 – present",
   },
   {
     role: "Grade 10",
     entity: {
-      name: "SCHOOL_NAME_TODO",
-      logo: "/logos/school.png",
+      name: "Westmount Charter School",
+      logo: "/logos/westmount.png",
     },
-    period: "96 average — taking AP Calc BC + AP CSP",
+    period: "96 average — self-studying AP Calculus BC + AP Computer Science Principles",
     subBullets: ["incoming president of Math Club and Coding Club"],
   },
 ];
 
 export const awards: Award[] = [
   {
-    name: "USACO Bronze",
+    name: "USACO Gold",
     org: { name: "USACO", logo: "/logos/usaco.png" },
   },
   {
-    name: "CCC Senior",
+    name: "CCC Senior Top 1%",
     org: { name: "CEMC", logo: "/logos/cemc.png" },
   },
   {
-    name: "AMC 10",
-    org: { name: "MAA", logo: "/logos/maa.png" },
-    result: "Top 10%",
-  },
-  {
-    name: "AHSMC II",
+    name: "Alberta High School Mathematics Competition",
     org: { name: "AHSMC", logo: "/logos/ahsmc.png" },
     result: "Honorable Mention",
   },
-  { name: "Calgary Top 3% (Group III)" },
   {
-    name: "CalgaryHacks Tier 2",
+    name: "CalgaryHacks 3rd Place, Tier II",
     org: { name: "CalgaryHacks", logo: "/logos/calgaryhacks.png" },
     result: "3rd Place",
   },
@@ -108,12 +102,12 @@ export const projects: Project[] = [
     slug: "glide",
     name: "Glide",
     logo: "/logos/glide.png",
-    shortDescription: "AI writing augmentation tool with ghost-text predictions",
+    shortDescription: "CoPilot for writing",
     techStack: ["Next.js", "TypeScript", "Groq"],
     period: "2025",
     links: {
       live: TODO("glide live url"),
-      github: TODO("glide github url"),
+      github: "https://github.com/siddhantarora7/glide",
     },
     what: TODO("what is Glide — 1 short paragraph"),
     why: TODO("why you built Glide — 1 short paragraph"),
@@ -125,9 +119,9 @@ export const projects: Project[] = [
     logo: "/logos/spinfilter.png",
     shortDescription: "ML misinformation detection",
     result: "3rd at CalgaryHacks",
-    techStack: ["Python", "PyTorch", "Next.js"],
+    techStack: ["Python", "PyTorch", "Next.js", "React.js"],
     period: "2025",
-    links: { github: TODO("spinfilter github url") },
+    links: { github: "https://github.com/ThePeeps191/calgary-hacks-2026" },
     what: TODO("what is SpinFilter"),
     why: TODO("why you built SpinFilter"),
     how: TODO("how SpinFilter works"),
@@ -137,12 +131,12 @@ export const projects: Project[] = [
     slug: "usamo-guide",
     name: "usamo.guide",
     logo: "/logos/usamoguide.png",
-    shortDescription: "free math competition resource platform",
+    shortDescription: "usaco.guide for math; 100k+ visits, math competition learning platform",
     techStack: ["Next.js", "TypeScript", "Supabase"],
     period: "2026",
     links: {
       live: "https://usamo.guide",
-      github: TODO("usamo.guide github url"),
+      github: "https://github.com/usamoguide/usamo-guide",
     },
     what: TODO("what is usamo.guide"),
     why: TODO("why you built usamo.guide"),
@@ -150,10 +144,16 @@ export const projects: Project[] = [
   },
 ];
 
-export const contact = {
-  email: TODO("siddhant's email"),
-  github: TODO("siddhant's github username"),
-  linkedin: TODO("siddhant's linkedin url"),
-  twitter: "",
-  instagram: "",
+export type Contact = {
+  email: string;
+  github: string;
+  linkedin: string;
+  twitter?: string;
+  instagram?: string;
+};
+
+export const contact: Contact = {
+  email: "siddaroraleo@gmail.com",
+  github: "https://github.com/siddhantarora7",
+  linkedin: "https://ca.linkedin.com/in/siddhant-arora-017023400",
 };

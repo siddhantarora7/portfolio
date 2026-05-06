@@ -71,9 +71,9 @@ export function ContactRow() {
   const items = [
     { href: emailHref(contact.email), icon: <Mail size={14} aria-hidden />, label: "Email" },
     { href: githubHref(contact.github), icon: <Github size={14} aria-hidden />, label: "GitHub" },
-    { href: twitterHref(contact.twitter), icon: <Twitter size={14} aria-hidden />, label: "Twitter" },
+    { href: twitterHref(contact.twitter ?? ""), icon: <Twitter size={14} aria-hidden />, label: "Twitter" },
     { href: linkedinHref(contact.linkedin), icon: <Linkedin size={14} aria-hidden />, label: "LinkedIn" },
-    { href: instagramHref(contact.instagram), icon: <Instagram size={14} aria-hidden />, label: "Instagram" },
+    { href: instagramHref(contact.instagram ?? ""), icon: <Instagram size={14} aria-hidden />, label: "Instagram" },
   ].filter((i) => i.href !== undefined);
 
   return (
