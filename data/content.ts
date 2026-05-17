@@ -116,6 +116,7 @@ export const projects: Project[] = [
   {
     slug: "spinfilter",
     name: "SpinFilter",
+    logo: "/logos/spinfilter.svg",
     shortDescription: "ML misinformation detection",
     result: "3rd at CalgaryHacks",
     techStack: ["Python", "PyTorch", "Next.js", "React.js"],
@@ -129,6 +130,7 @@ export const projects: Project[] = [
   {
     slug: "calgary-housing-nn",
     name: "Housing Price Neural Net",
+    logo: "/logos/calgary-housing-nn.svg",
     shortDescription: "From-scratch NumPy MLP that prices Calgary homes",
     techStack: ["Python", "NumPy", "Pandas", "Flask"],
     period: "2026",

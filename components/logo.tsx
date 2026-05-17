@@ -35,6 +35,33 @@ export function Logo({
     );
   }
 
+  // Monochrome SVGs authored with `currentColor` need to inherit the
+  // surrounding text color. `<img>` renders SVGs in isolation, so we use
+  // mask-image to silhouette the shape and fill it with currentColor.
+  const isSvg = src.toLowerCase().endsWith(".svg");
+  if (isSvg) {
+    return (
+      <span
+        role="img"
+        aria-label={name}
+        style={{
+          width: size,
+          height: size,
+          backgroundColor: "currentColor",
+          WebkitMaskImage: `url(${src})`,
+          maskImage: `url(${src})`,
+          WebkitMaskSize: "contain",
+          maskSize: "contain",
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+          WebkitMaskPosition: "center",
+          maskPosition: "center",
+        }}
+        className={cn("inline-block shrink-0", className)}
+      />
+    );
+  }
+
   // Plain <img> rather than next/image: many users name files .png that are
   // actually svg/webp/jpeg, and next/image gets fussy about MIME mismatches.
   // The browser sniffs the bytes and renders correctly regardless of extension.
