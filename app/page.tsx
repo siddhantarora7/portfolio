@@ -9,6 +9,7 @@ import { NavLinks } from "@/components/nav-links";
 import { Section } from "@/components/section";
 import { SectionHeader } from "@/components/section-header";
 import { MaybeTodo } from "@/components/todo";
+import { LocationTag } from "@/components/ui/location-tag";
 
 const linkClass =
   "underline underline-offset-4 decoration-[color:var(--rule)] hover:decoration-current transition-colors";
@@ -170,7 +171,13 @@ export default function HomePage() {
 
       {/* Location */}
       <Section>
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center gap-6">
+          <LocationTag
+            city="Calgary"
+            country="Canada"
+            timezone="MT"
+            tz="America/Edmonton"
+          />
           <Globe />
         </div>
         <HR />

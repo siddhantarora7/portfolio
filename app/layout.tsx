@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import { BootSplash } from "@/components/boot-splash";
 import { ThemeProvider } from "@/components/theme-provider";
 import { hero } from "@/data/content";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${fraunces.variable} antialiased`}>
+        <BootSplash />
         <ThemeProvider>
           <main className="mx-auto max-w-prose px-6 py-16 md:py-24">
             {children}
