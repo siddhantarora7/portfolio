@@ -1,7 +1,7 @@
 export function HR() {
   return (
     <hr
-      className="my-8 border-0 h-px"
+      className="my-12 border-0 h-px"
       style={{ background: "var(--rule)" }}
     />
   );

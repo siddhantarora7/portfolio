@@ -41,16 +41,39 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <header>
-        <div className="flex items-start justify-between gap-4">
-          <h1 className="text-[16px] font-medium">
-            <Link href="/" className={linkClass}>
-              <span className="text-[color:var(--muted)] mr-1.5" aria-hidden>◆</span>
-              {hero.name}, {hero.age}
+        <div className="flex items-end justify-between gap-4">
+          <h1 className="leading-[0.95]">
+            <Link
+              href="/"
+              className="inline-flex items-end gap-2 transition-colors hover:text-[color:var(--foreground)]"
+            >
+              <span
+                className="mb-2 text-[14px] text-[color:var(--muted)]"
+                aria-hidden
+              >
+                ◆
+              </span>
+              <span
+                className="[font-family:var(--font-display),Georgia,serif] text-[clamp(36px,5.5vw,52px)] font-medium tracking-[-0.02em]"
+                style={{
+                  fontStyle: "italic",
+                  fontVariationSettings: "'opsz' 96",
+                }}
+              >
+                {hero.name}
+              </span>
+              <span className="mb-1.5 text-[15px] tabular-nums text-[color:var(--muted)]">
+                , {hero.age}
+              </span>
             </Link>
           </h1>
-          <NavLinks />
+          <div className="pb-2">
+            <NavLinks />
+          </div>
         </div>
-        <p className="mt-3 text-[color:var(--muted)]">{hero.bio}</p>
+        <p className="mt-5 max-w-[55ch] text-[16px] sm:text-[17px] text-[color:var(--muted)]">
+          {hero.bio}
+        </p>
         <HR />
       </header>
 

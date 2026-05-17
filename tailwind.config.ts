@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       maxWidth: {
-        prose: "720px",
+        prose: "880px",
       },
       colors: {
         background: "var(--background)",
