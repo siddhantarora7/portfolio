@@ -18,6 +18,7 @@ const config: Config = {
         muted: "var(--muted)",
         rule: "var(--rule)",
         accent: "var(--accent)",
+        primary: "var(--foreground)",
       },
     },
   },
