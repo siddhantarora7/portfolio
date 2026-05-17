@@ -58,6 +58,14 @@ export default function ProjectsPage() {
             </a>
           </nav>
         </div>
+        <div
+          className="mx-auto"
+          style={{ width: "min(94vw, 1080px)" }}
+        >
+          <p className="mt-5 max-w-[55ch] text-[16px] sm:text-[17px] text-[color:var(--muted)]">
+            Some stuff I&apos;ve built; for better or for worse
+          </p>
+        </div>
       </header>
 
       <ProjectsScrollSequence projects={projects} />
