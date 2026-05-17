@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { projects } from "@/data/content";
 import { ExpandableProject } from "@/components/expandable-project";
+import { ProjectsScrollSequence } from "@/components/projects-scroll-sequence";
 
 const linkClass =
   "underline underline-offset-4 decoration-[color:var(--rule)] hover:decoration-current transition-colors";
@@ -28,6 +29,8 @@ export default function ProjectsPage() {
           </a>
         </nav>
       </header>
+
+      <ProjectsScrollSequence projects={projects} />
 
       <div className="mt-6">
         {projects.map((p) => (

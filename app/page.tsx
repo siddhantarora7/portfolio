@@ -8,7 +8,6 @@ import { Logo } from "@/components/logo";
 import { NavLinks } from "@/components/nav-links";
 import { Section } from "@/components/section";
 import { SectionHeader } from "@/components/section-header";
-import { StatusLine } from "@/components/status-line";
 import { MaybeTodo } from "@/components/todo";
 
 const linkClass =
