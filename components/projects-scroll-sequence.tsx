@@ -161,6 +161,9 @@ function Card({
     isFirst ? [0, 8] : isLast ? [8, 0] : [8, 0, 0, 8],
   );
   const filter = useTransform(blur, (b) => `blur(${b}px)`);
+  const pointerEvents = useTransform(opacity, (v) =>
+    v > 0.5 ? "auto" : "none",
+  );
 
   const liveHref =
     project.links?.live && !isTodo(project.links.live)
@@ -176,7 +179,7 @@ function Card({
 
   return (
     <motion.article
-      style={{ opacity, y, scale, filter }}
+      style={{ opacity, y, scale, filter, pointerEvents }}
       className="absolute inset-x-0 mx-auto w-[min(94vw,1080px)]"
     >
       <div
