@@ -32,10 +32,18 @@ export default function ProjectsPage() {
 
       <ProjectsScrollSequence projects={projects} />
 
-      <div className="mt-6">
-        {projects.map((p) => (
-          <ExpandableProject key={p.slug} project={p} />
-        ))}
+      <div
+        className="mt-10"
+        style={{ width: "100vw", marginLeft: "calc(50% - 50vw)" }}
+      >
+        <div
+          className="mx-auto px-4 sm:px-6"
+          style={{ width: "min(94vw, 1000px)" }}
+        >
+          {projects.map((p) => (
+            <ExpandableProject key={p.slug} project={p} />
+          ))}
+        </div>
       </div>
     </>
   );
