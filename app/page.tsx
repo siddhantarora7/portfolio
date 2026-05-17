@@ -2,11 +2,13 @@ import Link from "next/link";
 import { awards, currently, hero, isTodo, projects } from "@/data/content";
 import { Bullet } from "@/components/bullet";
 import { ContactRow } from "@/components/contact-row";
+import { Globe } from "@/components/globe";
 import { HR } from "@/components/hr";
 import { Logo } from "@/components/logo";
 import { NavLinks } from "@/components/nav-links";
 import { Section } from "@/components/section";
 import { SectionHeader } from "@/components/section-header";
+import { StatusLine } from "@/components/status-line";
 import { MaybeTodo } from "@/components/todo";
 
 const linkClass =
@@ -140,6 +142,14 @@ export default function HomePage() {
           <Link href="/projects" className={`${linkClass} text-[color:var(--muted)]`}>
             see all →
           </Link>
+        </div>
+        <HR />
+      </Section>
+
+      {/* Location */}
+      <Section>
+        <div className="flex justify-center">
+          <Globe />
         </div>
         <HR />
       </Section>
