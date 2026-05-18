@@ -1,8 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { projects } from "@/data/content";
+import { ContactRow } from "@/components/contact-row";
 import { ExpandableProject } from "@/components/expandable-project";
 import { ProjectsScrollSequence } from "@/components/projects-scroll-sequence";
+import { Section } from "@/components/section";
+import { SectionHeader } from "@/components/section-header";
 
 const linkClass =
   "underline underline-offset-4 decoration-[color:var(--rule)] hover:decoration-current transition-colors";
@@ -81,6 +84,20 @@ export default function ProjectsPage() {
           {projects.map((p) => (
             <ExpandableProject key={p.slug} project={p} />
           ))}
+        </div>
+      </div>
+
+      <div
+        style={{ width: "100vw", marginLeft: "calc(50% - 50vw)" }}
+      >
+        <div
+          className="mx-auto px-4 sm:px-6"
+          style={{ width: "min(94vw, 1000px)" }}
+        >
+          <Section>
+            <SectionHeader>Contact</SectionHeader>
+            <ContactRow />
+          </Section>
         </div>
       </div>
     </>

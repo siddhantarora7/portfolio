@@ -59,7 +59,7 @@ export const currently: CurrentEntry[] = [
   {
     role: "Chief Operating Officer, Software Engineer",
     entity: {
-      name: "usamo.guide",
+      name: "USAMO Guide",
       logo: "/logos/usamoguide.png",
       href: "https://www.usamoguide.com/",
     },
@@ -100,7 +100,7 @@ export const awards: Award[] = [
 export const projects: Project[] = [
   {
     slug: "usamo-guide",
-    name: "usamo.guide",
+    name: "USAMO Guide",
     logo: "/logos/usamoguide.png",
     shortDescription: "usaco.guide for math; 100k+ visits, math competition learning platform",
     techStack: ["Next.js", "TypeScript", "Supabase"],
