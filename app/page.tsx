@@ -63,9 +63,6 @@ export default function HomePage() {
               >
                 {hero.name}
               </span>
-              <span className="mb-1.5 text-[15px] tabular-nums text-[color:var(--muted)]">
-                , {hero.age}
-              </span>
             </Link>
           </h1>
           <div className="pb-2">

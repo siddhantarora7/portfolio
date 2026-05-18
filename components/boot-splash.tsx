@@ -21,7 +21,7 @@ const VERBS = [
   "Tinkering",
   "Wrangling",
 ];
-
+  
 const SHIMMER_MS = 1500;
 const FADE_MS = 350;
 const REDUCED_MS = 750;
