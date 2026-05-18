@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   geoDistance,
   geoGraticule,
@@ -17,6 +17,23 @@ const SPEED = 0.12;
 
 export function Globe() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const update = () => {
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+          timeZone: "America/Edmonton",
+        }),
+      );
+    };
+    update();
+    const id = setInterval(update, 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -137,8 +154,8 @@ export function Globe() {
         Location
       </div>
       <div className="mt-1 text-[15px] font-medium">Calgary, Alberta</div>
-      <div className="text-[12px] text-[color:var(--muted)]">
-        51.05°N · 114.07°W
+      <div className="text-[12px] text-[color:var(--muted)] tabular-nums">
+        51.05°N · 114.07°W{time && ` · ${time} MT`}
       </div>
       <canvas ref={canvasRef} className="mt-3" aria-label="Rotating globe with Calgary highlighted" />
     </div>

@@ -61,7 +61,7 @@ export const currently: CurrentEntry[] = [
     entity: {
       name: "USAMO Guide",
       logo: "/logos/usamoguide.png",
-      href: "https://www.usamoguide.com/",
+      href: "https://usamoguide.com",
     },
     period: "Jan 2026 – present",
   },
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     techStack: ["Next.js", "TypeScript", "Supabase"],
     period: "2026",
     links: {
-      live: "https://usamo.guide",
+      live: "https://usamoguide.com",
       github: "https://github.com/usamoguide/usamo-guide",
     },
     what: TODO("what is usamo.guide"),

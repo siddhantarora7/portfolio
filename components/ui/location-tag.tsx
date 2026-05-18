@@ -51,14 +51,6 @@ export function LocationTag({
           : "none",
       }}
     >
-      {/* Live pulse indicator */}
-      <div className="relative flex items-center justify-center">
-        <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-        </span>
-      </div>
-
       {/* Location text */}
       <div className="relative flex items-center gap-2 overflow-hidden">
         <span
@@ -81,28 +73,6 @@ export function LocationTag({
           {currentTime} {timezone}
         </span>
       </div>
-
-      {/* Arrow indicator */}
-      <svg
-        className="h-3 w-3 transition-all duration-300"
-        style={{
-          color: "var(--muted)",
-          transform: isHovered
-            ? "translateX(2px) rotate(-45deg)"
-            : "translateX(0) rotate(0)",
-          opacity: isHovered ? 1 : 0.5,
-        }}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-        />
-      </svg>
     </button>
   );
 }
