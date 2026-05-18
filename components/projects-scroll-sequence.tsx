@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValueEvent,
@@ -16,12 +16,82 @@ import { Progress } from "./ui/interfaces-progress";
 
 const displayFont = "[font-family:var(--font-display),Georgia,serif]";
 
+function useScrollSnap(
+  ref: React.RefObject<HTMLDivElement>,
+  total: number,
+) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || total < 2) return;
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
+
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let snapping = false;
+    let lastInput = 0;
+
+    const markInput = () => {
+      lastInput = performance.now();
+      snapping = false;
+    };
+
+    const onScroll = () => {
+      if (snapping) return;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (performance.now() - lastInput < 120) return;
+
+        const rect = el.getBoundingClientRect();
+        const sectionTop = window.scrollY + rect.top;
+        const sectionHeight = el.offsetHeight;
+        const segment = sectionHeight / total;
+
+        const y = window.scrollY;
+        const relative = y - sectionTop;
+
+        if (relative < -segment * 0.5 || relative > sectionHeight) return;
+
+        const rawIndex = relative / segment;
+        const nearest = Math.round(rawIndex);
+        const target = sectionTop + nearest * segment;
+        const distance = Math.abs(y - target);
+
+        if (distance < 4 || distance > segment * 0.85) return;
+
+        snapping = true;
+        window.scrollTo({ top: target, behavior: "smooth" });
+        setTimeout(() => {
+          snapping = false;
+        }, 600);
+      }, 140);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", markInput, { passive: true });
+    window.addEventListener("touchmove", markInput, { passive: true });
+    window.addEventListener("keydown", markInput);
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", markInput);
+      window.removeEventListener("touchmove", markInput);
+      window.removeEventListener("keydown", markInput);
+    };
+  }, [ref, total]);
+}
+
 export function ProjectsScrollSequence({ projects }: { projects: Project[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
+
+  useScrollSnap(ref, projects.length);
 
   if (projects.length === 0) return null;
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import { BackToTop } from "@/components/back-to-top";
 import { BootSplash } from "@/components/boot-splash";
 import { ThemeProvider } from "@/components/theme-provider";
 import { hero } from "@/data/content";
@@ -32,6 +33,7 @@ export default function RootLayout({
           <main className="mx-auto max-w-prose px-6 py-16 md:py-24">
             {children}
           </main>
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>
