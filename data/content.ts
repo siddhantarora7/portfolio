@@ -57,7 +57,7 @@ export const currently: CurrentEntry[] = [
     period: "Feb 2026 – present",
   },
   {
-    role: "Chief Operating Officer, Software Engineer",
+    role: "Chief Operating Officer, Software Developer",
     entity: {
       name: "USAMO Guide",
       logo: "/logos/usamoguide.png",
