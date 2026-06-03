@@ -1,77 +1,45 @@
 # Siddhant Arora — Portfolio
 
-A minimal, single-column personal site. Dark mode by default, with a light-mode
-toggle that lives in the contact row. All content is typed and lives in
-`/data/content.ts` — no CMS, no markdown, no surprises.
+A clean portfolio site built using Typescript, Tailwind, and various UI frameworks, basically, some cool stuff about me :)
+
+Contains a home page for quick summaries on projects and experiences, a boot splash animation to provide some aesthetics, rotating globe animation, a projects section with custom scroll animations, dark/light mode functionality, and a resume.
+
+<img width="915" height="912" alt="image" src="https://github.com/user-attachments/assets/593bd936-6d18-4133-9130-b6303b64fa73" />
+<img width="920" height="589" alt="image" src="https://github.com/user-attachments/assets/18aeef7d-33f8-44d6-97d6-51b0ff7087d7" />
+<img width="1179" height="943" alt="image" src="https://github.com/user-attachments/assets/f0502ef8-1915-4be1-a15c-9443a5c4c2b0" />
+
+## Motivation
+
+It's 2026 and having a comprehensive portfolio site that is both clear and comprehensive is one of the best things one can do to showcase identity. This project was built with the purpose of achieving that, a clean, minimalist portfolio site to give a visual flow to some of my experiences. Enjoy!
 
 ## Stack
 
+The tech stack was made with the purpose of being simple yet also powerful tools that allow aesthetically pleasing UI and functionality:
+
 - Next.js 14 (App Router) + TypeScript
-- Tailwind CSS (CSS-variable theme)
+- Tailwind CSS (CSS themes)
 - next-themes (dark default, system preference disabled)
 - framer-motion (subtle scroll fade-ins only)
-- lucide-react (icons)
+- lucide-react (for icons)
 - Inter via `next/font/google`
 
 ## Setup
+
+To run the site locally, run these command via terminal:
 
 ```bash
 npm install
 npm run dev
 ```
 
-The site runs at http://localhost:3000.
+The site should run at http://localhost:3000.
 
-## Editing content
+## Content
 
-Everything renders from `/data/content.ts`. The exports are:
+All details render from `/data/content.ts` (contains all the technical details of projects, experiences, etc.). It does these exports:
 
-- `hero` — name, age, one-line bio
-- `currently` — array of `CurrentEntry` (role, entity, period, optional sub-bullets)
-- `awards` — array of `Award` (name, optional org, optional italic result)
-- `projects` — array of `Project` (slug, name, logo, short description, tech stack, period, links, what/why/how/results)
-- `contact` — email, github, linkedin, twitter, instagram
-
-Anything you don't have yet should use the `TODO("...")` helper:
-
-```ts
-links: { live: TODO("glide live url") }
-what: TODO("what is Glide — 1 short paragraph"),
-```
-
-TODO strings render as **orange italic placeholder text** wherever they appear,
-so missing content stays loud and obvious. Twitter and Instagram are the only
-contact fields that can be left as the empty string (`""`) to omit them entirely.
-
-### Adding a new project
-
-1. Append a new entry to the `projects` array in `/data/content.ts`.
-2. Drop a logo at `/public/logos/<slug>.png` (optional — the fallback letter
-   tile renders if the file is missing).
-3. The new `/projects/<slug>` page is generated automatically (SSG).
-
-### Adding logos
-
-Drop square PNGs into `/public/logos/`. See `/public/logos/README.md` for the
-list of expected filenames. Missing logos render a fallback square with the
-entity's first letter — the build never fails over a missing logo.
-
-### Replacing the resume
-
-Overwrite `/public/resume.pdf` with the real PDF.
-
-## Deploy to Vercel
-
-1. Push this repo to GitHub.
-2. Visit https://vercel.com/new and import the repo.
-3. Framework preset: **Next.js**. No environment variables required.
-4. Click **Deploy**.
-
-That's it — every push to `main` redeploys.
-
-## Theming
-
-- Dark is the explicit default. System preference is ignored unless the user
-  uses the toggle in the contact row.
-- Color tokens live as CSS variables in `app/globals.css` (`--background`,
-  `--foreground`, `--muted`, `--rule`, `--accent`).
+1) `hero`: My name, age, one-line bio,
+2) `currently`: An array of `CurrentEntry` (role, entity, period, optional extra information via bullets)
+3) `awards`: An array of `Award` (name, optional organization)
+4) `projects`: An array of `Project` (slug, name, logo, short description, tech stack, period, links, what/why/how/results)
+5) `contact`: Contains my email, github, linkedin, twitter, instagram
