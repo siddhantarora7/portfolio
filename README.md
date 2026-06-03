@@ -1,6 +1,6 @@
 # Siddhant Arora — Portfolio
 
-A clean portfolio site built using Typescript, Tailwind, and various UI frameworks, basically, some cool stuff about me :)
+A clean portfolio site built using Typescript, Tailwind, and various UI frameworks, basically, some cool stuff about me :). Made for personal use and Hackclub Horizons.
 
 Contains a home page for quick summaries on projects and experiences, a boot splash animation to provide some aesthetics, rotating globe animation, a projects section with custom scroll animations, dark/light mode functionality, and a resume.
 
