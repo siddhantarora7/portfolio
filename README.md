@@ -1,6 +1,6 @@
 # Siddhant Arora — Portfolio
 
-A clean portfolio site built using Typescript, Tailwind, and various UI frameworks, basically, some cool stuff about me :). Made for personal use and Hackclub Horizons.
+A clean portfolio site built using Typescript, Tailwind, and various UI frameworks, listing some cool stuff about me :). Made for personal use and Hackclub Horizons.
 
 Contains a home page for quick summaries on projects and experiences, a boot splash animation to provide some aesthetics, rotating globe animation, a projects section with custom scroll animations, dark/light mode functionality, and a resume.
 
@@ -23,23 +23,25 @@ The tech stack was made with the purpose of being simple yet also powerful tools
 - lucide-react (for icons)
 - Inter via `next/font/google`
 
-## Setup
-
-To run the site locally, run these command via terminal:
-
-```bash
-npm install
-npm run dev
-```
-
 The site should run at http://localhost:3000.
 
 ## Content
 
-All details render from `/data/content.ts` (contains all the technical details of projects, experiences, etc.). It does these exports:
+The crux of the project! Hand-crafted content to provide explanations to projects and experiences. All details render from `/data/content.ts` (contains all the technical details of projects, experiences, etc.). It does these exports:
 
 1) `hero`: My name, age, one-line bio,
 2) `currently`: An array of `CurrentEntry` (role, entity, period, optional extra information via bullets)
 3) `awards`: An array of `Award` (name, optional organization)
 4) `projects`: An array of `Project` (slug, name, logo, short description, tech stack, period, links, what/why/how/results)
 5) `contact`: Contains my email, github, linkedin, twitter, instagram
+
+## How It Works
+
+The project layout in `/app/layout.ts` gathers everything in a ThemeProvider (such as themes, loading fonts, etc.).
+`/home` renders the hero page with a concise section on awards, project previews, and a rotating globe from 21st.dev.
+`/projects` contains the fill project index with scroll animations to show cards containing each project.
+`/public/logos` contains all the images needded to add a visual indicator to experiences, awards, projects, etc.
+
+## Attribution
+
+All content was written by hand, various UI components were derived from https://https://21st.dev/. Claude Code was utilized to aid in developing the frontend.
