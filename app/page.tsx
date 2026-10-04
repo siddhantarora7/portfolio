@@ -21,14 +21,14 @@ export default async function Home() {
     <>
       {/* ------------------------------------------------------------- hero */}
       <section aria-labelledby="hero-title" className="mascot-host relative">
-        <div className="glass arrive relative rounded-[28px] px-6 pt-7 pb-8 sm:px-9 sm:pt-9 sm:pb-10">
-          <div className="flex items-center gap-3.5">
+        <div className="glass arrive relative rounded-[28px] px-5 pt-6 pb-12 sm:px-9 sm:pt-9 sm:pb-10">
+          <div className="flex items-center gap-2.5 sm:gap-3.5">
             <span className="arrive-pop">
-              <Bubble size={52} />
+              <Bubble size={52} className="size-10 sm:size-[52px]" />
             </span>
             <h1
               id="hero-title"
-              className="font-display text-[clamp(38px,8.4vw,60px)] leading-[1.02] font-semibold tracking-[-0.025em] text-balance"
+              className="font-display text-[clamp(31px,8.2vw,60px)] leading-[1.02] font-semibold tracking-[-0.025em] text-balance"
             >
               {profile.display}
             </h1>
@@ -57,7 +57,7 @@ export default async function Home() {
               </a>
             </li>
           </ul>
-          <LedStamp className="absolute right-6 bottom-5 sm:right-8" />
+          <LedStamp className="absolute right-5 bottom-5 sm:right-8" />
         </div>
         <p
           aria-hidden="true"

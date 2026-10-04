@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Bubble } from "./bubble";
 import { ThemeToggle } from "./theme-toggle";
 
-const items = [
+const items: { href: string; label: string; wide?: boolean }[] = [
   { href: "/#work", label: "work" },
   { href: "/#projects", label: "projects" },
   { href: "/#codeforces", label: "codeforces" },
-  { href: "/resume.pdf", label: "resume" },
+  { href: "/resume.pdf", label: "resume", wide: true },
 ];
 
 export function Nav() {
@@ -23,7 +23,7 @@ export function Nav() {
           <a
             key={item.href}
             href={item.href}
-            className="rounded-full px-2.5 py-1.5 text-ink-2 transition-colors hover:text-ink max-[380px]:px-1.5"
+            className={`rounded-full px-2.5 py-1.5 text-ink-2 transition-colors hover:text-ink max-[420px]:px-2 ${item.wide ? "max-[420px]:hidden" : ""}`}
           >
             {item.label}
           </a>

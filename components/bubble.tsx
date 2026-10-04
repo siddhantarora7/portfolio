@@ -48,6 +48,7 @@ export function Bubble({
 
       {/* body: very slightly lopsided, like a real bubble */}
       <path
+        className="bubble-body"
         d="M32 5.5c15.2 0 26.8 11.4 26.8 26.6 0 15.4-11.8 26.6-27 26.6C16.8 58.7 5.2 47.6 5.2 32.3 5.2 17 16.9 5.5 32 5.5Z"
         fill={`url(#fill-${id})`}
         stroke={`url(#rim-${id})`}
