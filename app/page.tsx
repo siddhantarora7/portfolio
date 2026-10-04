@@ -7,6 +7,7 @@ import { InkIn, Row, Section } from "@/components/primitives";
 import { projects } from "@/data/projects";
 import { alsoWork, highlights, links, profile, research, work } from "@/data/site";
 import { getCodeforcesStats } from "@/lib/codeforces";
+import { showTodos } from "@/data/todo";
 
 // Codeforces stats refresh once a day.
 export const revalidate = 86400;
@@ -34,7 +35,14 @@ export default async function Home() {
             </h1>
           </div>
           <p className="mt-6 max-w-[38ch] text-[18px] leading-[1.6] text-pretty sm:text-[19px]">{profile.bio}</p>
-          <p className="mt-3 max-w-[44ch] text-[16px] text-ink-2">{profile.human}</p>
+          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Highlights">
+            {profile.facts.map((f) => (
+              <li key={f} className="rounded-full bg-matcha-soft px-3 py-1 text-[13.5px] font-medium text-matcha-deep">
+                {f}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 max-w-[44ch] text-[16px] text-ink-2">{profile.human}</p>
           <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-[15px]">
             <li>
               <a className="link" href={links.github} target="_blank" rel="noreferrer">
@@ -85,7 +93,7 @@ export default async function Home() {
       <Section id="work" title="work">
         <ul className="focus-list">
           {work.map((w) => (
-            <Row key={w.name} name={w.name} role={w.role} aside={w.period} note={w.note} href={w.href} logo={w.logo} />
+            <Row key={w.name} name={w.name} role={w.role} aside={w.period} note={w.note} href={w.href} logo={w.logo} mark={w.mark} />
           ))}
         </ul>
         <h3 className="mt-9 mb-1 text-[14px] text-ink-2">Also</h3>
@@ -112,15 +120,14 @@ export default async function Home() {
               <Link href={`/projects/${p.slug}`} className="glass group block rounded-[22px] p-2.5">
                 <ImageSlot
                   image={p.hero}
-                  title={p.name}
                   path={`public/projects/${p.slug}/`}
                   sizes="(min-width: 640px) 320px, 100vw"
                   rounded="rounded-[15px]"
                   stamp={false}
                   variant={i}
-                  coverSize="text-[24px]"
+                  coverSize="text-[15px]"
                 />
-                <span className="block px-2 pt-3.5 pb-2">
+                <span className={`block px-2 pb-2 ${p.hero.src || showTodos ? "pt-3.5" : "pt-2"}`}>
                   <span className="flex items-baseline justify-between gap-3">
                     <span className="font-display text-[19px] font-semibold">{p.name}</span>
                     <span className="tabular text-[13px] text-ink-2">{p.year}</span>
@@ -148,7 +155,7 @@ export default async function Home() {
       </Section>
 
       {/* ------------------------------------------------------- codeforces */}
-      <Section id="codeforces" title="codeforces" note="live">
+      <Section id="codeforces" title="codeforces" note={stats.source === "live" ? "updated daily" : undefined}>
         <CodeforcesCard stats={stats} />
       </Section>
 

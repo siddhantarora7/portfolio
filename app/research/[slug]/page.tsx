@@ -27,14 +27,13 @@ export default async function ResearchPage({ params }: { params: Promise<{ slug:
     <article className="relative">
       <BackLink />
       <header className="arrive">
-        <div className="flex flex-wrap items-center gap-3 text-[14.5px] text-ink-2">
-          <span>{r.org}</span>
-          <Pill>{r.status}</Pill>
-        </div>
-        <h1 className="font-display mt-4 text-[clamp(34px,6.4vw,50px)] leading-[1.08] font-semibold tracking-[-0.02em] text-balance">
+        <h1 className="font-display text-[clamp(34px,6.4vw,50px)] leading-[1.08] font-semibold tracking-[-0.02em] text-balance">
           {r.title}
         </h1>
         <p className="mt-3 max-w-[40ch] text-[19px] leading-[1.5] text-ink-2 text-pretty">{r.subtitle}</p>
+        <div className="mt-5">
+          <Pill>{r.status}</Pill>
+        </div>
         <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 text-[14.5px] sm:grid-cols-4">
           {[
             ["Role", r.role],

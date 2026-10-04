@@ -71,7 +71,7 @@ function RatingChart({ stats }: { stats: CfStats }) {
   if (pts.length < 2) return null;
   const W = 600;
   const H = 190;
-  const pad = { l: 4, r: 40, t: 12, b: 22 };
+  const pad = { l: 4, r: 40, t: 14, b: 22 };
   const t0 = pts[0].t;
   const t1 = pts[pts.length - 1].t;
   const lo = Math.floor((Math.min(...pts.map((p) => p.rating)) - 100) / 100) * 100;
@@ -80,27 +80,34 @@ function RatingChart({ stats }: { stats: CfStats }) {
   const y = (r: number) => (pad.t + (1 - (r - lo) / (hi - lo)) * (H - pad.t - pad.b)).toFixed(1);
   const d = pts.map((p, i) => `${i ? "L" : "M"}${x(p.t)},${y(p.rating)}`).join(" ");
   const last = pts[pts.length - 1];
-  const years: number[] = [];
-  for (let yr = new Date(t0 * 1000).getFullYear() + 1; yr <= new Date(t1 * 1000).getFullYear(); yr++) years.push(yr);
+  const monthYear = new Intl.DateTimeFormat("en-CA", { month: "short", year: "numeric", timeZone: "America/Edmonton" });
+  const hand = `style="font-family: var(--font-display); font-variation-settings: 'INFM' 100"`;
+
+  // Shade the band the current rating sits in, and name it once.
+  const bandIdx = BANDS.findLastIndex((b) => last.rating >= b.at);
+  const band = bandIdx >= 0 ? BANDS[bandIdx] : null;
+  const bandTop = Math.min(BANDS[bandIdx + 1]?.at ?? hi, hi);
 
   // Built as a string so React doesn't have to hydrate every node.
   const svg = [
+    band
+      ? `<rect x="${pad.l}" y="${y(bandTop)}" width="${W - pad.l - pad.r}" height="${(+y(band.at) - +y(bandTop)).toFixed(1)}" fill="var(--matcha)" fill-opacity="0.1"/>` +
+        `<text x="${pad.l + 8}" y="${((+y(band.at) + +y(bandTop)) / 2 + 4).toFixed(1)}" font-size="13" fill="var(--matcha-deep)" ${hand}>${band.label}</text>`
+      : "",
     ...BANDS.filter((b) => b.at > lo && b.at < hi).map(
       (b) =>
         `<line x1="${pad.l}" x2="${W - pad.r}" y1="${y(b.at)}" y2="${y(b.at)}" stroke="var(--ink-2)" stroke-opacity="0.25" stroke-dasharray="2 4"/>` +
         `<text x="${W - pad.r + 6}" y="${(+y(b.at) + 3.5).toFixed(1)}" font-size="10" fill="var(--ink-2)">${b.at}</text>`,
     ),
-    ...years.map(
-      (yr) =>
-        `<text x="${x(Date.UTC(yr, 0, 1) / 1000)}" y="${H - 4}" font-size="10" fill="var(--ink-2)" text-anchor="middle">${yr}</text>`,
-    ),
+    `<text x="${pad.l}" y="${H - 4}" font-size="10" fill="var(--ink-2)">${monthYear.format(new Date(t0 * 1000))}</text>`,
+    `<text x="${W - pad.r}" y="${H - 4}" font-size="10" fill="var(--ink-2)" text-anchor="end">${monthYear.format(new Date(t1 * 1000))}</text>`,
     `<path d="${d}" fill="none" stroke="var(--matcha)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`,
     ...pts.map(
       (p) =>
         `<circle cx="${x(p.t)}" cy="${y(p.rating)}" r="2.6" fill="var(--ground)" stroke="var(--matcha)" stroke-width="1.6"><title>${esc(p.contest)}: ${p.rating}</title></circle>`,
     ),
     `<circle cx="${x(last.t)}" cy="${y(last.rating)}" r="4.5" fill="var(--matcha)"/>`,
-    `<text x="${(+x(last.t) - 8).toFixed(1)}" y="${(+y(last.rating) - 9).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--ink)" text-anchor="end">${last.rating}</text>`,
+    `<text x="${(+x(last.t) - 9).toFixed(1)}" y="${(+y(last.rating) - 8).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--ink)" text-anchor="end">${last.rating}</text>`,
   ].join("");
 
   return (

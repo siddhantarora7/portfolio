@@ -12,6 +12,8 @@ export const profile = {
   location: "Calgary",
   bio: "Junior at Westmount Charter School in Calgary. I research how reasoning models notice (or fail to notice) their own mistakes, and I build things for math and CS students.",
   human: "Off-screen, catch me playing soccer, competitive trivia, or listening to K-pop.",
+  /** Three proof points shown in the hero. Keep them short and true. */
+  facts: ["usamo.guide: 3M+ visits, 50K+ users", "Codeforces Expert", "USACO Gold"],
   /** Used for metadata and OG images. */
   summary:
     "High school researcher and builder in Calgary. Reasoning-model research at Algoverse; co-founder of usamo.guide.",
@@ -34,6 +36,8 @@ export type Row = {
   href?: string;
   /** Path under /public. Missing logos fall back to a lettered tile. */
   logo?: string;
+  /** Letter for the fallback tile when there's no logo. */
+  mark?: string;
 };
 
 // ---------------------------------------------------------------------------
@@ -125,6 +129,7 @@ export const work: Row[] = [
   },
   {
     name: "Olympiad4Everyone",
+    mark: "O4",
     role: "Co-founder",
     period: "Aug 2026 – now",
     href: "https://olympiad4everyone.com",
@@ -132,12 +137,14 @@ export const work: Row[] = [
   },
   {
     name: "CodeTheCure",
+    mark: "CC",
     role: "Software Developer",
     period: "Mar 2026 – now",
     note: "AI/ML features with PyTorch and Hugging Face for a cancer-research startup with 5k+ users.",
   },
   {
     name: "International CodeTheCure Hackathon",
+    mark: "CC",
     role: "Organizer",
     period: "Oct – Nov 2026",
     href: TODO("hackathon website URL"),
@@ -145,6 +152,7 @@ export const work: Row[] = [
   },
   {
     name: "OCMC",
+    mark: "OC",
     role: "Member of Technical Staff",
     period: "Jun 2026 – now",
     note: "Computer-vision pipelines that automate contest grading, plus Next.js contest delivery and registration for 500+ Ontario students.",

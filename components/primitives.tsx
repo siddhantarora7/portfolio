@@ -60,14 +60,14 @@ export function Maybe({ value, className }: { value?: string; className?: string
 // Logo tile
 // ---------------------------------------------------------------------------
 
-export function LogoTile({ name, src }: { name: string; src?: string }) {
+export function LogoTile({ name, src, mark }: { name: string; src?: string; mark?: string }) {
   return (
     <span className="relative grid size-9 shrink-0 place-items-center overflow-hidden rounded-[11px] border border-rule bg-[var(--glass-strong)]">
       {src ? (
         <Image src={src} alt="" width={36} height={36} className="size-full object-cover" />
       ) : (
-        <span className="font-display text-[17px] font-semibold text-matcha-deep" aria-hidden="true">
-          {name.replace(/^the\s+/i, "").charAt(0).toUpperCase()}
+        <span className="font-display text-[14px] font-semibold tracking-[-0.02em] text-matcha-deep" aria-hidden="true">
+          {mark ?? name.charAt(0).toUpperCase()}
         </span>
       )}
     </span>
@@ -85,6 +85,7 @@ export function Row({
   note,
   href,
   logo,
+  mark,
   compact = false,
 }: {
   name: string;
@@ -93,6 +94,7 @@ export function Row({
   note?: string;
   href?: string;
   logo?: string | null;
+  mark?: string;
   compact?: boolean;
 }) {
   const linkable = href && !isTodo(href);
@@ -100,7 +102,7 @@ export function Row({
 
   const body = (
     <>
-      {logo !== null ? <LogoTile name={name} src={logo} /> : null}
+      {logo !== null ? <LogoTile name={name} src={logo} mark={mark} /> : null}
       <span className="min-w-0 flex-1">
         <span className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
           <span className="min-w-0">

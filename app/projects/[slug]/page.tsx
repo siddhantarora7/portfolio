@@ -39,18 +39,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     <article className="relative">
       <BackLink />
 
-      <div className="glass arrive rounded-[26px] p-2.5">
+      {p.hero.src || showTodos ? (
+      <div className="glass arrive mb-10 rounded-[26px] p-2.5">
         <ImageSlot
           image={p.hero}
-          title={p.name}
           path={`public/projects/${p.slug}/`}
           priority
           rounded="rounded-[19px]"
-          coverSize="text-[clamp(30px,6vw,46px)]"
+          coverSize="text-[20px]"
         />
       </div>
+      ) : null}
 
-      <header className="mt-10">
+      <header className="arrive">
         <h1 className="font-display text-[clamp(36px,7vw,54px)] leading-[1.05] font-semibold tracking-[-0.02em] text-balance">
           {p.name}
         </h1>
@@ -85,9 +86,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <Bullets items={p.built} />
       </DetailSection>
 
-      {p.gallery[0] ? (
+      {p.gallery[0] && (p.gallery[0].src || showTodos) ? (
         <div className="mt-14">
-          <ImageSlot image={p.gallery[0]} title={p.gallery[0].alt} path={`public/projects/${p.slug}/`} variant={1} coverSize="text-[22px]" />
+          <ImageSlot image={p.gallery[0]} path={`public/projects/${p.slug}/`} variant={1} coverSize="text-[18px]" />
         </div>
       ) : null}
 
@@ -109,7 +110,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {p.gallery.slice(1).map((img) => (
         <div key={img.alt} className="mt-14">
-          <ImageSlot image={img} title={img.alt} path={`public/projects/${p.slug}/`} coverSize="text-[22px]" />
+          <ImageSlot image={img} path={`public/projects/${p.slug}/`} coverSize="text-[18px]" />
         </div>
       ))}
 
