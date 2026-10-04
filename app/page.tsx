@@ -155,7 +155,7 @@ export default async function Home() {
       </Section>
 
       {/* ------------------------------------------------------- codeforces */}
-      <Section id="codeforces" title="codeforces" note={stats.source === "live" ? "updated daily" : undefined}>
+      <Section id="codeforces" title="codeforces">
         <CodeforcesCard stats={stats} />
       </Section>
 
