@@ -1,0 +1,454 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------------------------------------------------------------------------
+   Tokens. Mochi ground, matcha + pale-sky fields, deep green-charcoal ink.
+   LED orange appears only on the film date stamp.
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --ground: #f4f6f0;
+  --field-a: #c2dca3;
+  --field-b: #c0dcf2;
+  --ink: #1d2621;
+  --ink-2: #56625b;
+  --rule: rgb(29 38 33 / 0.09);
+  --matcha: #5e8b3e;
+  --matcha-deep: #3f6b26;
+  --matcha-soft: #dcebc9;
+  --sky: #9cc4e4;
+  --glass: rgb(255 255 255 / 0.52);
+  --glass-strong: rgb(255 255 255 / 0.7);
+  --glass-edge: rgb(255 255 255 / 0.85);
+  --glass-shadow: 0 1px 2px rgb(40 60 40 / 0.06), 0 18px 40px -22px rgb(40 70 40 / 0.35);
+  --led: #ff7a1a;
+  --grain-opacity: 0.07;
+  --heat-0: rgb(29 38 33 / 0.06);
+  --heat-1: #cfe3b6;
+  --heat-2: #a7cb84;
+  --heat-3: #77a752;
+  --heat-4: #4b7a2f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #0f1512;
+    --field-a: #22382a;
+    --field-b: #15293d;
+    --ink: #e6ede7;
+    --ink-2: #a3b0a7;
+    --rule: rgb(230 237 231 / 0.09);
+    --matcha: #93c46e;
+    --matcha-deep: #b5dc95;
+    --matcha-soft: #22382a;
+    --sky: #4d7aa3;
+    --glass: rgb(26 36 30 / 0.5);
+    --glass-strong: rgb(26 36 30 / 0.72);
+    --glass-edge: rgb(255 255 255 / 0.09);
+    --glass-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 22px 44px -24px rgb(0 0 0 / 0.7);
+    --led: #ff8a33;
+    --grain-opacity: 0.09;
+    --heat-0: rgb(230 237 231 / 0.07);
+    --heat-1: #24432c;
+    --heat-2: #386a3e;
+    --heat-3: #5f9c4f;
+    --heat-4: #9fd27a;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0f1512;
+  --field-a: #22382a;
+  --field-b: #15293d;
+  --ink: #e6ede7;
+  --ink-2: #a3b0a7;
+  --rule: rgb(230 237 231 / 0.09);
+  --matcha: #93c46e;
+  --matcha-deep: #b5dc95;
+  --matcha-soft: #22382a;
+  --sky: #4d7aa3;
+  --glass: rgb(26 36 30 / 0.5);
+  --glass-strong: rgb(26 36 30 / 0.72);
+  --glass-edge: rgb(255 255 255 / 0.09);
+  --glass-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 22px 44px -24px rgb(0 0 0 / 0.7);
+  --led: #ff8a33;
+  --grain-opacity: 0.09;
+  --heat-0: rgb(230 237 231 / 0.07);
+  --heat-1: #24432c;
+  --heat-2: #386a3e;
+  --heat-3: #5f9c4f;
+  --heat-4: #9fd27a;
+}
+
+@theme inline {
+  --font-display: var(--font-shantell), ui-rounded, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-ground: var(--ground);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-rule: var(--rule);
+  --color-matcha: var(--matcha);
+  --color-matcha-deep: var(--matcha-deep);
+  --color-matcha-soft: var(--matcha-soft);
+  --color-led: var(--led);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base + browser surfaces
+   --------------------------------------------------------------------------- */
+html {
+  background: var(--ground);
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--matcha-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--matcha);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+
+input,
+textarea {
+  caret-color: var(--matcha);
+}
+
+/* ---------------------------------------------------------------------------
+   Type
+   --------------------------------------------------------------------------- */
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "INFM" 18, "BNCE" 0;
+}
+
+/* Hand-written notes: same family, more informal, a little bounce. */
+.hand {
+  font-family: var(--font-display);
+  font-variation-settings: "INFM" 100, "BNCE" 45;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 200ms ease;
+}
+
+.link:hover {
+  text-decoration-color: var(--matcha);
+}
+
+/* ---------------------------------------------------------------------------
+   Glass. Only on the hero card, nav pill, project cards, and Codeforces card.
+   --------------------------------------------------------------------------- */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgb(255 255 255 / 0.35);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: var(--glass-strong);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Sky: two slow fields + static film grain, fixed behind everything.
+   --------------------------------------------------------------------------- */
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sky__field {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.sky__field--a {
+  width: 76vmax;
+  height: 76vmax;
+  left: -26vmax;
+  top: -30vmax;
+  background: radial-gradient(closest-side, var(--field-a), transparent);
+  animation: drift-a 38s ease-in-out infinite alternate;
+}
+
+.sky__field--b {
+  width: 66vmax;
+  height: 66vmax;
+  right: -22vmax;
+  top: 8vh;
+  background: radial-gradient(closest-side, var(--field-b), transparent);
+  animation: drift-b 46s ease-in-out infinite alternate;
+}
+
+.sky__grain {
+  position: absolute;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .sky__grain {
+  mix-blend-mode: screen;
+}
+
+@keyframes drift-a {
+  to {
+    transform: translate3d(9vmax, 7vmax, 0) scale(1.08);
+  }
+}
+
+@keyframes drift-b {
+  to {
+    transform: translate3d(-8vmax, -6vmax, 0) scale(1.05);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Focus lists: hovering or focusing one row softly defocuses the rest.
+   --------------------------------------------------------------------------- */
+.focus-list > * {
+  transition:
+    opacity 420ms var(--ease-out-expo),
+    filter 420ms var(--ease-out-expo);
+}
+
+@media (hover: hover) {
+  .focus-list:has(> :hover) > :not(:hover),
+  .focus-list:has(:focus-visible) > :not(:has(:focus-visible)) {
+    opacity: 0.38;
+    filter: blur(1.6px);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Retro artifacts
+   --------------------------------------------------------------------------- */
+.led {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--led);
+  text-shadow:
+    0 0 6px color-mix(in srgb, var(--led) 60%, transparent),
+    0 0 1px var(--led);
+}
+
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0.05) 0,
+    rgb(0 0 0 / 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+.dot-grid {
+  background-image: radial-gradient(var(--rule) 1px, transparent 1.3px);
+  background-size: 10px 10px;
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll-driven ink: words go from faint to full ink as the paragraph
+   passes through the viewport. Pure CSS; browsers without support just
+   show the finished text.
+   --------------------------------------------------------------------------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ink-in {
+      view-timeline-name: --ink;
+    }
+
+    .ink-in .w {
+      animation: ink-word linear both;
+      animation-timeline: --ink;
+      animation-range: cover calc(18% + var(--p) * 30%) cover calc(24% + var(--p) * 30%);
+    }
+  }
+}
+
+@keyframes ink-word {
+  from {
+    color: color-mix(in srgb, var(--ink) 22%, transparent);
+  }
+  to {
+    color: var(--ink);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   One orchestrated arrival: the hero card settles, the bubble pops in.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .arrive {
+    animation: arrive 900ms var(--ease-out-expo) both;
+  }
+
+  .arrive-pop {
+    animation: pop 700ms var(--ease-pop) 260ms both;
+  }
+
+  .arrive-late {
+    animation: fade 900ms var(--ease-out-expo) 500ms both;
+  }
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+    filter: blur(8px);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-12deg);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Bubble mascot: blinks, smiles at links, sleeps at night.
+   --------------------------------------------------------------------------- */
+.bubble .eye {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bubble .eye {
+    animation: blink 5.5s infinite;
+  }
+
+  .bubble {
+    animation: bob 6s ease-in-out infinite;
+  }
+}
+
+@keyframes blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-2px) rotate(-2deg);
+  }
+}
+
+.bubble .mood-happy,
+.bubble .mood-sleepy {
+  display: none;
+}
+
+.mascot-host:has(a:hover, a:focus-visible) .bubble .mood-base {
+  display: none;
+}
+
+.mascot-host:has(a:hover, a:focus-visible) .bubble .mood-happy {
+  display: inline;
+}
+
+[data-theme="dark"] .bubble[data-mood="base"] .mood-base,
+[data-theme="dark"] .mascot-host:has(a:hover) .bubble[data-mood="base"] .mood-happy {
+  display: none;
+}
+
+[data-theme="dark"] .bubble[data-mood="base"] .mood-sleepy {
+  display: inline;
+}
+
+/* ---------------------------------------------------------------------------
+   Hand-placed cards: a slight tilt that straightens on hover.
+   --------------------------------------------------------------------------- */
+.placed {
+  transform: rotate(var(--tilt, 0deg));
+  transition:
+    transform 500ms var(--ease-out-expo),
+    box-shadow 500ms var(--ease-out-expo);
+}
+
+@media (hover: hover) {
+  .placed:hover,
+  .placed:focus-within {
+    transform: rotate(0deg) translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
