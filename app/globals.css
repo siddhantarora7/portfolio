@@ -178,7 +178,7 @@ textarea {
 }
 
 /* ---------------------------------------------------------------------------
-   Glass. Only on the hero card, nav pill, project cards, and Codeforces card.
+   Glass. Budgeted surfaces only; see the Glass Budget rule in DESIGN.md.
    --------------------------------------------------------------------------- */
 .glass {
   background: var(--glass);
@@ -195,7 +195,7 @@ textarea {
 }
 
 /* ---------------------------------------------------------------------------
-   Sky: two slow fields + static film grain, fixed behind everything.
+   Sky: two still, blurred fields + static film grain, fixed behind everything.
    --------------------------------------------------------------------------- */
 .sky {
   position: fixed;
@@ -414,9 +414,7 @@ textarea {
    --------------------------------------------------------------------------- */
 .placed {
   transform: rotate(var(--tilt, 0deg));
-  transition:
-    transform 500ms var(--ease-out-expo),
-    box-shadow 500ms var(--ease-out-expo);
+  transition: transform 500ms var(--ease-out-expo);
 }
 
 @media (hover: hover) {

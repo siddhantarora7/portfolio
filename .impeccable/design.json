@@ -1,0 +1,581 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T22:22:17+00:00",
+  "title": "Design System: Siddhant Arora",
+  "extensions": {
+    "colorMeta": {
+      "mochi-ground": {
+        "role": "neutral",
+        "displayName": "Mochi Ground",
+        "canonical": "#f4f6f0",
+        "tonalRamp": [
+          "#0f1512",
+          "#1a241e",
+          "#2c3a31",
+          "#55625a",
+          "#8d9990",
+          "#c3ccc4",
+          "#e4e9e1",
+          "#f4f6f0"
+        ]
+      },
+      "matcha-field": {
+        "role": "neutral",
+        "displayName": "Matcha Field",
+        "canonical": "#c2dca3",
+        "tonalRamp": [
+          "#1f3512",
+          "#2f5019",
+          "#3f6b26",
+          "#5e8b3e",
+          "#77a752",
+          "#a7cb84",
+          "#cfe3b6",
+          "#e9f3df"
+        ]
+      },
+      "pale-sky-field": {
+        "role": "neutral",
+        "displayName": "Pale Sky Field",
+        "canonical": "#c0dcf2",
+        "tonalRamp": [
+          "#152d42",
+          "#22445f",
+          "#335f80",
+          "#4d7aa3",
+          "#6f9cc4",
+          "#9cc4e4",
+          "#c0dcf2",
+          "#e4f0fa"
+        ]
+      },
+      "green-charcoal-ink": {
+        "role": "neutral",
+        "displayName": "Green-Charcoal Ink",
+        "canonical": "#1d2621",
+        "tonalRamp": [
+          "#1d2621",
+          "#2f3a34",
+          "#434f48",
+          "#56625b",
+          "#7a857e",
+          "#a3b0a7",
+          "#cdd5cf",
+          "#e6ede7"
+        ]
+      },
+      "moss-ink": {
+        "role": "neutral",
+        "displayName": "Moss Ink",
+        "canonical": "#56625b",
+        "tonalRamp": [
+          "#1d2621",
+          "#2f3a34",
+          "#434f48",
+          "#56625b",
+          "#7a857e",
+          "#a3b0a7",
+          "#cdd5cf",
+          "#e6ede7"
+        ]
+      },
+      "hairline-rule": {
+        "role": "neutral",
+        "displayName": "Hairline Rule",
+        "canonical": "rgb(29 38 33 / 0.09)"
+      },
+      "matcha": {
+        "role": "primary",
+        "displayName": "Matcha",
+        "canonical": "#5e8b3e",
+        "tonalRamp": [
+          "#1f3512",
+          "#2f5019",
+          "#3f6b26",
+          "#5e8b3e",
+          "#77a752",
+          "#a7cb84",
+          "#cfe3b6",
+          "#e9f3df"
+        ]
+      },
+      "matcha-deep": {
+        "role": "primary",
+        "displayName": "Deep Matcha",
+        "canonical": "#3f6b26",
+        "tonalRamp": [
+          "#1f3512",
+          "#2f5019",
+          "#3f6b26",
+          "#5e8b3e",
+          "#77a752",
+          "#a7cb84",
+          "#cfe3b6",
+          "#e9f3df"
+        ]
+      },
+      "matcha-soft": {
+        "role": "primary",
+        "displayName": "Matcha Milk",
+        "canonical": "#dcebc9",
+        "tonalRamp": [
+          "#1f3512",
+          "#2f5019",
+          "#3f6b26",
+          "#5e8b3e",
+          "#77a752",
+          "#a7cb84",
+          "#cfe3b6",
+          "#e9f3df"
+        ]
+      },
+      "sky": {
+        "role": "secondary",
+        "displayName": "Pale Sky",
+        "canonical": "#9cc4e4",
+        "tonalRamp": [
+          "#152d42",
+          "#22445f",
+          "#335f80",
+          "#4d7aa3",
+          "#6f9cc4",
+          "#9cc4e4",
+          "#c0dcf2",
+          "#e4f0fa"
+        ]
+      },
+      "glass": {
+        "role": "neutral",
+        "displayName": "Glass",
+        "canonical": "rgb(255 255 255 / 0.52)"
+      },
+      "glass-strong": {
+        "role": "neutral",
+        "displayName": "Glass Strong",
+        "canonical": "rgb(255 255 255 / 0.7)"
+      },
+      "glass-edge": {
+        "role": "neutral",
+        "displayName": "Glass Edge",
+        "canonical": "rgb(255 255 255 / 0.85)"
+      },
+      "led-orange": {
+        "role": "tertiary",
+        "displayName": "LED Orange",
+        "canonical": "#ff7a1a",
+        "tonalRamp": [
+          "#5a2600",
+          "#8a3c00",
+          "#c25600",
+          "#ff7a1a",
+          "#ff8a33",
+          "#ffa866",
+          "#ffc999",
+          "#ffe6cc"
+        ]
+      },
+      "heat-0": {
+        "role": "primary",
+        "displayName": "Matcha Ramp 0",
+        "canonical": "rgb(29 38 33 / 0.06)"
+      },
+      "heat-1": {
+        "role": "primary",
+        "displayName": "Matcha Ramp 1",
+        "canonical": "#cfe3b6"
+      },
+      "heat-2": {
+        "role": "primary",
+        "displayName": "Matcha Ramp 2",
+        "canonical": "#a7cb84"
+      },
+      "heat-3": {
+        "role": "primary",
+        "displayName": "Matcha Ramp 3",
+        "canonical": "#77a752"
+      },
+      "heat-4": {
+        "role": "primary",
+        "displayName": "Matcha Ramp 4",
+        "canonical": "#4b7a2f"
+      },
+      "night-ground": {
+        "role": "neutral",
+        "displayName": "Night Ground",
+        "canonical": "#0f1512",
+        "tonalRamp": [
+          "#0f1512",
+          "#1a241e",
+          "#2c3a31",
+          "#55625a",
+          "#8d9990",
+          "#c3ccc4",
+          "#e4e9e1",
+          "#f4f6f0"
+        ]
+      },
+      "night-matcha-field": {
+        "role": "neutral",
+        "displayName": "Night Matcha Field",
+        "canonical": "#22382a",
+        "tonalRamp": [
+          "#1f3512",
+          "#2f5019",
+          "#3f6b26",
+          "#5e8b3e",
+          "#77a752",
+          "#a7cb84",
+          "#cfe3b6",
+          "#e9f3df"
+        ]
+      },
+      "night-sky-field": {
+        "role": "neutral",
+        "displayName": "Night Sky Field",
+        "canonical": "#15293d",
+        "tonalRamp": [
+          "#152d42",
+          "#22445f",
+          "#335f80",
+          "#4d7aa3",
+          "#6f9cc4",
+          "#9cc4e4",
+          "#c0dcf2",
+          "#e4f0fa"
+        ]
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "#e6ede7",
+        "tonalRamp": [
+          "#1d2621",
+          "#2f3a34",
+          "#434f48",
+          "#56625b",
+          "#7a857e",
+          "#a3b0a7",
+          "#cdd5cf",
+          "#e6ede7"
+        ]
+      },
+      "night-moss-ink": {
+        "role": "neutral",
+        "displayName": "Night Moss Ink",
+        "canonical": "#a3b0a7",
+        "tonalRamp": [
+          "#1d2621",
+          "#2f3a34",
+          "#434f48",
+          "#56625b",
+          "#7a857e",
+          "#a3b0a7",
+          "#cdd5cf",
+          "#e6ede7"
+        ]
+      },
+      "night-matcha": {
+        "role": "primary",
+        "displayName": "Night Matcha",
+        "canonical": "#93c46e",
+        "tonalRamp": [
+          "#1f3512",
+          "#2f5019",
+          "#3f6b26",
+          "#5e8b3e",
+          "#77a752",
+          "#a7cb84",
+          "#cfe3b6",
+          "#e9f3df"
+        ]
+      },
+      "night-matcha-deep": {
+        "role": "primary",
+        "displayName": "Night Deep Matcha",
+        "canonical": "#b5dc95",
+        "tonalRamp": [
+          "#1f3512",
+          "#2f5019",
+          "#3f6b26",
+          "#5e8b3e",
+          "#77a752",
+          "#a7cb84",
+          "#cfe3b6",
+          "#e9f3df"
+        ]
+      },
+      "night-sky": {
+        "role": "secondary",
+        "displayName": "Night Sky",
+        "canonical": "#4d7aa3",
+        "tonalRamp": [
+          "#152d42",
+          "#22445f",
+          "#335f80",
+          "#4d7aa3",
+          "#6f9cc4",
+          "#9cc4e4",
+          "#c0dcf2",
+          "#e4f0fa"
+        ]
+      },
+      "night-led": {
+        "role": "tertiary",
+        "displayName": "Night LED",
+        "canonical": "#ff8a33",
+        "tonalRamp": [
+          "#5a2600",
+          "#8a3c00",
+          "#c25600",
+          "#ff7a1a",
+          "#ff8a33",
+          "#ffa866",
+          "#ffc999",
+          "#ffe6cc"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the hero card only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Detail-page and 404 titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Lowercase home section headings (22px on detail sections)."
+      },
+      "title-small": {
+        "displayName": "Title Small",
+        "purpose": "Project card names and chart captions."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Hero bio, ink-in paragraph, detail subtitles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text; 17px/1.7 in detail prose."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Roles, dates (tabular), captions, nav, chips."
+      },
+      "hand": {
+        "displayName": "Hand",
+        "purpose": "Margin notes, chart footnotes, sign-off, TODO notes; moss ink, never essential."
+      },
+      "led-stamp": {
+        "displayName": "LED Stamp",
+        "purpose": "The film date stamp only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "glass-lift",
+        "value": "0 1px 2px rgb(40 60 40 / 0.06), 0 18px 40px -22px rgb(40 70 40 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.35)",
+        "purpose": "Every glass surface, with backdrop-filter blur(20px) saturate(1.5) and a 1px glass-edge border."
+      },
+      {
+        "name": "glass-lift-night",
+        "value": "0 1px 2px rgb(0 0 0 / 0.3), 0 22px 44px -24px rgb(0 0 0 / 0.7), inset 0 1px 0 rgb(255 255 255 / 0.35)",
+        "purpose": "Glass in dark mode."
+      },
+      {
+        "name": "led-glow",
+        "value": "0 0 6px color-mix(in srgb, var(--led) 60%, transparent), 0 0 1px var(--led)",
+        "purpose": "Text-shadow on the LED date stamp only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Arrival, focus-list defocus (420ms), placed-card straighten (500ms)."
+      },
+      {
+        "name": "ease-pop",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "The bubble's single overshoot pop (700ms, 260ms delay)."
+      },
+      {
+        "name": "arrive",
+        "value": "900ms ease-out-expo; from translateY(12px) scale(0.985) blur(6px), no opacity change",
+        "purpose": "Hero card and detail headers settle once; content visible from first frame."
+      },
+      {
+        "name": "arrive-late",
+        "value": "fade 900ms ease-out-expo 500ms",
+        "purpose": "The hero's hand-written arrow note."
+      },
+      {
+        "name": "blink",
+        "value": "2.6s, 1.2s delay, 2 iterations; re-blink once on .mascot-host hover",
+        "purpose": "Bubble eyes; then still. No infinite animation anywhere."
+      },
+      {
+        "name": "focus-defocus",
+        "value": "siblings to opacity 0.38, blur(1.6px), 420ms",
+        "purpose": "Lens-pull on .focus-list rows, hover-capable devices only."
+      },
+      {
+        "name": "ink-in",
+        "value": "CSS view() timeline; each word ink-2 to ink across cover 18%..54%",
+        "purpose": "One paragraph per page; skipped when unsupported."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all animations and transitions to 0.01ms, 1 iteration",
+        "purpose": "Everything off under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "420px",
+        "purpose": "Below: nav tightens, resume link hidden."
+      },
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "Back button hangs in the left margin."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Glass Nav Pill",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Floating centred glass pill: bubble home, lowercase links, theme toggle.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-home\" href=\"#\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 64 64\" aria-hidden=\"true\"><defs><radialGradient id=\"dsf\" cx=\"40%\" cy=\"35%\" r=\"70%\"><stop offset=\"0%\" stop-color=\"#fff\" stop-opacity=\".85\"/><stop offset=\"60%\" stop-color=\"#eaf4ff\" stop-opacity=\".35\"/><stop offset=\"100%\" stop-color=\"#d9ecc6\" stop-opacity=\".55\"/></radialGradient><linearGradient id=\"dsr\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0%\" stop-color=\"#a7cb84\"/><stop offset=\"45%\" stop-color=\"#9cc4e4\"/><stop offset=\"75%\" stop-color=\"#d9c4ee\"/><stop offset=\"100%\" stop-color=\"#a7cb84\"/></linearGradient></defs><path d=\"M32 5.5c15.2 0 26.8 11.4 26.8 26.6 0 15.4-11.8 26.6-27 26.6C16.8 58.7 5.2 47.6 5.2 32.3 5.2 17 16.9 5.5 32 5.5Z\" fill=\"url(#dsf)\" stroke=\"url(#dsr)\" stroke-width=\"2.4\"/><path d=\"M16.5 22.5c2-5 6.4-8.6 11.6-9.6\" stroke=\"#fff\" stroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\"/><ellipse cx=\"24.5\" cy=\"32\" rx=\"2.3\" ry=\"2.9\" fill=\"#1d2621\"/><ellipse cx=\"39.5\" cy=\"32\" rx=\"2.3\" ry=\"2.9\" fill=\"#1d2621\"/><path d=\"M28.5 40.5q3.5 2.6 7 0\" stroke=\"#1d2621\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/></svg></a><a class=\"ds-nav-link\" href=\"#\">work</a><a class=\"ds-nav-link\" href=\"#\">projects</a><a class=\"ds-nav-link\" href=\"#\">codeforces</a></nav>",
+      "css": ".ds-nav { display: inline-flex; align-items: center; gap: 2px; padding: 4px 4px 4px 6px; border-radius: 9999px; font-size: 14px; font-family: var(--font-geist, Geist), ui-sans-serif, system-ui, sans-serif; background: var(--glass, rgb(255 255 255 / 0.52)); border: 1px solid var(--glass-edge, rgb(255 255 255 / 0.85)); box-shadow: var(--glass-shadow, 0 1px 2px rgb(40 60 40 / 0.06), 0 18px 40px -22px rgb(40 70 40 / 0.35)), inset 0 1px 0 rgb(255 255 255 / 0.35); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); } .ds-nav-home { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9999px; } .ds-nav-link { padding: 6px 10px; border-radius: 9999px; color: var(--ink-2, #56625b); text-decoration: none; transition: color 150ms; } .ds-nav-link:hover { color: var(--ink, #1d2621); } .ds-nav a:focus-visible { outline: 2px solid var(--matcha, #5e8b3e); outline-offset: 3px; }"
+    },
+    {
+      "name": "External Link Button",
+      "kind": "button",
+      "refersTo": "button-glass",
+      "description": "Glass pill for outbound links on detail pages; lifts 1px on hover.",
+      "html": "<a class=\"ds-btn-glass\" href=\"#\">Read the paper <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M4 2.5h5.5V8M9.2 2.8 2.8 9.2\" stroke-linecap=\"round\"/></svg></a>",
+      "css": ".ds-btn-glass { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 9999px; color: var(--ink, #1d2621); font-size: 14.5px; font-weight: 500; text-decoration: none; font-family: var(--font-geist, Geist), ui-sans-serif, system-ui, sans-serif; background: var(--glass, rgb(255 255 255 / 0.52)); border: 1px solid var(--glass-edge, rgb(255 255 255 / 0.85)); box-shadow: var(--glass-shadow, 0 1px 2px rgb(40 60 40 / 0.06), 0 18px 40px -22px rgb(40 70 40 / 0.35)), inset 0 1px 0 rgb(255 255 255 / 0.35); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); transition: transform 150ms; } .ds-btn-glass svg { color: var(--ink-2, #56625b); } .ds-btn-glass:hover { transform: translateY(-1px); } .ds-btn-glass:focus-visible { outline: 2px solid var(--matcha, #5e8b3e); outline-offset: 3px; }"
+    },
+    {
+      "name": "Back Button",
+      "kind": "button",
+      "refersTo": "button-back",
+      "description": "40px glass circle with a chevron, top of detail pages.",
+      "html": "<a class=\"ds-btn-back\" href=\"#\" aria-label=\"Back to home\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 3.5 5.5 8l4.5 4.5\"/></svg></a>",
+      "css": ".ds-btn-back { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 9999px; color: var(--ink-2, #56625b); background: var(--glass, rgb(255 255 255 / 0.52)); border: 1px solid var(--glass-edge, rgb(255 255 255 / 0.85)); box-shadow: var(--glass-shadow, 0 1px 2px rgb(40 60 40 / 0.06), 0 18px 40px -22px rgb(40 70 40 / 0.35)), inset 0 1px 0 rgb(255 255 255 / 0.35); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); transition: color 150ms; } .ds-btn-back:hover { color: var(--ink, #1d2621); } .ds-btn-back:focus-visible { outline: 2px solid var(--matcha, #5e8b3e); outline-offset: 3px; }"
+    },
+    {
+      "name": "Proof Chip",
+      "kind": "chip",
+      "refersTo": "chip-proof",
+      "description": "Static matcha-milk pill for proof points and project status.",
+      "html": "<span class=\"ds-chip\">Codeforces Expert</span>",
+      "css": ".ds-chip { display: inline-block; padding: 4px 12px; border-radius: 9999px; background: var(--matcha-soft, #dcebc9); color: var(--matcha-deep, #3f6b26); font-size: 13.5px; font-weight: 500; font-family: var(--font-geist, Geist), ui-sans-serif, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Hand-placed glass card with an inset image, tilted slightly, straightening and lifting on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-img\"></span><span class=\"ds-card-body\"><span class=\"ds-card-head\"><span class=\"ds-card-title\">spinfilter</span><span class=\"ds-card-year\">2025</span></span><span class=\"ds-card-tag\">A small tool that does one thing well.</span></span></a>",
+      "css": ".ds-card { display: block; width: 300px; padding: 10px; border-radius: 22px; color: var(--ink, #1d2621); text-decoration: none; font-family: var(--font-geist, Geist), ui-sans-serif, system-ui, sans-serif; background: var(--glass, rgb(255 255 255 / 0.52)); border: 1px solid var(--glass-edge, rgb(255 255 255 / 0.85)); box-shadow: var(--glass-shadow, 0 1px 2px rgb(40 60 40 / 0.06), 0 18px 40px -22px rgb(40 70 40 / 0.35)), inset 0 1px 0 rgb(255 255 255 / 0.35); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); transform: rotate(-0.8deg); transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-card:hover, .ds-card:focus-visible { transform: rotate(0deg) translateY(-3px); } .ds-card:focus-visible { outline: 2px solid var(--matcha, #5e8b3e); outline-offset: 3px; } .ds-card-img { display: block; aspect-ratio: 16 / 10; border-radius: 15px; border: 1px solid var(--rule, rgb(29 38 33 / 0.09)); background: radial-gradient(120% 90% at 15% 10%, var(--field-a, #c2dca3), transparent 60%), radial-gradient(90% 90% at 90% 90%, var(--field-b, #c0dcf2), transparent 60%), rgb(255 255 255 / 0.7); } .ds-card-body { display: block; padding: 14px 8px 8px; } .ds-card-head { display: flex; justify-content: space-between; align-items: baseline; } .ds-card-title { font-family: var(--font-shantell, 'Shantell Sans'), ui-rounded, system-ui, sans-serif; font-variation-settings: 'INFM' 18; font-weight: 600; font-size: 19px; } .ds-card-year { font-size: 13px; color: var(--ink-2, #56625b); font-variant-numeric: tabular-nums; } .ds-card-tag { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.5; color: var(--ink-2, #56625b); }"
+    },
+    {
+      "name": "Focus List Rows",
+      "kind": "custom",
+      "refersTo": "list-row",
+      "description": "Hairline-ruled rows; hovering one defocuses the rest like a lens pull.",
+      "html": "<ul class=\"ds-list\"><li><a class=\"ds-row\" href=\"#\"><span class=\"ds-logo\">S</span><span class=\"ds-row-main\"><span><b>Spin Labs</b> <i>Research intern</i></span><span class=\"ds-row-date\">2024</span></span></a></li><li><a class=\"ds-row\" href=\"#\"><span class=\"ds-logo\">U</span><span class=\"ds-row-main\"><span><b>usamo.guide</b> <i>Founder</i></span><span class=\"ds-row-date\">2021</span></span></a></li></ul>",
+      "css": ".ds-list { list-style: none; margin: 0; padding: 0; width: 440px; font-family: var(--font-geist, Geist), ui-sans-serif, system-ui, sans-serif; } .ds-list > li { border-bottom: 1px solid var(--rule, rgb(29 38 33 / 0.09)); transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1), filter 420ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-list:has(> :hover) > :not(:hover), .ds-list:has(:focus-visible) > :not(:has(:focus-visible)) { opacity: 0.38; filter: blur(1.6px); } .ds-row { display: flex; gap: 14px; align-items: center; padding: 14px 0; color: var(--ink, #1d2621); text-decoration: none; } .ds-row:focus-visible { outline: 2px solid var(--matcha, #5e8b3e); outline-offset: 3px; border-radius: 8px; } .ds-logo { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 11px; border: 1px solid var(--rule, rgb(29 38 33 / 0.09)); background: rgb(255 255 255 / 0.7); color: var(--matcha-deep, #3f6b26); font-family: var(--font-shantell, 'Shantell Sans'), ui-rounded, system-ui, sans-serif; font-variation-settings: 'INFM' 18; font-weight: 600; font-size: 14px; } .ds-row-main { flex: 1; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; } .ds-row b { font-weight: 500; font-size: 16.5px; } .ds-row i { font-style: normal; margin-left: 6px; font-size: 14.5px; color: var(--ink-2, #56625b); } .ds-row-date { font-size: 14px; color: var(--ink-2, #56625b); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Section Heading with Hand Note",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Lowercase Shantell heading with a rotated hand-written margin note beside it.",
+      "html": "<div class=\"ds-sec\"><h2 class=\"ds-sec-title\">projects</h2><span class=\"ds-hand\">things I made</span></div>",
+      "css": ".ds-sec { display: flex; align-items: baseline; gap: 12px; } .ds-sec-title { margin: 0; font-family: var(--font-shantell, 'Shantell Sans'), ui-rounded, system-ui, sans-serif; font-variation-settings: 'INFM' 18; font-weight: 600; font-size: 26px; line-height: 1; letter-spacing: -0.01em; color: var(--ink, #1d2621); } .ds-hand { display: inline-block; transform: rotate(-2deg); font-family: var(--font-shantell, 'Shantell Sans'), ui-rounded, system-ui, sans-serif; font-variation-settings: 'INFM' 100; font-size: 15px; color: var(--ink-2, #56625b); }"
+    },
+    {
+      "name": "LED Date Stamp",
+      "kind": "custom",
+      "refersTo": "led-stamp",
+      "description": "Film-camera date stamp; the only use of LED orange and Geist Mono.",
+      "html": "<span class=\"ds-led\">'26 10 04</span>",
+      "css": ".ds-led { font-family: var(--font-geist-mono, 'Geist Mono'), ui-monospace, monospace; font-weight: 600; font-size: 11px; line-height: 1; letter-spacing: 0.06em; color: var(--led, #ff7a1a); text-shadow: 0 0 6px color-mix(in srgb, var(--led, #ff7a1a) 60%, transparent), 0 0 1px var(--led, #ff7a1a); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Frosted Glass at Dusk, Pressed into a Stationery Notebook",
+    "overview": "A quiet personal index under a still sky. Two large blurred colour fields, matcha in the upper left and pale sky to the right, sit fixed behind everything on a mochi-pale ground with a static film grain. A small number of frosted-glass objects float above that sky; everything else is plain ink on the ground: hairline-ruled list rows, short paragraphs, hand-written margin notes. The softness comes from rounded glass, a lopsided soap-bubble mascot, and a rounded hand-lettered display face; the cleanliness comes from a single 680px column, generous section gaps, and a strict budget on every effect.\n\nThe retro layer is small and specific: an orange LED film date stamp burned into the corner of the hero card and image frames, faint scanlines over image slots, dot-matrix grids behind charts, and the film grain over the sky. These read as found artifacts, not decoration, and none of them repeat beyond their one role. The world is deliberately general: no literal Japanese motifs, no subject-literal metaphors for research or code, no cream-paper-and-script-name portfolio default.\n\nNight mode is the same world after sunset: a deep green-black ground, darkened fields, pale ink, a brighter matcha, and a bubble that falls asleep.",
+    "keyCharacteristics": [
+      "Mochi ground with two fixed, blurred matcha and pale-sky fields and static film grain.",
+      "Frosted glass on a short list of floating objects only; list content sits directly on the ground.",
+      "Shantell Sans for headings and hand notes, Geist for reading, Geist Mono for the LED stamp alone.",
+      "Matcha carries every interactive and data accent; LED orange is the only warm hue.",
+      "A soap-bubble mascot whose face changes are the site's personality.",
+      "One arrival, one lens-pull hover, one scroll ink-in; nothing loops; all of it off under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The One Spark Rule",
+        "body": "LED orange appears only as the film date stamp. Matcha does every other accent job: focus, chips, bars, lines, heatmap.",
+        "section": "colors"
+      },
+      {
+        "name": "The Second Series Rule",
+        "body": "Pale sky is a data colour for the second series in a comparison chart, and the colour of the right-hand sky field. It is never a button, link, or chip colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Informalities Rule",
+        "body": "Shantell Sans runs at exactly two INFM settings: 18 for headings, 100 for hand notes. Hand notes are always moss ink and never carry information the page needs.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Is a Stamp Rule",
+        "body": "Geist Mono is loaded at one weight for one element. Numbers elsewhere use Geist with tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Glass Budget Rule",
+        "body": "Glass is reserved for floating objects: the hero card, nav pill, project cards and the project-page image frame, the Codeforces card, the AUROC chart card, the back button, external-link buttons, the 404 home button, and the skip link. List rows, sections, and prose never sit in glass.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Still Sky Rule",
+        "body": "The sky fields and grain are fixed and static. Nothing in the background moves.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep every new surface inside the 680px column on the mochi ground with the fixed sky behind it.",
+      "Do use glass only for floating objects from the Glass Budget list, with the full recipe: 20px blur, saturate 1.5, 1px glass edge, glass lift shadow, glass-strong fallback.",
+      "Do use matcha for every accent and data mark; use pale sky only as a second data series.",
+      "Do set headings in Shantell Sans 600 at INFM 18 and lowercase; set reading text in Geist.",
+      "Do put lists in hairline-ruled rows inside a focus-list so the lens-pull defocus applies.",
+      "Do limit motion to the one arrival (settle from 12px, 0.985 scale, 6px blur over 900ms, content visible from the first frame), the bubble pop, blinks that stop, hover lens-pull, and one scroll ink-in paragraph per page.",
+      "Do disable every animation and transition under prefers-reduced-motion.",
+      "Do render charts as server-side SVG strings on a dot grid, with aria-labels."
+    ],
+    "donts": [
+      "Don't use LED orange for anything except the film date stamp.",
+      "Don't put list rows, sections, or prose in glass.",
+      "Don't add infinite or looping animation, or move the sky.",
+      "Don't use Geist Mono outside the LED stamp.",
+      "Don't introduce literal Japanese motifs (no torii, cherry blossoms, kanji, waves, or similar).",
+      "Don't use a hard or offset shadow; the glass lift is the only shadow.",
+      "Don't ship TODO notes or empty image slots to production."
+    ]
+  }
+}
