@@ -76,12 +76,32 @@ function RatingChart({ stats }: { stats: CfStats }) {
   const t1 = pts[pts.length - 1].t;
   const lo = Math.floor((Math.min(...pts.map((p) => p.rating)) - 100) / 100) * 100;
   const hi = Math.ceil((Math.max(...pts.map((p) => p.rating)) + 120) / 100) * 100;
-  const x = (t: number) => pad.l + ((t - t0) / (t1 - t0 || 1)) * (W - pad.l - pad.r);
-  const y = (r: number) => pad.t + (1 - (r - lo) / (hi - lo)) * (H - pad.t - pad.b);
-  const d = pts.map((p, i) => `${i ? "L" : "M"}${x(p.t).toFixed(1)},${y(p.rating).toFixed(1)}`).join(" ");
+  const x = (t: number) => (pad.l + ((t - t0) / (t1 - t0 || 1)) * (W - pad.l - pad.r)).toFixed(1);
+  const y = (r: number) => (pad.t + (1 - (r - lo) / (hi - lo)) * (H - pad.t - pad.b)).toFixed(1);
+  const d = pts.map((p, i) => `${i ? "L" : "M"}${x(p.t)},${y(p.rating)}`).join(" ");
   const last = pts[pts.length - 1];
   const years: number[] = [];
   for (let yr = new Date(t0 * 1000).getFullYear() + 1; yr <= new Date(t1 * 1000).getFullYear(); yr++) years.push(yr);
+
+  // Built as a string so React doesn't have to hydrate every node.
+  const svg = [
+    ...BANDS.filter((b) => b.at > lo && b.at < hi).map(
+      (b) =>
+        `<line x1="${pad.l}" x2="${W - pad.r}" y1="${y(b.at)}" y2="${y(b.at)}" stroke="var(--ink-2)" stroke-opacity="0.25" stroke-dasharray="2 4"/>` +
+        `<text x="${W - pad.r + 6}" y="${(+y(b.at) + 3.5).toFixed(1)}" font-size="10" fill="var(--ink-2)">${b.at}</text>`,
+    ),
+    ...years.map(
+      (yr) =>
+        `<text x="${x(Date.UTC(yr, 0, 1) / 1000)}" y="${H - 4}" font-size="10" fill="var(--ink-2)" text-anchor="middle">${yr}</text>`,
+    ),
+    `<path d="${d}" fill="none" stroke="var(--matcha)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`,
+    ...pts.map(
+      (p) =>
+        `<circle cx="${x(p.t)}" cy="${y(p.rating)}" r="2.6" fill="var(--ground)" stroke="var(--matcha)" stroke-width="1.6"><title>${esc(p.contest)}: ${p.rating}</title></circle>`,
+    ),
+    `<circle cx="${x(last.t)}" cy="${y(last.rating)}" r="4.5" fill="var(--matcha)"/>`,
+    `<text x="${(+x(last.t) - 8).toFixed(1)}" y="${(+y(last.rating) - 9).toFixed(1)}" font-size="11.5" font-weight="600" fill="var(--ink)" text-anchor="end">${last.rating}</text>`,
+  ].join("");
 
   return (
     <div className="dot-grid rounded-[14px] border border-rule p-2">
@@ -90,37 +110,13 @@ function RatingChart({ stats }: { stats: CfStats }) {
         className="block h-auto w-full"
         role="img"
         aria-label={`Codeforces rating over ${pts.length} rated contests, from ${pts[0].rating} to ${last.rating}.`}
-      >
-        {BANDS.filter((b) => b.at > lo && b.at < hi).map((b) => (
-          <g key={b.at}>
-            <line x1={pad.l} x2={W - pad.r} y1={y(b.at)} y2={y(b.at)} stroke="var(--ink-2)" strokeOpacity="0.25" strokeDasharray="2 4" />
-            <text x={W - pad.r + 6} y={y(b.at) + 3.5} fontSize="10" fill="var(--ink-2)">
-              {b.at}
-            </text>
-          </g>
-        ))}
-        {years.map((yr) => {
-          const tx = x(Date.UTC(yr, 0, 1) / 1000);
-          return (
-            <text key={yr} x={tx} y={H - 4} fontSize="10" fill="var(--ink-2)" textAnchor="middle">
-              {yr}
-            </text>
-          );
-        })}
-        <path d={d} fill="none" stroke="var(--matcha)" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
-        {pts.map((p) => (
-          <circle key={p.t} cx={x(p.t)} cy={y(p.rating)} r="2.6" fill="var(--ground)" stroke="var(--matcha)" strokeWidth="1.6">
-            <title>{`${p.contest}: ${p.rating}`}</title>
-          </circle>
-        ))}
-        <circle cx={x(last.t)} cy={y(last.rating)} r="4.5" fill="var(--matcha)" />
-        <text x={x(last.t) - 8} y={y(last.rating) - 9} fontSize="11.5" fontWeight="600" fill="var(--ink)" textAnchor="end">
-          {last.rating}
-        </text>
-      </svg>
+        dangerouslySetInnerHTML={{ __html: svg }}
+      />
     </div>
   );
 }
+
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 // ---------------------------------------------------------------------------
 
@@ -131,37 +127,27 @@ function Heatmap({ stats }: { stats: CfStats }) {
   const start = new Date(today);
   start.setUTCDate(start.getUTCDate() - today.getUTCDay() - (weeks - 1) * 7);
   const cell = 10;
-  const gap = 2.6;
-  const step = cell + gap;
+  const step = cell + 2.6;
   const top = 14;
   const level = (n: number) => (n === 0 ? 0 : n === 1 ? 1 : n <= 3 ? 2 : n <= 6 ? 3 : 4);
   const months = new Intl.DateTimeFormat("en-CA", { month: "short", timeZone: "UTC" });
   const long = new Intl.DateTimeFormat("en-CA", { month: "short", day: "numeric", timeZone: "UTC" });
 
-  const cells: React.ReactNode[] = [];
-  const labels: React.ReactNode[] = [];
+  // Built as a string so React doesn't have to hydrate ~370 cells.
+  const out: string[] = [];
   let lastMonth = -1;
   for (let w = 0; w < weeks; w++) {
     for (let d = 0; d < 7; d++) {
       const date = new Date(start);
       date.setUTCDate(start.getUTCDate() + w * 7 + d);
       if (date > today) continue;
-      const key = date.toISOString().slice(0, 10);
-      const n = stats.daily[key] ?? 0;
+      const n = stats.daily[date.toISOString().slice(0, 10)] ?? 0;
       if (d === 0 && date.getUTCMonth() !== lastMonth && date.getUTCDate() <= 7) {
         lastMonth = date.getUTCMonth();
-        if (w < weeks - 2) {
-          labels.push(
-            <text key={key} x={w * step} y={9} fontSize="9.5" fill="var(--ink-2)">
-              {months.format(date)}
-            </text>,
-          );
-        }
+        if (w < weeks - 2) out.push(`<text x="${(w * step).toFixed(1)}" y="9" font-size="9.5" fill="var(--ink-2)">${months.format(date)}</text>`);
       }
-      cells.push(
-        <rect key={key} x={w * step} y={top + d * step} width={cell} height={cell} rx="2.6" fill={`var(--heat-${level(n)})`}>
-          <title>{`${long.format(date)}: ${n} solved`}</title>
-        </rect>,
+      out.push(
+        `<rect x="${(w * step).toFixed(1)}" y="${(top + d * step).toFixed(1)}" width="${cell}" height="${cell}" rx="2.6" fill="var(--heat-${level(n)})"><title>${long.format(date)}: ${n} solved</title></rect>`,
       );
     }
   }
@@ -169,14 +155,12 @@ function Heatmap({ stats }: { stats: CfStats }) {
   return (
     <div className="-mx-1 overflow-x-auto px-1 pb-1">
       <svg
-        viewBox={`0 0 ${weeks * step} ${top + 7 * step}`}
+        viewBox={`0 0 ${(weeks * step).toFixed(1)} ${(top + 7 * step).toFixed(1)}`}
         className="block h-auto w-full min-w-[520px]"
         role="img"
         aria-label="Calendar of problems solved per day over the last year"
-      >
-        {labels}
-        {cells}
-      </svg>
+        dangerouslySetInnerHTML={{ __html: out.join("") }}
+      />
       <div className="mt-2 flex items-center justify-end gap-1.5 text-[12px] text-ink-2" aria-hidden="true">
         less
         {[0, 1, 2, 3, 4].map((l) => (

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Shantell_Sans } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Sky } from "@/components/sky";
@@ -9,10 +10,12 @@ import { siteUrl } from "@/lib/site-url";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", weight: ["600"], preload: false });
-const shantell = Shantell_Sans({
-  subsets: ["latin"],
+// Shantell Sans (OFL), self-hosted: variable wght 500–600 + INFM axis,
+// subset to Latin. 62 KB instead of the 145 KB Google serves. See assets/fonts/README.md.
+const shantell = localFont({
+  src: "../assets/fonts/shantell-sans-subset.woff2",
   variable: "--font-shantell",
-  axes: ["INFM", "BNCE"],
+  weight: "500 600",
   display: "swap",
 });
 

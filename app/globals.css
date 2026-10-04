@@ -152,13 +152,13 @@ textarea {
    --------------------------------------------------------------------------- */
 .font-display {
   font-family: var(--font-display);
-  font-variation-settings: "INFM" 18, "BNCE" 0;
+  font-variation-settings: "INFM" 18;
 }
 
 /* Hand-written notes: same family, more informal, a little bounce. */
 .hand {
   font-family: var(--font-display);
-  font-variation-settings: "INFM" 100, "BNCE" 45;
+  font-variation-settings: "INFM" 100;
 }
 
 .tabular {
@@ -208,7 +208,6 @@ textarea {
 .sky__field {
   position: absolute;
   border-radius: 50%;
-  will-change: transform;
 }
 
 .sky__field--a {
@@ -217,7 +216,6 @@ textarea {
   left: -26vmax;
   top: -30vmax;
   background: radial-gradient(closest-side, var(--field-a), transparent);
-  animation: drift-a 38s ease-in-out infinite alternate;
 }
 
 .sky__field--b {
@@ -226,7 +224,6 @@ textarea {
   right: -22vmax;
   top: 8vh;
   background: radial-gradient(closest-side, var(--field-b), transparent);
-  animation: drift-b 46s ease-in-out infinite alternate;
 }
 
 .sky__grain {
@@ -239,18 +236,6 @@ textarea {
 
 [data-theme="dark"] .sky__grain {
   mix-blend-mode: screen;
-}
-
-@keyframes drift-a {
-  to {
-    transform: translate3d(9vmax, 7vmax, 0) scale(1.08);
-  }
-}
-
-@keyframes drift-b {
-  to {
-    transform: translate3d(-8vmax, -6vmax, 0) scale(1.05);
-  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -324,7 +309,7 @@ textarea {
 
 @keyframes ink-word {
   from {
-    color: color-mix(in srgb, var(--ink) 22%, transparent);
+    color: var(--ink-2);
   }
   to {
     color: var(--ink);
@@ -377,29 +362,24 @@ textarea {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* a couple of blinks after arriving, then still; hovering a nearby link wakes it */
   .bubble .eye {
-    animation: blink 5.5s infinite;
+    animation: blink 2.6s 1.2s 2;
   }
 
-  .bubble {
-    animation: bob 6s ease-in-out infinite;
+  .mascot-host:hover .bubble .eye {
+    animation: blink 2.6s 0.3s 1;
   }
 }
 
 @keyframes blink {
   0%,
-  94%,
+  88%,
   100% {
     transform: scaleY(1);
   }
-  96% {
+  93% {
     transform: scaleY(0.1);
-  }
-}
-
-@keyframes bob {
-  50% {
-    transform: translateY(-2px) rotate(-2deg);
   }
 }
 
