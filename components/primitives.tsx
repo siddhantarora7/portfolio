@@ -62,7 +62,11 @@ export function Maybe({ value, className }: { value?: string; className?: string
 
 export function LogoTile({ name, src, mark }: { name: string; src?: string; mark?: string }) {
   return (
-    <span className="relative grid size-9 shrink-0 place-items-center overflow-hidden rounded-[11px] border border-rule bg-[var(--glass-strong)]">
+    <span
+      className={`logo-tile relative grid size-9 shrink-0 place-items-center overflow-hidden rounded-[11px] ${
+        src ? "" : "border border-rule bg-[var(--glass-strong)]"
+      }`}
+    >
       {src ? (
         <Image
           src={src}
@@ -70,7 +74,7 @@ export function LogoTile({ name, src, mark }: { name: string; src?: string; mark
           width={72}
           height={72}
           unoptimized={src.endsWith(".svg")}
-          className="size-full object-contain p-[3px]"
+          className="size-full object-contain"
         />
       ) : (
         <span className="font-display text-[14px] font-semibold tracking-[-0.02em] text-matcha-deep" aria-hidden="true">

@@ -5,8 +5,7 @@ import { ImageResponse } from "next/og";
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
 
-const mochiSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 88"><defs><radialGradient id="b" cx="38%" cy="28%" r="80%"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f8f3ee"/><stop offset="1" stop-color="#ebe1d8"/></radialGradient></defs><ellipse cx="50" cy="83" rx="36" ry="3.6" fill="rgb(45 60 40 / .14)"/><path d="M11 69C8 46 25 24 50 24C75 24 92 46 89 69C87 79 72 82 50 82C28 82 13 79 11 69Z" fill="url(#b)" stroke="#2d332e" stroke-width="2.4" stroke-linejoin="round"/><path d="M22 50c2-9 9-17 19-20" stroke="#fff" stroke-width="3.4" stroke-linecap="round" fill="none" opacity=".85"/><ellipse cx="32" cy="60" rx="5" ry="3" fill="#f6a9b9" opacity=".75"/><ellipse cx="68" cy="60" rx="5" ry="3" fill="#f6a9b9" opacity=".75"/><ellipse cx="39" cy="54" rx="3.1" ry="4" fill="#2d332e"/><ellipse cx="61" cy="54" rx="3.1" ry="4" fill="#2d332e"/><circle cx="40" cy="52.4" r="1.1" fill="#fff"/><circle cx="62" cy="52.4" r="1.1" fill="#fff"/><path d="M45 61q2.5 3 5 0q2.5 3 5 0" fill="none" stroke="#2d332e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const matchaSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 88"><defs><radialGradient id="g" cx="38%" cy="28%" r="80%"><stop offset="0" stop-color="#d3e8bd"/><stop offset=".55" stop-color="#a9cd8a"/><stop offset="1" stop-color="#86b066"/></radialGradient></defs><ellipse cx="50" cy="83" rx="30" ry="3.6" fill="rgb(45 60 40 / .14)"/><path d="M17 68C13 45 29 27 50 27C71 27 87 45 83 68C81 78 69 81 50 81C31 81 19 78 17 68Z" fill="url(#g)" stroke="#2d332e" stroke-width="2.4" stroke-linejoin="round"/><path d="M27 50c1-8 7-15 15-17" stroke="#fff" stroke-width="3.4" stroke-linecap="round" fill="none" opacity=".85"/><path d="M43 28c-1-6 5-10 10-7 4 3 1 8-3 6-2-1-1-4 1-4" fill="none" stroke="#2d332e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="33" cy="61" rx="5" ry="3" fill="#f6a9b9" opacity=".75"/><ellipse cx="67" cy="61" rx="5" ry="3" fill="#f6a9b9" opacity=".75"/><path d="M36.5 56q3.5-5 7 0M56.5 56q3.5-5 7 0" fill="none" stroke="#2d332e" stroke-width="2.4" stroke-linecap="round"/><path d="M44 61q6 7 12 0z" fill="#2d332e"/></svg>`;
+const mochiSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="b" cx="38%" cy="28%" r="80%"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#f8f3ee"/><stop offset="1" stop-color="#ebe1d8"/></radialGradient><linearGradient id="p" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c2dca3"/><stop offset="1" stop-color="#86b066"/></linearGradient></defs><g stroke="#2d332e"><rect x="5" y="38" width="14" height="34" rx="6.5" fill="url(#p)" stroke-width="2.2"/><rect x="7" y="68" width="10" height="6" rx="2" fill="#5e8b3e" stroke-width="1.8"/><rect x="81" y="38" width="14" height="34" rx="6.5" fill="url(#p)" stroke-width="2.2"/><rect x="83" y="68" width="10" height="6" rx="2" fill="#5e8b3e" stroke-width="1.8"/></g><path d="M11 69C8 46 25 24 50 24C75 24 92 46 89 69C87 79 72 82 50 82C28 82 13 79 11 69Z" fill="url(#b)" stroke="#2d332e" stroke-width="2.4" stroke-linejoin="round"/><path d="M22 50c2-9 9-17 19-20" stroke="#fff" stroke-width="3.4" stroke-linecap="round" fill="none" opacity=".85"/><path d="M14 63c20 7 52 7 72 0" fill="none" stroke="#86b066" stroke-width="3" stroke-linecap="round"/><ellipse cx="32" cy="60" rx="5" ry="3" fill="#f6a9b9" opacity=".75"/><ellipse cx="68" cy="60" rx="5" ry="3" fill="#f6a9b9" opacity=".75"/><ellipse cx="39" cy="54" rx="3.1" ry="4" fill="#2d332e"/><ellipse cx="61" cy="54" rx="3.1" ry="4" fill="#2d332e"/><circle cx="40" cy="52.4" r="1.1" fill="#fff"/><circle cx="62" cy="52.4" r="1.1" fill="#fff"/><path d="M45 61q2.5 3 5 0q2.5 3 5 0" fill="none" stroke="#2d332e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 const font = (file: string) => readFile(join(process.cwd(), "assets/fonts", file));
 
@@ -30,7 +29,7 @@ export async function renderOg({ title, subtitle, tag }: { title: string; subtit
           display: "flex",
           padding: 64,
           background:
-            "radial-gradient(circle at 12% 8%, #c2dca3 0%, rgba(194,220,163,0) 46%), radial-gradient(circle at 92% 70%, #c0dcf2 0%, rgba(192,220,242,0) 50%), #f4f6f0",
+            "radial-gradient(circle at 18% 12%, #c2dca3 0%, rgba(194,220,163,0) 58%), #f4f6f0",
           fontFamily: "Geist",
           color: "#1d2621",
         }}
@@ -49,8 +48,7 @@ export async function renderOg({ title, subtitle, tag }: { title: string; subtit
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-            <img src={`data:image/svg+xml,${encodeURIComponent(mochiSvg)}`} width={72} height={63} alt="" />
-            <img src={`data:image/svg+xml,${encodeURIComponent(matchaSvg)}`} width={60} height={53} alt="" style={{ marginLeft: -14 }} />
+            <img src={`data:image/svg+xml,${encodeURIComponent(mochiSvg)}`} width={76} height={76} alt="" />
             <div style={{ fontFamily: "Shantell", fontSize: 30 }}>siddhant arora</div>
             {tag ? (
               <div

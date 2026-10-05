@@ -5,7 +5,9 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Sky } from "@/components/sky";
 import { Footer } from "@/components/footer";
+import { Cursor } from "@/components/cursor";
 import { AskMochi } from "@/components/mochi/ask-mochi";
+import { Companion } from "@/components/mochi/companion";
 import { EasterEggs } from "@/components/mochi/easter-eggs";
 import { profile } from "@/data/site";
 import { siteUrl } from "@/lib/site-url";
@@ -54,8 +56,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <Companion />
         <AskMochi />
         <EasterEggs />
+        <Cursor />
       </body>
     </html>
   );

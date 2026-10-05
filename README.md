@@ -13,6 +13,7 @@ npm install
 npm run dev        # http://localhost:3000
 npm run build      # production build
 npm run typecheck
+npm run github:snapshot      # refresh the GitHub fallback
 ```
 
 ## Edit content
@@ -53,6 +54,16 @@ npm run codeforces:snapshot
 Import the repo on Vercel (framework preset: Next.js, no env vars needed).
 Once the custom domain is live, set `NEXT_PUBLIC_SITE_URL=https://your.domain`
 so canonical URLs, OG images, and the sitemap use it.
+
+## Secrets
+
+Type `mochi` or `matcha` anywhere, try the Konami code, click the orange date
+stamp, poke or throw mochi, and play the game at the bottom of the page.
+
+## QA builds beside `next dev`
+
+`NEXT_DIST_DIR=.next-qa npm run build` builds into a separate folder so it
+never clobbers a running dev server's `.next`.
 
 ## Design notes
 

@@ -21,7 +21,7 @@ export function ThemeToggle() {
     setTheme(next);
     window.dispatchEvent(
       new CustomEvent("mochi:say", {
-        detail: next === "dark" ? { who: "mochi", text: "goodnight…" } : { who: "matcha", text: "good morning!" },
+        detail: { text: next === "dark" ? "goodnight…" : "good morning!" },
       }),
     );
   }

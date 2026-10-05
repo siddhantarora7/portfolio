@@ -4,11 +4,12 @@ import { CodeforcesCard } from "@/components/codeforces";
 import { FlashStamp } from "@/components/flash-stamp";
 import { GithubCard } from "@/components/github-card";
 import { stampLabel } from "@/components/led-stamp";
-import { MochiFriends } from "@/components/mochi/mochi-friends";
+import { Play } from "@/components/game/play";
+import { LinksDock } from "@/components/links-dock";
 import { NowTiles } from "@/components/now-tiles";
 import { InkIn, LogoTile, Row, Section } from "@/components/primitives";
-import { projects } from "@/data/projects";
-import { alsoWork, highlights, links, profile, research, work } from "@/data/site";
+import { housingRuns, projects } from "@/data/projects";
+import { alsoWork, highlights, profile, research, work } from "@/data/site";
 import { getCodeforcesStats } from "@/lib/codeforces";
 import { getGithubStats } from "@/lib/github";
 
@@ -25,18 +26,11 @@ export default async function Home() {
     <>
       {/* ------------------------------------------------------------- hero */}
       <section aria-labelledby="hero-title" className="relative pt-12 sm:pt-10">
-        <div className="absolute -top-1 right-4 z-10 sm:-top-4 sm:right-8">
-          <MochiFriends size={74} />
-        </div>
-        <p
+        <span
+          data-mochi-dock
           aria-hidden="true"
-          className="hand arrive-late pointer-events-none absolute top-6 right-[190px] z-10 rotate-[-5deg] text-[15px] text-ink-2 max-sm:top-9 max-sm:right-[176px] max-sm:text-[14px]"
-        >
-          poke us!
-          <svg className="absolute top-1 -right-8" width="30" height="22" viewBox="0 0 30 22" fill="none" aria-hidden="true">
-            <path d="M2 5c9-4 18-2 24 9m0 0-1-7m1 7-7-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-          </svg>
-        </p>
+          className="absolute -top-6 right-6 z-10 block h-[76px] w-[76px] max-md:h-[60px] max-md:w-[60px] sm:right-10"
+        />
 
         <div className="glass arrive relative rounded-[28px] px-5 pt-9 pb-12 sm:px-9 sm:pt-11 sm:pb-10">
           <h1
@@ -54,28 +48,7 @@ export default async function Home() {
             ))}
           </ul>
           <p className="mt-5 max-w-[44ch] text-[16px] text-ink-2">{profile.human}</p>
-          <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-[15px]">
-            <li>
-              <a className="link" href={links.github} target="_blank" rel="noreferrer">
-                github
-              </a>
-            </li>
-            <li>
-              <a className="link" href={links.linkedin} target="_blank" rel="noreferrer">
-                linkedin
-              </a>
-            </li>
-            <li>
-              <a className="link" href={`mailto:${links.email}`}>
-                email
-              </a>
-            </li>
-            <li>
-              <a className="link" href={links.resume}>
-                resume
-              </a>
-            </li>
-          </ul>
+          <LinksDock className="mt-8" />
           <FlashStamp label={stampLabel()} className="absolute right-5 bottom-5 sm:right-8" />
         </div>
 
@@ -123,6 +96,11 @@ export default async function Home() {
           {projects.map((p, i) => (
             <li key={p.slug} className="placed" style={{ ["--tilt" as string]: tilts[i % tilts.length] }}>
               <Link href={`/projects/${p.slug}`} className="glass group block h-full rounded-[22px] p-2.5">
+                {p.visual && !p.hero?.src ? (
+                  <span className="relative mb-1 block overflow-hidden rounded-[15px] border border-rule" style={{ aspectRatio: "16 / 10" }}>
+                    <CardVisual kind={p.visual} />
+                  </span>
+                ) : null}
                 {p.hero?.src ? (
                   <span
                     className="scanlines relative mb-1 block overflow-hidden rounded-[15px] border border-rule"
@@ -174,6 +152,35 @@ export default async function Home() {
       <Section id="github" title="github" note="yes, it's green on purpose">
         <GithubCard stats={gh} />
       </Section>
+
+      {/* ------------------------------------------------------------- play */}
+      <Section id="play" title="play" note="a tiny game">
+        <Play target={cf.info.rating} />
+      </Section>
     </>
+  );
+}
+
+function CardVisual({ kind }: { kind: "cursive-demo" | "housing-chart" }) {
+  if (kind === "cursive-demo") {
+    return (
+      <span className="dot-grid absolute inset-0 flex flex-col justify-center gap-2 bg-[var(--glass-strong)] px-5" aria-hidden="true">
+        <span className="text-[15px] leading-snug">
+          Dear hiring team, I&apos;m writing<span className="caret" />
+          <span className="text-ink-2"> to apply for the summer internship.</span>
+        </span>
+        <span className="hand text-[13px] text-ink-2">ghost text, as you type</span>
+      </span>
+    );
+  }
+  return (
+    <span className="dot-grid absolute inset-0 flex items-end justify-center gap-3 bg-[var(--glass-strong)] px-6 pb-5" aria-hidden="true">
+      {housingRuns.map((r) => (
+        <span key={r.label} className="flex flex-1 flex-col items-center gap-1">
+          <span className="tabular text-[11px] font-semibold">{r.r2Dollars.toFixed(2)}</span>
+          <span className="w-full rounded-t-md bg-matcha" style={{ height: `${r.r2Dollars * 88}px`, opacity: 0.45 + 0.55 * r.r2Dollars }} />
+        </span>
+      ))}
+    </span>
   );
 }

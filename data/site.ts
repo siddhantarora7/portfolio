@@ -28,7 +28,7 @@ export const links = {
   codeforces: "https://codeforces.com/profile/beansQ",
 };
 
-export type Shot = { src: string; alt: string; caption?: string };
+export type Shot = { src: string; alt: string; caption?: string; ratio?: string };
 
 export type Row = {
   name: string;
@@ -152,6 +152,15 @@ export type WorkEntry = Row & {
   site?: { label: string; href: string };
   extraLinks?: { label: string; href: string }[];
   sponsors?: { tier: string; names: string[] }[];
+  /** A sub-project shown as its own section on the detail page. */
+  sub?: {
+    id: string;
+    title: string;
+    period: string;
+    about: string[];
+    shots?: Shot[];
+    sponsors?: { tier: string; names: string[] }[];
+  };
 };
 
 export const work: WorkEntry[] = [
@@ -197,11 +206,12 @@ export const work: WorkEntry[] = [
   {
     slug: "codethecure",
     name: "CodeTheCure",
-    role: "Software Developer",
+    role: "Software Developer & Hackathon Organizer",
     period: "Mar 2026 – now",
     logo: "/logos/codethecure.png",
-    note: "AI/ML features with PyTorch and Hugging Face for a cancer-research startup with 5k+ users.",
+    note: "AI/ML features for a cancer-research startup with 5k+ users, and co-organizing its international hackathon (Oct 10–12, 2026).",
     site: { label: "codethecure.app", href: "https://www.codethecure.app" },
+    extraLinks: [{ label: "codethecure.app/hackathon", href: "https://www.codethecure.app/hackathon" }],
     about: [
       "CodeTheCure builds free tools that help people with cancer understand their care in plain language.",
       "I build AI/ML features with PyTorch, Hugging Face, and external APIs for its 5k+ users, working on UI/UX and core functionality alongside high school researchers with lab experience at Yale, Stanford, and MIT.",
@@ -210,28 +220,23 @@ export const work: WorkEntry[] = [
       { src: "/work/codethecure/1.jpg", alt: "CodeTheCure home page", caption: "Plain-language answers about cancer, free for anyone." },
       { src: "/work/codethecure/2.jpg", alt: "CodeTheCure AI answering questions in plain language" },
     ],
-  },
-  {
-    slug: "codethecure-hackathon",
-    name: "International CodeTheCure Hackathon",
-    role: "Organizer",
-    period: "Oct 10 – 12, 2026",
-    logo: "/logos/codethecure.png",
-    note: "A free, virtual hackathon where high schoolers build software for cancer patients: ~100 registrants from ~20 countries so far.",
-    site: { label: "codethecure.app/hackathon", href: "https://www.codethecure.app/hackathon" },
-    about: [
-      "A free, virtual weekend hackathon where high schoolers build software for people with cancer. Any level of experience is welcome.",
-      "I co-organize it. So far ~100 students from ~20 countries have registered. Prizes include $500 for first place, n8n Cloud Pro licenses, CodeCrafters VIP for the top three teams, and internships at CodeTheCure.",
-    ],
-    sponsors: [
-      { tier: "Sponsors", names: ["n8n", "CodeCrafters", "Miro", "BSD Education", ".xyz"] },
-      { tier: "Community partners", names: ["MIT THINK", "Technica"] },
-    ],
-    shots: [
-      { src: "/work/codethecure-hackathon/1.jpg", alt: "The hackathon's pixel-art reception page", caption: "The site is a pixel-art hospital you walk through." },
-      { src: "/work/codethecure-hackathon/2.jpg", alt: "Hackathon schedule on the pixel-art site" },
-      { src: "/work/codethecure-hackathon/3.jpg", alt: "How to join the hackathon", caption: "Teams of 1–4, no experience needed." },
-    ],
+    sub: {
+      id: "hackathon",
+      title: "The International CodeTheCure Hackathon",
+      period: "Oct 10 – 12, 2026",
+      about: [
+        "A free, virtual weekend hackathon where high schoolers build software for people with cancer. Any level of experience is welcome.",
+        "I co-organize it. So far ~100 students from ~20 countries have registered. Prizes include $500 for first place, n8n Cloud Pro licenses, CodeCrafters VIP for the top three teams, and internships at CodeTheCure.",
+      ],
+      shots: [
+        { src: "/work/codethecure-hackathon/1.jpg", alt: "The hackathon's pixel-art reception page", caption: "The site is a pixel-art hospital you walk through." },
+        { src: "/work/codethecure-hackathon/3.jpg", alt: "How to join the hackathon", caption: "Teams of 1–4, no experience needed." },
+      ],
+      sponsors: [
+        { tier: "Sponsors", names: ["n8n", "CodeCrafters", "Miro", "BSD Education", ".xyz"] },
+        { tier: "Community partners", names: ["MIT THINK", "Technica"] },
+      ],
+    },
   },
   {
     slug: "ocmc",
@@ -255,10 +260,11 @@ export const alsoWork: Row[] = [
     name: "Math Attack Society",
     role: "Executive, Security & IT",
     period: "Aug 2026 – now",
-    mark: "MA",
+    href: "https://www.mathattacksociety.org/",
+    logo: "/logos/math-attack.png",
   },
-  { name: "Alpine Reasoning Challenge", role: "Executive", mark: "AR" },
-  { name: "Westmount Math Club", role: "President", period: "2026 – now", logo: "/logos/westmount.png" },
+  { name: "Alpine Reasoning Challenge", role: "Executive", href: "https://archallenge.org/", logo: "/logos/arc.png" },
+  { name: "Westmount Math Club", role: "President", period: "2026 – now", logo: "/logos/westmount-clear.png" },
   {
     name: "Verve Consulting",
     role: "Software Developer & Consultant",
@@ -276,7 +282,7 @@ export const alsoWork: Row[] = [
 export type Event = { name: string; start: string; end: string; href: string };
 
 export const events: Event[] = [
-  { name: "CodeTheCure Hackathon", start: "2026-10-10", end: "2026-10-12", href: "/work/codethecure-hackathon" },
+  { name: "CodeTheCure Hackathon", start: "2026-10-10", end: "2026-10-12", href: "/work/codethecure#hackathon" },
   { name: "Olympiad4Everyone, Edition 1", start: "2026-11-07", end: "2026-11-21", href: "/work/olympiad4everyone" },
 ];
 
@@ -288,8 +294,8 @@ export type Highlight = { name: string; detail: string; href?: string; logo?: st
 
 export const highlights: Highlight[] = [
   { name: "Codeforces Expert", detail: "1,000+ problems", href: "https://codeforces.com/profile/beansQ", mark: "CF" },
-  { name: "USACO Gold", detail: "2024 – 2026", logo: "/logos/usaco.png" },
-  { name: "CCC Group III", detail: "Top 3% nationally", logo: "/logos/cemc.png" },
+  { name: "USACO Gold", detail: "2024 – 2026", logo: "/logos/usaco-clear.png" },
+  { name: "CCC Group III", detail: "Top 3% nationally", logo: "/logos/cemc-clear.png" },
   { name: "AHSMC", detail: "Honourable Mention, top 20 in Alberta", logo: "/logos/uofa.jpeg" },
   { name: "CalgaryHacks 2026", detail: "3rd place, Tier 2 (500+ participants)", logo: "/logos/calgaryhacks.png" },
   { name: "Reach for the Top", detail: "1st in Alberta, team", mark: "RT" },

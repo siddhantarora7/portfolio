@@ -184,25 +184,36 @@ textarea {
   pointer-events: none;
 }
 
-.sky__field {
+.sky__glow {
   position: absolute;
+  width: 95vmax;
+  height: 95vmax;
+  left: -30vmax;
+  top: -42vmax;
   border-radius: 50%;
+  background: radial-gradient(closest-side, var(--field-a), transparent 74%);
+  transition: filter 1.6s var(--ease-out-expo);
 }
 
-.sky__field--a {
-  width: 76vmax;
-  height: 76vmax;
-  left: -26vmax;
-  top: -30vmax;
-  background: radial-gradient(closest-side, var(--field-a), transparent);
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sky__glow {
+      animation: glow-travel linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
 }
 
-.sky__field--b {
-  width: 66vmax;
-  height: 66vmax;
-  right: -22vmax;
-  top: 8vh;
-  background: radial-gradient(closest-side, var(--field-b), transparent);
+@keyframes glow-travel {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  45% {
+    transform: translate3d(62vw, 34vh, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(14vw, 62vh, 0) scale(0.92);
+  }
 }
 
 .sky__grain {
@@ -362,9 +373,6 @@ textarea {
   -webkit-tap-highlight-color: transparent;
 }
 
-.do-squish,
-.do-hop,
-.breathe,
 .land {
   transform-origin: 50% 100%;
 }
@@ -396,32 +404,11 @@ textarea {
     animation: land 900ms var(--ease-out-expo) 250ms both;
   }
 
-  .land-late {
-    animation-delay: 420ms;
-  }
-
-  /* a few slow breaths after arriving, then still (keeps the page settled) */
-  .breathe {
-    animation: breathe 3.6s ease-in-out 1.4s 3;
-  }
-
-  .breathe-late {
-    animation-delay: 2.2s;
-  }
-
-  .mochi-friends:hover .breathe {
-    animation: breathe 3.6s ease-in-out infinite;
-  }
-
   .mochi-art .blink {
     animation: blink 4.8s 1.8s 3;
   }
 
-  .mochi-art[data-kind="matcha"] .blink {
-    animation-duration: 6.2s;
-  }
-
-  .mochi-friends:hover .blink {
+  .companion:hover .mochi-art .blink {
     animation-iteration-count: infinite;
   }
 
@@ -429,12 +416,8 @@ textarea {
     animation: zzz 2.8s ease-in-out infinite;
   }
 
-  .do-squish {
-    animation: squish 640ms var(--ease-out-expo);
-  }
-
-  .do-hop {
-    animation: hop 560ms var(--ease-out-expo);
+  .is-flying .flame > path {
+    animation: flicker 130ms ease-in-out infinite alternate;
   }
 
   .speech {
@@ -450,14 +433,23 @@ textarea {
     animation: pop-in 260ms var(--ease-out-expo) both;
   }
 
-  .ask-launcher:hover .peek {
-    animation: hop 560ms var(--ease-out-expo);
+  .hearts svg {
+    animation: heart-up 1.3s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i) * 70ms);
+  }
+
+  .play-mochi {
+    animation: hover-bob 2.8s ease-in-out infinite;
   }
 
   .mochi-drop {
     animation-name: fall;
     animation-timing-function: cubic-bezier(0.45, 0, 0.75, 1);
     animation-fill-mode: both;
+  }
+
+  .caret {
+    animation: caret 1s steps(1) infinite;
   }
 }
 
@@ -475,12 +467,6 @@ textarea {
   }
   86% {
     transform: scale(0.96, 1.05);
-  }
-}
-
-@keyframes breathe {
-  50% {
-    transform: scale(1.03, 0.965);
   }
 }
 
@@ -504,36 +490,6 @@ textarea {
   50% {
     transform: translate(2px, -4px);
     opacity: 0.9;
-  }
-}
-
-@keyframes squish {
-  0% {
-    transform: scale(1, 1);
-  }
-  18% {
-    transform: scale(1.24, 0.72);
-  }
-  42% {
-    transform: scale(0.9, 1.13);
-  }
-  64% {
-    transform: scale(1.05, 0.96);
-  }
-}
-
-@keyframes hop {
-  0% {
-    transform: translateY(0) scale(1, 1);
-  }
-  20% {
-    transform: translateY(0) scale(1.08, 0.9);
-  }
-  48% {
-    transform: translateY(-14px) scale(0.95, 1.06);
-  }
-  78% {
-    transform: translateY(0) scale(1.06, 0.94);
   }
 }
 
@@ -576,19 +532,8 @@ textarea {
 }
 
 /* typed "matcha": the sky steeps for a few seconds */
-.sky__field {
-  transition:
-    transform 1.6s var(--ease-out-expo),
-    filter 1.6s var(--ease-out-expo);
-}
-
-[data-matcha="on"] .sky__field--a {
-  transform: scale(1.35);
-  filter: saturate(1.9) brightness(0.96);
-}
-
-[data-matcha="on"] .sky__field--b {
-  filter: hue-rotate(-70deg) saturate(1.4);
+[data-matcha="on"] .sky__glow {
+  filter: saturate(2.2) brightness(0.94);
 }
 
 /* ---------------------------------------------------------------------------
@@ -613,5 +558,242 @@ textarea {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Companion: mochi with a jetpack
+   --------------------------------------------------------------------------- */
+.companion {
+  --mochi-size: 76px;
+  will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .companion {
+    --mochi-size: 60px;
+  }
+}
+
+.companion .flame {
+  transform: scaleY(var(--thrust, 0));
+  opacity: clamp(0, calc(var(--thrust, 0) * 1.4), 1);
+  transition:
+    transform 120ms ease-out,
+    opacity 200ms ease-out;
+}
+
+.flame > path {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+[data-theme="dark"] .companion .flame {
+  opacity: clamp(0, calc(var(--thrust, 0) * 0.9), 0.8);
+}
+
+.speech-left::after {
+  left: auto;
+  right: -5px;
+  top: 50%;
+  margin: -5px 0 0;
+  border: 0;
+  border-top: 1px solid var(--glass-edge);
+  border-right: 1px solid var(--glass-edge);
+}
+
+.speech-right::after {
+  left: -5px;
+  top: 50%;
+  margin: -5px 0 0;
+  border: 0;
+  border-bottom: 1px solid var(--glass-edge);
+  border-left: 1px solid var(--glass-edge);
+}
+
+.hearts svg {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+}
+
+@keyframes heart-up {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6);
+  }
+  to {
+    opacity: 0;
+    transform: translate(calc((var(--i) - 2.5) * 16px), -70px) scale(1.15);
+  }
+}
+
+@keyframes flicker {
+  from {
+    transform: scaleX(0.82) scaleY(0.92);
+  }
+  to {
+    transform: scaleX(1.08) scaleY(1.06);
+  }
+}
+
+@keyframes hover-bob {
+  50% {
+    transform: translateY(-8px) rotate(-3deg);
+  }
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin: 0 1px -0.18em;
+  background: var(--matcha);
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Custom cursor (mouse only; text fields keep the native caret)
+   --------------------------------------------------------------------------- */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+html.has-cursor :is(input, textarea, [contenteditable="true"]) {
+  cursor: text !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+html[data-cursor-shown="on"] .cursor-dot,
+html[data-cursor-shown="on"] .cursor-ring {
+  opacity: 1;
+}
+
+html[data-cursor-mode="text"] .cursor-dot,
+html[data-cursor-mode="text"] .cursor-ring {
+  opacity: 0;
+}
+
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+}
+
+.cursor-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--ink) 30%, transparent);
+  transition:
+    transform 260ms var(--ease-out-expo),
+    background-color 260ms ease,
+    border-color 260ms ease;
+}
+
+html[data-cursor-mode="link"] .cursor-ring::before {
+  transform: scale(1.55);
+  border-color: var(--matcha);
+  background: color-mix(in srgb, var(--matcha) 12%, transparent);
+}
+
+html[data-cursor-press] .cursor-ring::before {
+  transform: scale(0.75);
+}
+
+.cursor-hint {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  translate: -50% 14px;
+  font-size: 14px;
+  color: var(--matcha-deep);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Dock: magnify by pointer distance (set as --dock by the Dock component)
+   --------------------------------------------------------------------------- */
+.dock-item {
+  position: relative;
+  transform: translateY(calc((var(--dock, 1) - 1) * -16px)) scale(var(--dock, 1));
+  transform-origin: 50% 100%;
+  transition: transform 160ms var(--ease-out-expo);
+}
+
+.dock-tile {
+  transition: background-color 200ms ease;
+}
+
+.dock-label {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  translate: -50% 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--ground);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 160ms ease,
+    translate 160ms ease;
+}
+
+.dock-item:hover .dock-label,
+.dock-item:focus-within .dock-label {
+  opacity: 1;
+  translate: -50% 0;
+}
+
+.nav-dock .dock-item {
+  transform: translateY(calc((var(--dock, 1) - 1) * -2px)) scale(var(--dock, 1));
+  transform-origin: 50% 50%;
+}
+
+/* logo tiles grow a little when their row is hovered */
+.logo-tile {
+  transition: transform 260ms var(--ease-out-expo);
+}
+
+@media (hover: hover) {
+  .group:hover .logo-tile {
+    transform: scale(1.18);
+  }
+
+  .placed:hover {
+    transform: rotate(0deg) translateY(-4px) scale(1.025);
   }
 }

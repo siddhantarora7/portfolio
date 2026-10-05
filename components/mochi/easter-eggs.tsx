@@ -12,12 +12,10 @@ type Drop = {
   dur: number;
   size: number;
   spin: number;
-  kind: "mochi" | "matcha";
   mood: "happy" | "wow";
 };
 
-const say = (text: string, who: "mochi" | "matcha" = "matcha") =>
-  window.dispatchEvent(new CustomEvent("mochi:say", { detail: { who, text } }));
+const say = (text: string) => window.dispatchEvent(new CustomEvent("mochi:say", { detail: { text } }));
 
 export function EasterEggs() {
   const [drops, setDrops] = useState<Drop[]>([]);
@@ -25,7 +23,7 @@ export function EasterEggs() {
 
   useEffect(() => {
     console.log(
-      "%cmochi & matcha say hi.%c\nyou're reading the console, so you might like the source: https://github.com/siddhantarora7/portfolio",
+      "%cmochi says hi.%c\nyou're reading the console, so you might like the source: https://github.com/siddhantarora7/portfolio",
       "font: 600 15px system-ui; color: #5e8b3e",
       "font: 13px system-ui; color: #56625b",
     );
@@ -61,19 +59,22 @@ export function EasterEggs() {
               dur: 2.2 + Math.random() * 1.6,
               size: 30 + Math.random() * 34,
               spin: (Math.random() - 0.5) * 120,
-              kind: Math.random() < 0.5 ? "mochi" : "matcha",
               mood: Math.random() < 0.5 ? "happy" : "wow",
             })),
           );
           clearTimeout(rainTimer);
           rainTimer = window.setTimeout(() => setDrops([]), 4600);
         }
-        say("it's raining us!", "mochi");
+        say("it's raining mochi!");
       }
 
-      // type "matcha" anywhere
+      // type "mochi" or "matcha" anywhere
       if (e.key.length === 1) {
         typed = (typed + e.key.toLowerCase()).slice(-6);
+        if (typed.endsWith("mochi")) {
+          typed = "";
+          window.dispatchEvent(new Event("mochi:summon"));
+        }
         if (typed === "matcha") {
           typed = "";
           document.documentElement.dataset.matcha = "on";
@@ -108,7 +109,7 @@ export function EasterEggs() {
                 ["--spin" as string]: `${d.spin}deg`,
               }}
             >
-              <MochiArt kind={d.kind} mood={d.mood} size={d.size} />
+              <MochiArt mood={d.mood} size={d.size} jetpack shadow={false} />
             </span>
           ))}
         </div>

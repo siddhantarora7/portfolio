@@ -161,7 +161,7 @@ components:
 
 **Creative North Star: "Frosted Glass at Dusk, Pressed into a Stationery Notebook"**
 
-A quiet personal index under a still sky. Two large blurred colour fields, matcha in the upper left and pale sky to the right, sit fixed behind everything on a mochi-pale ground with a static film grain. A small number of frosted-glass objects float above that sky; everything else is plain ink on the ground: hairline-ruled list rows, short paragraphs, hand-written margin notes. The softness comes from rounded glass, two small mascots, mochi and matcha, and a rounded hand-lettered display face; the cleanliness comes from a single 680px column, generous section gaps, and a strict budget on every effect.
+A quiet personal index under a still sky. One large matcha glow sits fixed behind everything and travels across the page as you scroll (a CSS scroll timeline, free at rest) on a mochi-pale ground with a static film grain. A small number of frosted-glass objects float above that sky; everything else is plain ink on the ground: hairline-ruled list rows, short paragraphs, hand-written margin notes. The softness comes from rounded glass, two small mascots, mochi and matcha, and a rounded hand-lettered display face; the cleanliness comes from a single 680px column, generous section gaps, and a strict budget on every effect.
 
 The retro layer is small and specific: an orange LED film date stamp burned into the corner of the hero card and image frames, faint scanlines over image slots, dot-matrix grids behind charts, and the film grain over the sky. These read as found artifacts, not decoration, and none of them repeat beyond their one role. The world is deliberately general: no literal Japanese motifs, no subject-literal metaphors for research or code, no cream-paper-and-script-name portfolio default.
 
@@ -172,7 +172,7 @@ Night mode is the same world after sunset: a deep green-black ground, darkened f
 - Frosted glass on a short list of floating objects only; list content sits directly on the ground.
 - Shantell Sans for headings and hand notes, Geist for reading, Geist Mono for the LED stamp alone.
 - Matcha carries every interactive and data accent; LED orange is the only warm hue.
-- Two mascots, mochi (a wide white daifuku) and matcha (a rounder green one with a curl of cream), whose tiny face changes are the site's personality.
+- One mascot, mochi, a white daifuku with a tiny matcha jetpack, whose face changes and flight are the site's personality.
 - One arrival, one lens-pull hover, one scroll ink-in; nothing loops; all of it off under reduced motion.
 
 ## Colors
@@ -279,12 +279,11 @@ A floating glass pill, centred, 12px from the top (20px from 640px). Home is a 2
 ### List Row
 The workhorse. Rows sit in a `.focus-list`: hovering or focusing one row fades its siblings to 0.38 opacity with a 1.6px blur over 420ms (ease-out-expo), like a lens pull. External rows reveal a small arrow on hover. Logo tiles are 36px glass-strong squares at 11px radius with a matcha-deep Shantell monogram when no logo exists.
 
-### Mochi & Matcha
-The site's mark and its personality. Drawn as inline SVG (components/mochi/mochi-art.tsx) with a 2.4px ink outline (--mochi-ink), soft radial fill, white shine, dusting dots, and pink cheeks (#f6a9b9). Mochi is a wide white dome; matcha is a rounder green dome (#d3e8bd → #86b066) with a small curl of cream.
-- **Moods:** idle (eyes with catchlights, small "w" mouth), happy (arched eyes, open smile), squish (> < eyes), dizzy (ringed eyes), wow (round eyes, "o" mouth), sleep (closed eyes, drifting "z"). Idle mascots sleep in dark mode via CSS.
-- **Hero pair (components/mochi/mochi-friends.tsx):** perched on the hero card's top-right edge with a "poke us!" hand note. They land once with a squash, breathe and blink a few times, then rest (hovering the pair resumes it). Eyes follow a mouse pointer (rAF-throttled, max ~2.6 units). Clicking one squishes it, makes the other hop, and shows a glass speech bubble with a curated line; every 10th poke goes dizzy. Both are real buttons; speech is announced through a polite live region.
-- **Elsewhere:** 28px mochi in the nav, the pair (happy) in the footer, a squished dizzy mochi beside a surprised matcha on the 404, mochi as the favicon, and both in OG images.
-- **Voice:** lowercase, short, a little dry. Lines may reference real site facts (1,000+ problems, the research chart) but never invent claims.
+### Mochi (the one mascot)
+A soft white daifuku drawn as inline SVG (components/mochi/mochi-art.tsx): 2.4px ink outline (--mochi-ink), radial fill, white shine and dusting, pink cheeks (#f6a9b9). It wears a tiny matcha jetpack (two green thrusters, a harness strap) with flames whose length follows --thrust.
+- **Moods:** idle, happy, squish, dizzy, wow, sleep. Idle mochi sleeps in dark mode via CSS.
+- **Companion (components/mochi/companion.tsx):** fixed-position, spring physics in one rAF loop that stops when settled. Perches on the hero card ([data-mochi-dock]); takes off when you scroll; rides along with the page and springs back to the right margin (bottom-right on phones), tilting with velocity and flaring its flames when it climbs. Click: loop-de-loop and a line (every 5th poke: dizzy). Drag and release: thrown, then flies home. First time each section appears it comments once. At the footer it lands on [data-mochi-rest] and naps. Eyes follow a mouse. Nothing moves before the first interaction, and reduced motion keeps it still.
+- **Elsewhere:** 30px in the nav, the ask-mochi avatar, the dock tile, the 404 (squished and dizzy), the favicon, OG images, and the game sprite. There is never a second mochi on screen as a character.
 
 ### LED Date Stamp
 Today's date as `'YY MM DD` in Geist Mono 600 11px LED orange with glow, decorative (aria-hidden), absolutely placed at the bottom-right of the hero card and image frames.
@@ -325,8 +324,9 @@ Below the label sizes, a few UI-only sizes are part of the system: 13px for card
 
 ## Delight layer
 
-- **Ask mochi** (components/mochi/ask-mochi.tsx): a glass launcher at the bottom right (icon-only on phones) opens a scripted Q&A dialog. Intents are keyword-matched and answer only from site data; it says it is scripted, not an AI. Esc closes and returns focus.
-- **Easter eggs** (components/mochi/easter-eggs.tsx): the Konami code makes it rain mochi (a quiet toast under reduced motion); typing "matcha" steeps the sky green for 7 seconds; a greeting in the console. Clicking the hero's LED stamp fires a camera flash and prints the time.
-- **Now tiles** (components/now-tiles.tsx): three tilted glass tiles under the hero: live countdowns to upcoming events (past ones hide), a research spark (re-rolling vs probe), and a Codeforces rating spark.
-- **Live data cards:** Codeforces and GitHub share one card grammar: a sentence with the key numbers, a dot-grid chart, two small breakdowns, and a hand-written source note. Both are server-rendered SVG strings with daily revalidation and committed snapshot fallbacks.
-- **Detail pages:** /work/<slug> follows a framed-hero, title, role and period, links, then paragraphs interleaved with large screenshots; /projects/<slug> runs What it is, How it works, Stack, Results, gallery.
+- **Ask mochi** (components/mochi/ask-mochi.tsx): opened from mochi's speech bubble or the dock's mochi tile. A scripted Q&A dialog that answers only from site data and says it is not an AI. Esc closes and returns focus.
+- **Easter eggs** (components/mochi/easter-eggs.tsx): type "mochi" anywhere for a triple loop with hearts; type "matcha" to steep the glow; the Konami code rains mochi; clicking the hero's LED stamp flashes a camera; a hello in the console.
+- **Jetpack mochi** (components/game): a lazy-loaded canvas game in the "play" section. Tap or Space to thrust; each wall is +100 Codeforces rating with rank names; beat beansQ's live rating. Best score is kept in localStorage. The ceiling bonks; the floor ends the run.
+- **Custom cursor** (components/cursor.tsx): a dot and a trailing ring that grows over anything clickable and shows hints from data-cursor ("poke", "play", "flap"). Mouse only; text fields keep the native caret.
+- **Dock** (components/dock.tsx): macOS-style magnification by pointer distance (Gaussian, transform-only). Used for the hero and footer link docks (with labels) and, gently, the nav.
+- **Now tiles**, **live data cards**, and **detail pages** as before; project cards now carry a screenshot or a drawn visual (Cursive's ghost-text illustration, the housing net's R² bars).

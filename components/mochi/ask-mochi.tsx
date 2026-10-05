@@ -94,8 +94,9 @@ const INTENTS: Intent[] = [
     match: /\b(secret|secrets|easter|egg|hidden|konami)\b/i,
     answer: () => (
       <>
-        Maybe. Poke us ten times. Type <span className="hand">matcha</span> anywhere. And there&apos;s an old
-        cheat code that makes it rain.
+        Maybe. Poke me five times. Drag me and let go. Type <span className="hand">mochi</span> or{" "}
+        <span className="hand">matcha</span> anywhere. There&apos;s a game at the bottom, and an old cheat code that
+        makes it rain.
       </>
     ),
   },
@@ -131,9 +132,18 @@ export function AskMochi({ rating }: { rating?: number }) {
   const [asked, setAsked] = useState<string[]>([]);
   const panel = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
-  const launcher = useRef<HTMLButtonElement>(null);
+  const opener = useRef<HTMLElement | null>(null);
   const list = useRef<HTMLDivElement>(null);
   const titleId = useId();
+
+  useEffect(() => {
+    const onAsk = () => {
+      opener.current = document.activeElement as HTMLElement | null;
+      setOpen(true);
+    };
+    window.addEventListener("mochi:ask", onAsk);
+    return () => window.removeEventListener("mochi:ask", onAsk);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -141,7 +151,7 @@ export function AskMochi({ rating }: { rating?: number }) {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpen(false);
-        launcher.current?.focus();
+        opener.current?.focus();
       }
     };
     window.addEventListener("keydown", onKey);
@@ -165,16 +175,16 @@ export function AskMochi({ rating }: { rating?: number }) {
   const suggestions = INTENTS.filter((i) => !asked.includes(i.id)).slice(0, 4);
 
   return (
-    <div className="fixed right-4 bottom-4 z-[55] flex flex-col items-end sm:right-6 sm:bottom-6">
+    <div className="fixed right-4 bottom-4 z-[57] flex flex-col items-end sm:right-6 sm:bottom-6">
       {open ? (
         <div
           ref={panel}
           role="dialog"
           aria-labelledby={titleId}
-          className="glass ask-panel mb-3 flex max-h-[min(34rem,calc(100dvh-7rem))] w-[min(23rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[26px]"
+          className="glass ask-panel flex max-h-[min(34rem,calc(100dvh-7rem))] w-[min(23rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[26px]"
         >
           <div className="flex items-center gap-2.5 border-b border-rule px-4 py-3">
-            <MochiArt size={34} mood="happy" />
+            <MochiArt size={36} mood="happy" jetpack shadow={false} />
             <div className="min-w-0 flex-1">
               <p id={titleId} className="font-display text-[16px] leading-tight font-semibold">
                 ask mochi
@@ -185,7 +195,7 @@ export function AskMochi({ rating }: { rating?: number }) {
               type="button"
               onClick={() => {
                 setOpen(false);
-                launcher.current?.focus();
+                opener.current?.focus();
               }}
               className="grid size-8 place-items-center rounded-full text-ink-2 hover:text-ink"
               aria-label="Close"
@@ -249,7 +259,7 @@ export function AskMochi({ rating }: { rating?: number }) {
             />
             <button
               type="submit"
-              className="rounded-full bg-matcha px-3.5 py-1.5 text-[13.5px] font-medium text-[var(--ground)] disabled:opacity-40"
+              className="rounded-full bg-matcha-deep px-3.5 py-1.5 text-[13.5px] font-medium text-[var(--ground)] disabled:opacity-40"
               disabled={!text.trim()}
             >
               Ask
@@ -258,22 +268,6 @@ export function AskMochi({ rating }: { rating?: number }) {
         </div>
       ) : null}
 
-      <button
-        ref={launcher}
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        aria-haspopup="dialog"
-        aria-label={open ? "Close ask mochi" : "Ask mochi a question"}
-        className="glass ask-launcher group flex items-center gap-2 rounded-full p-1.5 sm:py-1.5 sm:pr-4 sm:pl-2"
-      >
-        <span className="peek block">
-          <MochiArt size={34} mood={open ? "happy" : "idle"} />
-        </span>
-        <span className="text-[14px] font-medium max-sm:hidden" aria-hidden="true">
-          {open ? "close" : "ask mochi"}
-        </span>
-      </button>
     </div>
   );
 }

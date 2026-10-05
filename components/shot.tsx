@@ -7,7 +7,7 @@ export function ShotFrame({
   shot,
   priority = false,
   stamp = false,
-  ratio = "16 / 10",
+  ratio,
   framed = true,
 }: {
   shot: Shot;
@@ -17,7 +17,7 @@ export function ShotFrame({
   framed?: boolean;
 }) {
   const img = (
-    <div className="relative overflow-hidden rounded-[16px] border border-rule" style={{ aspectRatio: ratio }}>
+    <div className="relative overflow-hidden rounded-[16px] border border-rule" style={{ aspectRatio: ratio ?? shot.ratio ?? "16 / 10" }}>
       <Image
         src={shot.src}
         alt={shot.alt}

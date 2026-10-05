@@ -83,6 +83,31 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         )}
       </div>
 
+      {w.sub ? (
+        <section id={w.sub.id} className="mt-16 scroll-mt-28">
+          <h2 className="font-display text-[clamp(24px,4.6vw,32px)] leading-tight font-semibold text-balance">{w.sub.title}</h2>
+          <p className="hand mt-2 text-[17px] text-ink-2">{w.sub.period}</p>
+          <div className="mt-8 flex flex-col gap-10">
+            {w.sub.about.map((t, k) => (
+              <div key={k} className="flex flex-col gap-10">
+                <p className="max-w-[62ch] text-[17.5px] leading-[1.75] text-pretty">{t}</p>
+                {w.sub!.shots?.[k] ? <ShotFrame shot={w.sub!.shots[k]} framed={false} /> : null}
+              </div>
+            ))}
+          </div>
+          {w.sub.sponsors?.length ? (
+            <div className="mt-12 space-y-6">
+              {w.sub.sponsors.map((sp) => (
+                <div key={sp.tier}>
+                  <h3 className="font-display mb-3 text-[19px] font-semibold">{sp.tier}</h3>
+                  <Chips items={sp.names} />
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </section>
+      ) : null}
+
       {w.sponsors?.length ? (
         <section className="mt-14 space-y-6">
           {w.sponsors.map((s) => (

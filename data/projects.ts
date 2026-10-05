@@ -26,7 +26,17 @@ export type Project = {
   results: string[];
   hero?: Shot;
   gallery: Shot[];
+  /** A drawn visual instead of (or alongside) screenshots. */
+  visual?: "cursive-demo" | "housing-chart";
 };
+
+/** Test-set results from the housing net's README, in the order they were run. */
+export const housingRuns = [
+  { label: "baseline", note: "MSE, 200 epochs", r2Dollars: 0.194, r2Log: null as number | null },
+  { label: "Huber + Adam", note: "new encoding", r2Dollars: 0.724, r2Log: 0.986 },
+  { label: "top 500 out", note: "priciest removed", r2Dollars: 0.765, r2Log: 0.987 },
+  { label: "top 1,000 out", note: "priciest removed", r2Dollars: 0.867, r2Log: 0.987 },
+];
 
 export const projects: Project[] = [
   {
@@ -79,7 +89,16 @@ export const projects: Project[] = [
     ],
     stack: ["Flask", "Gemini", "RoBERTa", "Hugging Face", "yt-dlp", "React"],
     results: ["3rd place, CalgaryHacks 2026 Tier 2, out of 500+ participants."],
-    gallery: [],
+    hero: {
+      src: "/projects/spinfilter/result.jpg",
+      alt: "SpinFilter analysing a CNN article: bias score 65 and a Drama Index of 70 with an emotion breakdown",
+      caption: "A real run on a CNN article: bias 65, Drama Index 70, mostly anger.",
+      ratio: "972 / 1100",
+    },
+    gallery: [
+      { src: "/projects/spinfilter/home.jpg", alt: "SpinFilter home page with URL, audio, and video inputs", caption: "Paste a link, upload audio, or drop in a video." },
+      { src: "/projects/spinfilter/audio.jpg", alt: "SpinFilter audio upload tab", caption: "Audio is transcribed in ~50-second chunks before analysis." },
+    ],
   },
   {
     slug: "cursive",
@@ -100,6 +119,7 @@ export const projects: Project[] = [
     stack: ["Groq", "Gemini", TODO("Cursive's framework")],
     results: [],
     gallery: [],
+    visual: "cursive-demo",
   },
   {
     slug: "calgary-housing",
@@ -126,6 +146,30 @@ export const projects: Project[] = [
       "With the 1,000 most expensive properties excluded: R² 0.87 in dollars and about $66k mean absolute error.",
     ],
     gallery: [],
+    visual: "housing-chart",
+  },
+  {
+    slug: "portfolio",
+    name: "This website",
+    tagline: "The site you're on: frosted glass, one matcha glow, and a mochi with a jetpack.",
+    year: "2026",
+    logo: "/logos/mochi.svg",
+    links: { github: "https://github.com/siddhantarora7/portfolio" },
+    about: [
+      "A personal site that tries to read clearly in 20 seconds and still be fun to poke at. Everything you see is data-driven, so it stays current without me touching it.",
+    ],
+    how: [
+      "Next.js 16 with the App Router. Every page is prerendered; the home page revalidates daily.",
+      "Codeforces and GitHub stats are fetched at build time with rate limiting, cached for a day, and fall back to committed snapshots if an API is down.",
+      "Charts are drawn as server-rendered SVG strings, so React never has to hydrate hundreds of nodes.",
+      "Mochi is hand-drawn SVG with spring physics: it follows your scroll, tilts with velocity, and can be dragged, thrown, and poked.",
+      "The scroll-linked effects are pure CSS scroll timelines; everything respects reduced motion.",
+      "The display face is a 62 KB self-hosted subset of Shantell Sans that keeps its informality axis.",
+    ],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "SVG", "Canvas"],
+    results: ["Lighthouse 100 for accessibility, best practices, and SEO."],
+    hero: { src: "/projects/portfolio/home.jpg", alt: "The home page of this website", caption: "The home page, with mochi parked on the card." },
+    gallery: [{ src: "/projects/portfolio/game.jpg", alt: "The jetpack mini-game", caption: "The mini-game: fly mochi up through Codeforces ratings." }],
   },
 ];
 

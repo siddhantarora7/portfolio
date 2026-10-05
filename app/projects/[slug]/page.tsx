@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BackLink, Bullets, Chips, DetailSection, ExternalButton, Pill } from "@/components/detail";
 import { LogoTile, Maybe, Todo } from "@/components/primitives";
+import { CursiveDemo } from "@/components/cursive-demo";
+import { HousingChart } from "@/components/housing-chart";
 import { ShotFrame } from "@/components/shot";
 import { getProject, projects } from "@/data/projects";
 import { isTodo, showTodos } from "@/data/todo";
@@ -44,7 +46,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {p.hero?.src ? (
         <div className="arrive mb-10">
-          <ShotFrame shot={{ ...p.hero, caption: undefined }} priority stamp />
+          <ShotFrame shot={{ ...p.hero, caption: undefined }} priority stamp ratio={p.hero.ratio} />
         </div>
       ) : null}
 
@@ -85,6 +87,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
       </DetailSection>
 
+      {p.hero?.caption ? <p className="hand mt-4 text-[15px] text-ink-2">{p.hero.caption}</p> : null}
+
+      {p.visual ? <div className="mt-12">{p.visual === "cursive-demo" ? <CursiveDemo /> : <HousingChart />}</div> : null}
+
       {how.length ? (
         <DetailSection title="How it works">
           <Bullets items={how.map((x) => <Maybe key={x} value={x} />)} />
@@ -106,7 +112,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {p.gallery.length ? (
         <div className="mt-14 flex flex-col gap-10">
           {p.gallery.map((s) => (
-            <ShotFrame key={s.src} shot={s} framed={false} />
+            <ShotFrame key={s.src} shot={s} framed={false} ratio={s.ratio} />
           ))}
         </div>
       ) : null}
