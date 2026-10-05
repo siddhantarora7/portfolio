@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { AurocChart } from "@/components/auroc-chart";
+import { RecoverabilityChart } from "@/components/recoverability-chart";
 import { BackLink, Bullets, Chips, DetailSection, Pill } from "@/components/detail";
 import { InkIn } from "@/components/primitives";
 import { research } from "@/data/site";
@@ -52,7 +52,7 @@ export default async function ResearchPage({ params }: { params: Promise<{ slug:
       <InkIn text={r.oneBreath} className="mt-16 text-[22px] leading-[1.5] tracking-[-0.01em] text-pretty sm:text-[26px]" />
 
       <div className="mt-14">
-        <AurocChart r={r} />
+        <RecoverabilityChart r={r} />
       </div>
 
       <DetailSection title="What we found">

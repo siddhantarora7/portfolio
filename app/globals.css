@@ -29,33 +29,8 @@
   --heat-2: #a7cb84;
   --heat-3: #77a752;
   --heat-4: #4b7a2f;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --ground: #0f1512;
-    --field-a: #22382a;
-    --field-b: #15293d;
-    --ink: #e6ede7;
-    --ink-2: #a3b0a7;
-    --rule: rgb(230 237 231 / 0.09);
-    --matcha: #93c46e;
-    --matcha-deep: #b5dc95;
-    --matcha-soft: #22382a;
-    --sky: #4d7aa3;
-    --glass: rgb(26 36 30 / 0.5);
-    --glass-strong: rgb(26 36 30 / 0.72);
-    --glass-edge: rgb(255 255 255 / 0.09);
-    --glass-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 22px 44px -24px rgb(0 0 0 / 0.7);
-    --led: #ff8a33;
-    --grain-opacity: 0.09;
-    --heat-0: rgb(230 237 231 / 0.07);
-    --heat-1: #24432c;
-    --heat-2: #386a3e;
-    --heat-3: #5f9c4f;
-    --heat-4: #9fd27a;
-  }
+  --mochi-ink: #2d332e;
+  --mochi-shadow: rgb(45 60 40 / 0.14);
 }
 
 :root[data-theme="dark"] {
@@ -81,6 +56,8 @@
   --heat-2: #386a3e;
   --heat-3: #5f9c4f;
   --heat-4: #9fd27a;
+  --mochi-ink: #26302a;
+  --mochi-shadow: rgb(0 0 0 / 0.35);
 }
 
 @theme inline {
@@ -317,16 +294,13 @@ textarea {
 }
 
 /* ---------------------------------------------------------------------------
-   One orchestrated arrival: the hero card settles, the bubble pops in.
+   One orchestrated arrival: the hero card settles, the mascots land on it.
    --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: no-preference) {
   .arrive {
     animation: arrive 900ms var(--ease-out-expo) both;
   }
 
-  .arrive-pop {
-    animation: pop 700ms var(--ease-pop) 260ms both;
-  }
 
   .arrive-late {
     animation: fade 900ms var(--ease-out-expo) 500ms both;
@@ -340,13 +314,6 @@ textarea {
   }
 }
 
-@keyframes pop {
-  from {
-    opacity: 0;
-    transform: scale(0.4) rotate(-12deg);
-  }
-}
-
 @keyframes fade {
   from {
     opacity: 0;
@@ -354,59 +321,272 @@ textarea {
 }
 
 /* ---------------------------------------------------------------------------
-   Bubble mascot: blinks, smiles at links, sleeps at night.
+   Mochi & matcha. Faces swap by data-mood; idle mascots sleep in dark mode.
    --------------------------------------------------------------------------- */
-.bubble .eye {
+.mochi-art .face {
+  display: none;
+}
+
+.mochi-art[data-mood="idle"] .face-open,
+.mochi-art[data-mood="happy"] .face-happy,
+.mochi-art[data-mood="squish"] .face-squish,
+.mochi-art[data-mood="dizzy"] .face-dizzy,
+.mochi-art[data-mood="wow"] .face-wow,
+.mochi-art[data-mood="sleep"] .face-sleep {
+  display: inline;
+}
+
+[data-theme="dark"] .mochi-art[data-mood="idle"] .face-open {
+  display: none;
+}
+
+[data-theme="dark"] .mochi-art[data-mood="idle"] .face-sleep {
+  display: inline;
+}
+
+.mochi-art .gaze {
+  transform: translate(var(--gx, 0px), var(--gy, 0px));
+  transition: transform 180ms ease-out;
+}
+
+.mochi-art .blink,
+.mochi-art .zzz {
   transform-box: fill-box;
   transform-origin: center;
 }
 
+.mochi-button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.do-squish,
+.do-hop,
+.breathe,
+.land {
+  transform-origin: 50% 100%;
+}
+
+.speech {
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.speech::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  background: inherit;
+  border-right: 1px solid var(--glass-edge);
+  border-bottom: 1px solid var(--glass-edge);
+  transform: rotate(45deg);
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  /* a couple of blinks after arriving, then still; hovering a nearby link wakes it */
-  .bubble .eye {
-    animation: blink 2.6s 1.2s 2;
+  .land {
+    animation: land 900ms var(--ease-out-expo) 250ms both;
   }
 
-  .mascot-host:hover .bubble .eye {
-    animation: blink 2.6s 0.3s 1;
+  .land-late {
+    animation-delay: 420ms;
+  }
+
+  /* a few slow breaths after arriving, then still (keeps the page settled) */
+  .breathe {
+    animation: breathe 3.6s ease-in-out 1.4s 3;
+  }
+
+  .breathe-late {
+    animation-delay: 2.2s;
+  }
+
+  .mochi-friends:hover .breathe {
+    animation: breathe 3.6s ease-in-out infinite;
+  }
+
+  .mochi-art .blink {
+    animation: blink 4.8s 1.8s 3;
+  }
+
+  .mochi-art[data-kind="matcha"] .blink {
+    animation-duration: 6.2s;
+  }
+
+  .mochi-friends:hover .blink {
+    animation-iteration-count: infinite;
+  }
+
+  .mochi-art .zzz {
+    animation: zzz 2.8s ease-in-out infinite;
+  }
+
+  .do-squish {
+    animation: squish 640ms var(--ease-out-expo);
+  }
+
+  .do-hop {
+    animation: hop 560ms var(--ease-out-expo);
+  }
+
+  .speech {
+    animation: pop-in 320ms var(--ease-pop) both;
+  }
+
+  .ask-panel {
+    animation: panel-in 380ms var(--ease-out-expo) both;
+    transform-origin: 100% 100%;
+  }
+
+  .ask-panel .msg {
+    animation: pop-in 260ms var(--ease-out-expo) both;
+  }
+
+  .ask-launcher:hover .peek {
+    animation: hop 560ms var(--ease-out-expo);
+  }
+
+  .mochi-drop {
+    animation-name: fall;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.75, 1);
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes land {
+  0% {
+    transform: translateY(-46px) scale(0.92, 1.08);
+    opacity: 0;
+  }
+  55% {
+    transform: translateY(0) scale(1, 1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.14, 0.84);
+  }
+  86% {
+    transform: scale(0.96, 1.05);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    transform: scale(1.03, 0.965);
   }
 }
 
 @keyframes blink {
   0%,
-  88%,
+  92%,
   100% {
     transform: scaleY(1);
   }
-  93% {
-    transform: scaleY(0.1);
+  95% {
+    transform: scaleY(0.12);
   }
 }
 
-[data-theme="dark"] .bubble-body {
-  fill-opacity: 0.3;
+@keyframes zzz {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(2px, -4px);
+    opacity: 0.9;
+  }
 }
 
-.bubble .mood-happy,
-.bubble .mood-sleepy {
-  display: none;
+@keyframes squish {
+  0% {
+    transform: scale(1, 1);
+  }
+  18% {
+    transform: scale(1.24, 0.72);
+  }
+  42% {
+    transform: scale(0.9, 1.13);
+  }
+  64% {
+    transform: scale(1.05, 0.96);
+  }
 }
 
-.mascot-host:has(a:hover, a:focus-visible) .bubble .mood-base {
-  display: none;
+@keyframes hop {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  20% {
+    transform: translateY(0) scale(1.08, 0.9);
+  }
+  48% {
+    transform: translateY(-14px) scale(0.95, 1.06);
+  }
+  78% {
+    transform: translateY(0) scale(1.06, 0.94);
+  }
 }
 
-.mascot-host:has(a:hover, a:focus-visible) .bubble .mood-happy {
-  display: inline;
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.92);
+  }
 }
 
-[data-theme="dark"] .bubble[data-mood="base"] .mood-base,
-[data-theme="dark"] .mascot-host:has(a:hover) .bubble[data-mood="base"] .mood-happy {
-  display: none;
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
 }
 
-[data-theme="dark"] .bubble[data-mood="base"] .mood-sleepy {
-  display: inline;
+@keyframes fall {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(calc(100dvh + 140px)) rotate(var(--spin));
+  }
+}
+
+/* the hero stamp's camera flash */
+.camera-flash {
+  background: #fff;
+  animation: flash 520ms ease-out both;
+}
+
+@keyframes flash {
+  from {
+    opacity: 0.85;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* typed "matcha": the sky steeps for a few seconds */
+.sky__field {
+  transition:
+    transform 1.6s var(--ease-out-expo),
+    filter 1.6s var(--ease-out-expo);
+}
+
+[data-matcha="on"] .sky__field--a {
+  transform: scale(1.35);
+  filter: saturate(1.9) brightness(0.96);
+}
+
+[data-matcha="on"] .sky__field--b {
+  filter: hue-rotate(-70deg) saturate(1.4);
 }
 
 /* ---------------------------------------------------------------------------

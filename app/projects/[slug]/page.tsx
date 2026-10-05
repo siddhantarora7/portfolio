@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BackLink, Bullets, Chips, DetailSection, ExternalButton, Pill } from "@/components/detail";
-import { ImageSlot } from "@/components/image-slot";
-import { Maybe, Todo } from "@/components/primitives";
+import { LogoTile, Maybe, Todo } from "@/components/primitives";
+import { ShotFrame } from "@/components/shot";
 import { getProject, projects } from "@/data/projects";
 import { isTodo, showTodos } from "@/data/todo";
 
@@ -20,6 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: p.name, description: p.tagline, alternates: { canonical: `/projects/${p.slug}` } };
 }
 
+const visible = (items: string[]) => items.filter((x) => !isTodo(x) || showTodos);
+
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const p = getProject(slug);
@@ -32,30 +34,28 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     { key: "demo", label: "Watch demo", href: p.links.demo },
     { key: "github", label: "View on GitHub", href: p.links.github },
   ].filter((l) => l.href);
-  const hasHardPart = !isTodo(p.hardPart) || showTodos;
-  const results = p.results.filter((x) => !isTodo(x) || showTodos);
+  const how = visible(p.how);
+  const results = visible(p.results);
+  const stack = visible(p.stack);
 
   return (
     <article className="relative">
       <BackLink />
 
-      {p.hero.src || showTodos ? (
-      <div className="glass arrive mb-10 rounded-[26px] p-2.5">
-        <ImageSlot
-          image={p.hero}
-          path={`public/projects/${p.slug}/`}
-          priority
-          rounded="rounded-[19px]"
-          coverSize="text-[20px]"
-        />
-      </div>
+      {p.hero?.src ? (
+        <div className="arrive mb-10">
+          <ShotFrame shot={{ ...p.hero, caption: undefined }} priority stamp />
+        </div>
       ) : null}
 
-      <header className="arrive">
-        <h1 className="font-display text-[clamp(36px,7vw,54px)] leading-[1.05] font-semibold tracking-[-0.02em] text-balance">
-          {p.name}
-        </h1>
-        <p className="mt-3 max-w-[36ch] text-[20px] leading-[1.45] text-ink-2 text-pretty">{p.tagline}</p>
+      <header className={p.hero?.src ? "" : "arrive"}>
+        <div className="flex items-center gap-3.5">
+          {p.logo || p.mark ? <LogoTile name={p.name} src={p.logo} mark={p.mark} /> : null}
+          <h1 className="font-display text-[clamp(34px,7vw,52px)] leading-[1.05] font-semibold tracking-[-0.02em] text-balance">
+            {p.name}
+          </h1>
+        </div>
+        <p className="mt-3 max-w-[38ch] text-[20px] leading-[1.45] text-ink-2 text-pretty">{p.tagline}</p>
         <div className="mt-5 flex flex-wrap items-center gap-2.5 text-[14.5px] text-ink-2">
           <span className="tabular">{p.year}</span>
           {p.status ? <Pill>{p.status}</Pill> : null}
@@ -76,31 +76,26 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         ) : null}
       </header>
 
-      {isTodo(p.problem) && !showTodos ? null : (
-        <DetailSection title="The problem">
-          <Maybe value={p.problem} />
-        </DetailSection>
-      )}
-
-      <DetailSection title="What I built">
-        <Bullets items={p.built} />
-      </DetailSection>
-
-      {p.gallery[0] && (p.gallery[0].src || showTodos) ? (
-        <div className="mt-14">
-          <ImageSlot image={p.gallery[0]} path={`public/projects/${p.slug}/`} variant={1} coverSize="text-[18px]" />
+      <DetailSection title="What it is">
+        <div className="space-y-4">
+          {p.about.map((t) => (
+            <p key={t}>{t}</p>
+          ))}
+          {p.credit ? <p className="hand text-[16px] text-ink-2">{p.credit}</p> : null}
         </div>
-      ) : null}
+      </DetailSection>
 
-      {hasHardPart ? (
-        <DetailSection title="The hard part">
-          <Maybe value={p.hardPart} />
+      {how.length ? (
+        <DetailSection title="How it works">
+          <Bullets items={how.map((x) => <Maybe key={x} value={x} />)} />
         </DetailSection>
       ) : null}
 
-      <DetailSection title="Stack">
-        <Chips items={p.stack.map((s) => (isTodo(s) ? <Todo key={s} value={s} className="-my-1" /> : s))} />
-      </DetailSection>
+      {stack.length ? (
+        <DetailSection title="Stack">
+          <Chips items={stack.map((s) => (isTodo(s) ? <Todo key={s} value={s} className="-my-1" /> : s))} />
+        </DetailSection>
+      ) : null}
 
       {results.length ? (
         <DetailSection title="Results">
@@ -108,11 +103,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </DetailSection>
       ) : null}
 
-      {p.gallery.slice(1).map((img) => (
-        <div key={img.alt} className="mt-14">
-          <ImageSlot image={img} path={`public/projects/${p.slug}/`} coverSize="text-[18px]" />
+      {p.gallery.length ? (
+        <div className="mt-14 flex flex-col gap-10">
+          {p.gallery.map((s) => (
+            <ShotFrame key={s.src} shot={s} framed={false} />
+          ))}
         </div>
-      ))}
+      ) : null}
 
       <nav aria-label="Next project" className="mt-20 border-t border-rule pt-6">
         <Link href={`/projects/${next.slug}`} className="group flex items-baseline justify-between gap-4">

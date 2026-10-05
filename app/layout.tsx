@@ -5,6 +5,8 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Sky } from "@/components/sky";
 import { Footer } from "@/components/footer";
+import { AskMochi } from "@/components/mochi/ask-mochi";
+import { EasterEggs } from "@/components/mochi/easter-eggs";
 import { profile } from "@/data/site";
 import { siteUrl } from "@/lib/site-url";
 
@@ -28,19 +30,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f4f6f0" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f1512" },
-  ],
-};
+export const viewport: Viewport = { themeColor: "#f4f6f0" };
 
-// Runs before paint so the saved or system theme never flashes.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}})()`;
+// Light is the default; a theme the visitor picked is restored before paint.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light"}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-CA" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable} ${shantell.variable}`}>
+    <html lang="en-CA" data-theme="light" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable} ${shantell.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
@@ -57,6 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <AskMochi />
+        <EasterEggs />
       </body>
     </html>
   );

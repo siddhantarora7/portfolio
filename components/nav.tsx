@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Bubble } from "./bubble";
+import { MochiArt } from "./mochi/mochi-art";
 import { ThemeToggle } from "./theme-toggle";
 
 const items: { href: string; label: string; wide?: boolean }[] = [
   { href: "/#work", label: "work" },
   { href: "/#projects", label: "projects" },
-  { href: "/#codeforces", label: "codeforces" },
+  { href: "/research/recoverability", label: "research" },
   { href: "/resume.pdf", label: "resume", wide: true },
 ];
 
@@ -17,7 +17,7 @@ export function Nav() {
         className="glass mascot-host flex items-center gap-0.5 rounded-full py-1 pr-1 pl-1.5 text-[14px]"
       >
         <Link href="/" aria-label="Home" className="grid size-9 place-items-center rounded-full">
-          <Bubble size={26} />
+          <MochiArt size={28} />
         </Link>
         {items.map((item) => (
           <a

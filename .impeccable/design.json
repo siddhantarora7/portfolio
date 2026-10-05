@@ -399,7 +399,7 @@
       {
         "name": "ease-pop",
         "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "purpose": "The bubble's single overshoot pop (700ms, 260ms delay)."
+        "purpose": "The mascots landing on the hero card with one squash (900ms, 250ms delay); poke squish and hop."
       },
       {
         "name": "arrive",
@@ -414,7 +414,7 @@
       {
         "name": "blink",
         "value": "2.6s, 1.2s delay, 2 iterations; re-blink once on .mascot-host hover",
-        "purpose": "Bubble eyes; then still. No infinite animation anywhere."
+        "purpose": "Mascot eyes blink a few times, then still; hovering the pair resumes breathing and blinking. Only the sleeping 'z' loops, and only in dark mode."
       },
       {
         "name": "focus-defocus",
@@ -454,7 +454,7 @@
       "name": "Glass Nav Pill",
       "kind": "nav",
       "refersTo": "nav-pill",
-      "description": "Floating centred glass pill: bubble home, lowercase links, theme toggle.",
+      "description": "Floating centred glass pill: mochi home, lowercase links (work, projects, research, resume), theme toggle.",
       "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-home\" href=\"#\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 64 64\" aria-hidden=\"true\"><defs><radialGradient id=\"dsf\" cx=\"40%\" cy=\"35%\" r=\"70%\"><stop offset=\"0%\" stop-color=\"#fff\" stop-opacity=\".85\"/><stop offset=\"60%\" stop-color=\"#eaf4ff\" stop-opacity=\".35\"/><stop offset=\"100%\" stop-color=\"#d9ecc6\" stop-opacity=\".55\"/></radialGradient><linearGradient id=\"dsr\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0%\" stop-color=\"#a7cb84\"/><stop offset=\"45%\" stop-color=\"#9cc4e4\"/><stop offset=\"75%\" stop-color=\"#d9c4ee\"/><stop offset=\"100%\" stop-color=\"#a7cb84\"/></linearGradient></defs><path d=\"M32 5.5c15.2 0 26.8 11.4 26.8 26.6 0 15.4-11.8 26.6-27 26.6C16.8 58.7 5.2 47.6 5.2 32.3 5.2 17 16.9 5.5 32 5.5Z\" fill=\"url(#dsf)\" stroke=\"url(#dsr)\" stroke-width=\"2.4\"/><path d=\"M16.5 22.5c2-5 6.4-8.6 11.6-9.6\" stroke=\"#fff\" stroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\"/><ellipse cx=\"24.5\" cy=\"32\" rx=\"2.3\" ry=\"2.9\" fill=\"#1d2621\"/><ellipse cx=\"39.5\" cy=\"32\" rx=\"2.3\" ry=\"2.9\" fill=\"#1d2621\"/><path d=\"M28.5 40.5q3.5 2.6 7 0\" stroke=\"#1d2621\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/></svg></a><a class=\"ds-nav-link\" href=\"#\">work</a><a class=\"ds-nav-link\" href=\"#\">projects</a><a class=\"ds-nav-link\" href=\"#\">codeforces</a></nav>",
       "css": ".ds-nav { display: inline-flex; align-items: center; gap: 2px; padding: 4px 4px 4px 6px; border-radius: 9999px; font-size: 14px; font-family: var(--font-geist, Geist), ui-sans-serif, system-ui, sans-serif; background: var(--glass, rgb(255 255 255 / 0.52)); border: 1px solid var(--glass-edge, rgb(255 255 255 / 0.85)); box-shadow: var(--glass-shadow, 0 1px 2px rgb(40 60 40 / 0.06), 0 18px 40px -22px rgb(40 70 40 / 0.35)), inset 0 1px 0 rgb(255 255 255 / 0.35); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); } .ds-nav-home { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9999px; } .ds-nav-link { padding: 6px 10px; border-radius: 9999px; color: var(--ink-2, #56625b); text-decoration: none; transition: color 150ms; } .ds-nav-link:hover { color: var(--ink, #1d2621); } .ds-nav a:focus-visible { outline: 2px solid var(--matcha, #5e8b3e); outline-offset: 3px; }"
     },
@@ -517,13 +517,13 @@
   ],
   "narrative": {
     "northStar": "Frosted Glass at Dusk, Pressed into a Stationery Notebook",
-    "overview": "A quiet personal index under a still sky. Two large blurred colour fields, matcha in the upper left and pale sky to the right, sit fixed behind everything on a mochi-pale ground with a static film grain. A small number of frosted-glass objects float above that sky; everything else is plain ink on the ground: hairline-ruled list rows, short paragraphs, hand-written margin notes. The softness comes from rounded glass, a lopsided soap-bubble mascot, and a rounded hand-lettered display face; the cleanliness comes from a single 680px column, generous section gaps, and a strict budget on every effect.\n\nThe retro layer is small and specific: an orange LED film date stamp burned into the corner of the hero card and image frames, faint scanlines over image slots, dot-matrix grids behind charts, and the film grain over the sky. These read as found artifacts, not decoration, and none of them repeat beyond their one role. The world is deliberately general: no literal Japanese motifs, no subject-literal metaphors for research or code, no cream-paper-and-script-name portfolio default.\n\nNight mode is the same world after sunset: a deep green-black ground, darkened fields, pale ink, a brighter matcha, and a bubble that falls asleep.",
+    "overview": "A quiet personal index under a still sky. Two large blurred colour fields, matcha in the upper left and pale sky to the right, sit fixed behind everything on a mochi-pale ground with a static film grain. A small number of frosted-glass objects float above that sky; everything else is plain ink on the ground: hairline-ruled list rows, short paragraphs, hand-written margin notes. The softness comes from rounded glass, two small mascots, mochi and matcha, and a rounded hand-lettered display face; the cleanliness comes from a single 680px column, generous section gaps, and a strict budget on every effect.\n\nThe retro layer is small and specific: an orange LED film date stamp burned into the corner of the hero card and image frames, faint scanlines over image slots, dot-matrix grids behind charts, and the film grain over the sky. These read as found artifacts, not decoration, and none of them repeat beyond their one role. The world is deliberately general: no literal Japanese motifs, no subject-literal metaphors for research or code, no cream-paper-and-script-name portfolio default.\n\nNight mode is the same world after sunset: a deep green-black ground, darkened fields, pale ink, a brighter matcha, and a bubble that falls asleep.",
     "keyCharacteristics": [
       "Mochi ground with two fixed, blurred matcha and pale-sky fields and static film grain.",
       "Frosted glass on a short list of floating objects only; list content sits directly on the ground.",
       "Shantell Sans for headings and hand notes, Geist for reading, Geist Mono for the LED stamp alone.",
       "Matcha carries every interactive and data accent; LED orange is the only warm hue.",
-      "A soap-bubble mascot whose face changes are the site's personality.",
+      "Two mascots, mochi and matcha, whose tiny face changes are the site's personality.",
       "One arrival, one lens-pull hover, one scroll ink-in; nothing loops; all of it off under reduced motion."
     ],
     "rules": [
@@ -564,7 +564,7 @@
       "Do use matcha for every accent and data mark; use pale sky only as a second data series.",
       "Do set headings in Shantell Sans 600 at INFM 18 and lowercase; set reading text in Geist.",
       "Do put lists in hairline-ruled rows inside a focus-list so the lens-pull defocus applies.",
-      "Do limit motion to the one arrival (settle from 12px, 0.985 scale, 6px blur over 900ms, content visible from the first frame), the bubble pop, blinks that stop, hover lens-pull, and one scroll ink-in paragraph per page.",
+      "Do limit motion to the one arrival (settle from 12px, 0.985 scale, 6px blur over 900ms, content visible from the first frame), the mascots landing with one squash, blinks that stop, hover lens-pull, and one scroll ink-in paragraph per page.",
       "Do disable every animation and transition under prefers-reduced-motion.",
       "Do render charts as server-side SVG strings on a dot grid, with aria-labels."
     ],

@@ -1,5 +1,5 @@
 import { links, profile } from "@/data/site";
-import { Bubble } from "./bubble";
+import { MochiArt } from "./mochi/mochi-art";
 
 export function Footer() {
   return (
@@ -13,8 +13,11 @@ export function Footer() {
             "radial-gradient(closest-side, transparent 72%, var(--field-b) 80%, var(--field-a) 88%, transparent 99%)",
         }}
       />
-      <div className="mascot-host relative mx-auto flex max-w-[680px] flex-col items-center px-4 pt-6 pb-20 text-center sm:px-5">
-        <Bubble size={52} />
+      <div className="relative mx-auto flex max-w-[680px] flex-col items-center px-4 pt-6 pb-28 text-center sm:px-5">
+        <div className="flex items-end gap-0.5" aria-hidden="true">
+          <MochiArt kind="mochi" mood="happy" size={50} />
+          <MochiArt kind="matcha" mood="happy" size={42} />
+        </div>
         <p className="hand mt-3 text-[19px]">thanks for stopping by</p>
         <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-[15px] text-ink-2">
           <li>

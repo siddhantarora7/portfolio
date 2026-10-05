@@ -19,6 +19,11 @@ export function ThemeToggle() {
       localStorage.setItem("theme", next);
     } catch {}
     setTheme(next);
+    window.dispatchEvent(
+      new CustomEvent("mochi:say", {
+        detail: next === "dark" ? { who: "mochi", text: "goodnight…" } : { who: "matcha", text: "good morning!" },
+      }),
+    );
   }
 
   return (

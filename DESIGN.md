@@ -161,18 +161,18 @@ components:
 
 **Creative North Star: "Frosted Glass at Dusk, Pressed into a Stationery Notebook"**
 
-A quiet personal index under a still sky. Two large blurred colour fields, matcha in the upper left and pale sky to the right, sit fixed behind everything on a mochi-pale ground with a static film grain. A small number of frosted-glass objects float above that sky; everything else is plain ink on the ground: hairline-ruled list rows, short paragraphs, hand-written margin notes. The softness comes from rounded glass, a lopsided soap-bubble mascot, and a rounded hand-lettered display face; the cleanliness comes from a single 680px column, generous section gaps, and a strict budget on every effect.
+A quiet personal index under a still sky. Two large blurred colour fields, matcha in the upper left and pale sky to the right, sit fixed behind everything on a mochi-pale ground with a static film grain. A small number of frosted-glass objects float above that sky; everything else is plain ink on the ground: hairline-ruled list rows, short paragraphs, hand-written margin notes. The softness comes from rounded glass, two small mascots, mochi and matcha, and a rounded hand-lettered display face; the cleanliness comes from a single 680px column, generous section gaps, and a strict budget on every effect.
 
 The retro layer is small and specific: an orange LED film date stamp burned into the corner of the hero card and image frames, faint scanlines over image slots, dot-matrix grids behind charts, and the film grain over the sky. These read as found artifacts, not decoration, and none of them repeat beyond their one role. The world is deliberately general: no literal Japanese motifs, no subject-literal metaphors for research or code, no cream-paper-and-script-name portfolio default.
 
-Night mode is the same world after sunset: a deep green-black ground, darkened fields, pale ink, a brighter matcha, and a bubble that falls asleep.
+Night mode is the same world after sunset: a deep green-black ground, darkened fields, pale ink, a brighter matcha, and two mascots that fall asleep. Light is always the default; dark only appears when the visitor picks it.
 
 **Key Characteristics:**
 - Mochi ground with two fixed, blurred matcha and pale-sky fields and static film grain.
 - Frosted glass on a short list of floating objects only; list content sits directly on the ground.
 - Shantell Sans for headings and hand notes, Geist for reading, Geist Mono for the LED stamp alone.
 - Matcha carries every interactive and data accent; LED orange is the only warm hue.
-- A soap-bubble mascot whose face changes are the site's personality.
+- Two mascots, mochi (a wide white daifuku) and matcha (a rounder green one with a curl of cream), whose tiny face changes are the site's personality.
 - One arrival, one lens-pull hover, one scroll ink-in; nothing loops; all of it off under reduced motion.
 
 ## Colors
@@ -213,7 +213,7 @@ A cool, low-chroma green-and-blue world with one warm spark reserved for the fil
 **Character:** a rounded, slightly bouncy hand-lettered face at INFM 18 for headings, pushed to INFM 100 for margin notes, against a precise neo-grotesque for everything people actually read. All headings are lowercase in content ("research", "work", "this page popped").
 
 ### Hierarchy
-- **Display** (600, clamp(31px, 8.2vw, 60px), 1.02, -0.025em): the name in the hero card, beside the bubble.
+- **Display** (600, clamp(31px, 8.2vw, 60px), 1.02, -0.025em): the name in the hero card; the mascots perch on the card's top edge.
 - **Headline** (600, clamp(34px, 6.4vw, 50px) on research pages, clamp(36px, 7vw, 54px) on project pages, 1.05 to 1.08): detail-page titles. 404 title at 38px.
 - **Title** (600, 26px, leading 1): home section headings. Detail section headings at 22px.
 - **Title Small** (600, 19px): project card names and chart card captions.
@@ -251,7 +251,7 @@ Depth is a frosted-glass layer over a fixed sky, not a shadow scale. The sky (tw
 
 Soft and pillowy at every scale, with radii stepping down as objects nest: hero card 28px, panels 26px, project cards 22px, image frames 18px (15 to 19px when inset in a card), chart insets 14px, logo tiles 11px, bars and heatmap cells 2.6 to 3px. Every chip, nav item, and button is a full pill; the back button and theme toggle are circles. Focus outlines round to 8px.
 
-Imperfection is applied sparingly and on purpose: the bubble's outline is slightly lopsided; project cards sit at small tilts (-0.8deg to 0.7deg) that straighten and lift 3px on hover or focus; hand notes rotate -2 to -4deg. Image slots carry a hairline border and faint 3px scanlines.
+Imperfection is applied sparingly and on purpose: the mascots are hand-drawn and a little lumpy; project cards sit at small tilts (-0.8deg to 0.7deg) that straighten and lift 3px on hover or focus; hand notes rotate -2 to -4deg. Image slots carry a hairline border and faint 3px scanlines.
 
 ## Components
 
@@ -274,13 +274,17 @@ Glass pills that feel like smooth pebbles.
 - **Internal Padding:** hero 20 to 36px with extra bottom room for the stamp; panels 20 to 28px; project cards 10px around an inset image, 8px text inset.
 
 ### Navigation
-A floating glass pill, centred, 12px from the top (20px from 640px). Home is a 26px bubble in a 36px circle; text links are lowercase 14px moss ink in pill hit areas, ink on hover; the theme toggle is a 36px circle with an 18px moon/sun line icon. Below 420px link padding tightens and "resume" drops out.
+A floating glass pill, centred, 12px from the top (20px from 640px). Home is a 28px mochi in a 36px circle; text links are lowercase 14px moss ink in pill hit areas, ink on hover; the theme toggle is a 36px circle with an 18px moon/sun line icon. Below 420px link padding tightens and "resume" drops out.
 
 ### List Row
 The workhorse. Rows sit in a `.focus-list`: hovering or focusing one row fades its siblings to 0.38 opacity with a 1.6px blur over 420ms (ease-out-expo), like a lens pull. External rows reveal a small arrow on hover. Logo tiles are 36px glass-strong squares at 11px radius with a matcha-deep Shantell monogram when no logo exists.
 
-### Bubble Mascot
-The site's mark: a slightly lopsided glass soap bubble with a white-to-pale-blue-to-matcha fill, an iridescent matcha/sky/lavender rim, and a white shine. Moods: base (two eyes and a small smile), happy (arched eyes, bigger smile, blush) when a link inside its host is hovered or focused, sleepy (closed eyes, small "z") in dark mode, confused (cross eye, wavy mouth) on the 404. It pops in once with a single overshoot, blinks twice, then rests; hovering its host re-blinks once. Sizes: 26px nav, 40 to 52px hero, 52px footer, 96px 404.
+### Mochi & Matcha
+The site's mark and its personality. Drawn as inline SVG (components/mochi/mochi-art.tsx) with a 2.4px ink outline (--mochi-ink), soft radial fill, white shine, dusting dots, and pink cheeks (#f6a9b9). Mochi is a wide white dome; matcha is a rounder green dome (#d3e8bd → #86b066) with a small curl of cream.
+- **Moods:** idle (eyes with catchlights, small "w" mouth), happy (arched eyes, open smile), squish (> < eyes), dizzy (ringed eyes), wow (round eyes, "o" mouth), sleep (closed eyes, drifting "z"). Idle mascots sleep in dark mode via CSS.
+- **Hero pair (components/mochi/mochi-friends.tsx):** perched on the hero card's top-right edge with a "poke us!" hand note. They land once with a squash, breathe and blink a few times, then rest (hovering the pair resumes it). Eyes follow a mouse pointer (rAF-throttled, max ~2.6 units). Clicking one squishes it, makes the other hop, and shows a glass speech bubble with a curated line; every 10th poke goes dizzy. Both are real buttons; speech is announced through a polite live region.
+- **Elsewhere:** 28px mochi in the nav, the pair (happy) in the footer, a squished dizzy mochi beside a surprised matcha on the 404, mochi as the favicon, and both in OG images.
+- **Voice:** lowercase, short, a little dry. Lines may reference real site facts (1,000+ problems, the research chart) but never invent claims.
 
 ### LED Date Stamp
 Today's date as `'YY MM DD` in Geist Mono 600 11px LED orange with glow, decorative (aria-hidden), absolutely placed at the bottom-right of the hero card and image frames.
@@ -302,7 +306,7 @@ Unconfirmed data written as `TODO("...")` renders as a dashed hand-lettered note
 - **Do** use matcha for every accent and data mark; use pale sky only as a second data series.
 - **Do** set headings in Shantell Sans 600 at INFM 18 and lowercase; set reading text in Geist.
 - **Do** put lists in hairline-ruled rows inside a focus-list so the lens-pull defocus applies.
-- **Do** limit motion to the one arrival (settle from 12px, 0.985 scale, 6px blur over 900ms, content visible from the first frame), the bubble pop, blinks that stop, hover lens-pull, and one scroll ink-in paragraph per page.
+- **Do** limit motion to the one arrival (settle from 12px, 0.985 scale, 6px blur over 900ms, content visible from the first frame), the mascots landing (one squash on impact), a few breaths and blinks that stop, hover lens-pull, and one scroll ink-in paragraph per page.
 - **Do** disable every animation and transition under prefers-reduced-motion.
 - **Do** render charts as server-side SVG strings on a dot grid, with aria-labels.
 
@@ -314,3 +318,11 @@ Unconfirmed data written as `TODO("...")` renders as a dashed hand-lettered note
 - **Don't** introduce literal Japanese motifs (no torii, cherry blossoms, kanji, waves, or similar).
 - **Don't** use a hard or offset shadow; the glass lift is the only shadow.
 - **Don't** ship TODO notes or empty image slots to production.
+
+## Delight layer
+
+- **Ask mochi** (components/mochi/ask-mochi.tsx): a glass launcher at the bottom right (icon-only on phones) opens a scripted Q&A dialog. Intents are keyword-matched and answer only from site data; it says it is scripted, not an AI. Esc closes and returns focus.
+- **Easter eggs** (components/mochi/easter-eggs.tsx): the Konami code makes it rain mochi (a quiet toast under reduced motion); typing "matcha" steeps the sky green for 7 seconds; a greeting in the console. Clicking the hero's LED stamp fires a camera flash and prints the time.
+- **Now tiles** (components/now-tiles.tsx): three tilted glass tiles under the hero: live countdowns to upcoming events (past ones hide), a research spark (re-rolling vs probe), and a Codeforces rating spark.
+- **Live data cards:** Codeforces and GitHub share one card grammar: a sentence with the key numbers, a dot-grid chart, two small breakdowns, and a hand-written source note. Both are server-rendered SVG strings with daily revalidation and committed snapshot fallbacks.
+- **Detail pages:** /work/<slug> follows a framed-hero, title, role and period, links, then paragraphs interleaved with large screenshots; /projects/<slug> runs What it is, How it works, Stack, Results, gallery.

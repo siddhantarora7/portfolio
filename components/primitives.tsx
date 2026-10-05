@@ -64,7 +64,14 @@ export function LogoTile({ name, src, mark }: { name: string; src?: string; mark
   return (
     <span className="relative grid size-9 shrink-0 place-items-center overflow-hidden rounded-[11px] border border-rule bg-[var(--glass-strong)]">
       {src ? (
-        <Image src={src} alt="" width={36} height={36} className="size-full object-cover" />
+        <Image
+          src={src}
+          alt=""
+          width={72}
+          height={72}
+          unoptimized={src.endsWith(".svg")}
+          className="size-full object-contain p-[3px]"
+        />
       ) : (
         <span className="font-display text-[14px] font-semibold tracking-[-0.02em] text-matcha-deep" aria-hidden="true">
           {mark ?? name.charAt(0).toUpperCase()}
