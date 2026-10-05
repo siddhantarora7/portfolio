@@ -319,6 +319,10 @@ Unconfirmed data written as `TODO("...")` renders as a dashed hand-lettered note
 - **Don't** use a hard or offset shadow; the glass lift is the only shadow.
 - **Don't** ship TODO notes or empty image slots to production.
 
+## Small text
+
+Below the label sizes, a few UI-only sizes are part of the system: 13px for card metadata, chips, dates, and footnotes; 12.5px for tile captions; 12px for axis labels and the ask-mochi subtitle; 11px for the LED stamp. In light mode the LED stamp uses #a8380a so it passes 4.5:1 as a button; secondary data text that names the sky series uses --sky-ink (#3a6f9c light, #8fbbe3 dark).
+
 ## Delight layer
 
 - **Ask mochi** (components/mochi/ask-mochi.tsx): a glass launcher at the bottom right (icon-only on phones) opens a scripted Q&A dialog. Intents are keyword-matched and answer only from site data; it says it is scripted, not an AI. Esc closes and returns focus.

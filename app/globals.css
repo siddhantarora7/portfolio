@@ -22,7 +22,8 @@
   --glass-strong: rgb(255 255 255 / 0.7);
   --glass-edge: rgb(255 255 255 / 0.85);
   --glass-shadow: 0 1px 2px rgb(40 60 40 / 0.06), 0 18px 40px -22px rgb(40 70 40 / 0.35);
-  --led: #ff7a1a;
+  --led: #a8380a;
+  --sky-ink: #3a6f9c;
   --grain-opacity: 0.07;
   --heat-0: rgb(29 38 33 / 0.06);
   --heat-1: #cfe3b6;
@@ -50,6 +51,7 @@
   --glass-edge: rgb(255 255 255 / 0.09);
   --glass-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 22px 44px -24px rgb(0 0 0 / 0.7);
   --led: #ff8a33;
+  --sky-ink: #8fbbe3;
   --grain-opacity: 0.09;
   --heat-0: rgb(230 237 231 / 0.07);
   --heat-1: #24432c;

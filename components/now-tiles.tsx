@@ -63,7 +63,7 @@ export function NowTiles({ cf }: { cf: CfStats }) {
             <RecoverabilitySpark r={lead} />
           </div>
           <p className="mt-1.5 text-[12.5px] text-ink-2">
-            <span className="text-matcha-deep">re-rolling</span> vs <span className="text-[color:var(--sky)]">probe</span>
+            <span className="text-matcha-deep">re-rolling</span> vs <span className="text-[color:var(--sky-ink)]">probe</span>
           </p>
         </Link>
       </li>

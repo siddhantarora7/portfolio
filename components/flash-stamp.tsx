@@ -17,7 +17,12 @@ export function FlashStamp({ label, className = "" }: { label: string; className
   return (
     <>
       {n ? <span key={n} className="camera-flash pointer-events-none fixed inset-0 z-[80]" aria-hidden="true" /> : null}
-      <button type="button" onClick={snap} className={`led text-[11px] leading-none ${className}`} aria-label="Take a photo">
+      <button
+        type="button"
+        onClick={snap}
+        className={`led text-[11px] leading-none ${className}`}
+        aria-label={`${shot ? `${label} ${shot}` : label}, take a photo`}
+      >
         {shot ? `${label} ${shot}` : label}
       </button>
     </>
