@@ -9,7 +9,7 @@
 :root {
   color-scheme: light;
   --ground: #f4f6f0;
-  --field-a: #c2dca3;
+  --field-a: #c4ddf3;
   --field-b: #c0dcf2;
   --ink: #1d2621;
   --ink-2: #56625b;
@@ -37,7 +37,7 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --ground: #0f1512;
-  --field-a: #22382a;
+  --field-a: #16293d;
   --field-b: #15293d;
   --ink: #e6ede7;
   --ink-2: #a3b0a7;
@@ -533,7 +533,8 @@ textarea {
 
 /* typed "matcha": the sky steeps for a few seconds */
 [data-matcha="on"] .sky__glow {
-  filter: saturate(2.2) brightness(0.94);
+  /* typed "matcha": the blue glow steeps green */
+  filter: hue-rotate(-95deg) saturate(1.7) brightness(0.96);
 }
 
 /* ---------------------------------------------------------------------------
@@ -661,13 +662,25 @@ textarea {
 }
 
 /* ---------------------------------------------------------------------------
-   Dock: magnify by pointer distance (set as --dock by the Dock component)
+   Dock: the hovered (or focused) item pops up; neighbours stay put
    --------------------------------------------------------------------------- */
 .dock-item {
   position: relative;
-  transform: translateY(calc((var(--dock, 1) - 1) * -16px)) scale(var(--dock, 1));
   transform-origin: 50% 100%;
-  transition: transform 160ms var(--ease-out-expo);
+  transition: transform 260ms var(--ease-out-expo);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .dock-item:hover,
+  .dock-item:focus-within {
+    transform: translateY(-6px) scale(1.22);
+    z-index: 1;
+  }
+
+  .nav-dock .dock-item:hover,
+  .nav-dock .dock-item:focus-within {
+    transform: scale(1.08);
+  }
 }
 
 .dock-tile {
@@ -700,7 +713,6 @@ textarea {
 }
 
 .nav-dock .dock-item {
-  transform: translateY(calc((var(--dock, 1) - 1) * -2px)) scale(var(--dock, 1));
   transform-origin: 50% 50%;
 }
 

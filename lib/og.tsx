@@ -29,7 +29,7 @@ export async function renderOg({ title, subtitle, tag }: { title: string; subtit
           display: "flex",
           padding: 64,
           background:
-            "radial-gradient(circle at 18% 12%, #c2dca3 0%, rgba(194,220,163,0) 58%), #f4f6f0",
+            "radial-gradient(circle at 18% 12%, #c4ddf3 0%, rgba(196,221,243,0) 58%), #f4f6f0",
           fontFamily: "Geist",
           color: "#1d2621",
         }}

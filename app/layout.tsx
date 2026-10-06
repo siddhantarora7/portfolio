@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#f4f6f0" };
 
 // Light is the default; a theme the visitor picked is restored before paint.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light"}catch(e){}})()`;
+const themeScript = `(function(){try{var t=localStorage.getItem("theme-v2");document.documentElement.dataset.theme=t==="dark"?"dark":"light"}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

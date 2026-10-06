@@ -16,7 +16,7 @@ export function ThemeToggle() {
   function toggle() {
     document.documentElement.dataset.theme = next;
     try {
-      localStorage.setItem("theme", next);
+      localStorage.setItem("theme-v2", next);
     } catch {}
     setTheme(next);
     window.dispatchEvent(

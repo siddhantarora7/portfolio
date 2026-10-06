@@ -15,7 +15,7 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-3 z-50 flex justify-center px-4 sm:top-5">
       <nav aria-label="Main" className="glass flex items-center gap-0.5 rounded-full py-1 pr-1 pl-1.5 text-[14px]">
-        <Dock className="nav-dock flex items-center gap-0.5" max={1.3} reach={55}>
+        <Dock className="nav-dock flex items-center gap-0.5">
           <li className="dock-item">
             <Link href="/" aria-label="Home" className="grid size-9 place-items-center rounded-full">
               <MochiArt size={30} shadow={false} />
