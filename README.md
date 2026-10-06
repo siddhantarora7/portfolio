@@ -1,121 +1,72 @@
-# siddhant arora: portfolio
+# Siddhant Arora: portfolio
 
-<<<<<<< HEAD
-Personal site. Frosted glass over a matcha and pale-sky field, a small bubble
-mascot, film-camera date stamps, and live Codeforces stats.
-=======
-A clean portfolio site built using Typescript, Tailwind, and various UI frameworks, listing some cool stuff about me :). Made for personal use and Hackclub Horizons.
+A portfolio site listing some cool stuff about me :). Made for personal use and Hack Club Horizons.
 
-Contains a home page for quick summaries on projects and experiences, a boot splash animation to provide some aesthetics, rotating globe animation, a projects section with custom scroll animations, dark/light mode functionality, and a resume.
+Frosted glass over a single matcha glow, a mochi with a tiny jetpack that follows you down the page, live Codeforces and GitHub stats, and a small game at the bottom.
 
-<img width="915" height="912" alt="image" src="https://github.com/user-attachments/assets/593bd936-6d18-4133-9130-b6303b64fa73" />
-<img width="920" height="589" alt="image" src="https://github.com/user-attachments/assets/18aeef7d-33f8-44d6-97d6-51b0ff7087d7" />
-<img width="1179" height="943" alt="image" src="https://github.com/user-attachments/assets/f0502ef8-1915-4be1-a15c-9443a5c4c2b0" />
+![The home page](public/projects/portfolio/home.jpg)
 
 ## Motivation
 
-It's 2026 and having a comprehensive portfolio site that is both clear and comprehensive is one of the best things one can do to showcase identity. This project was built with the purpose of achieving that, a clean, minimalist portfolio site to give a visual flow to some of my experiences. Enjoy!
->>>>>>> origin/main
+It's 2026, and a portfolio that is both clear and memorable is one of the best ways to show who you are. This one is built to read in about 20 seconds (research, work, projects, and highlights up front) and still be fun to poke at. Enjoy!
 
-Next.js 16 (App Router) · TypeScript · Tailwind CSS 4. Runtime dependencies are
-just `next`, `react`, and `react-dom`; every animation is CSS.
+## Stack
 
-<<<<<<< HEAD
-## Run it
+- Next.js 16 (App Router) + React 19 + TypeScript
+- Tailwind CSS 4, with all colour tokens in `app/globals.css`
+- Geist for text, a self-hosted subset of Shantell Sans for headings and handwriting
+- No animation or UI libraries: motion is CSS plus a little `requestAnimationFrame`, and charts are server-rendered SVG
+
+Runtime dependencies are just `next`, `react`, and `react-dom`.
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run build      # production build
+npm run dev                  # http://localhost:3000
+npm run build                # production build
 npm run typecheck
+npm run codeforces:snapshot  # refresh the Codeforces fallback
 npm run github:snapshot      # refresh the GitHub fallback
 ```
 
-## Edit content
+## Content
 
 All content lives in typed files under `data/`:
 
 | File | What's in it |
 | --- | --- |
-| `data/site.ts` | intro, links, research, work, the compact "also" list, highlights |
+| `data/site.ts` | intro, links, research (with the chart's data), work (each gets a page at `/work/<slug>`), the compact "also" list, upcoming events, highlights |
 | `data/projects.ts` | projects; each gets a page at `/projects/<slug>` |
-| `data/codeforces-snapshot.json` | fallback stats if the Codeforces API is down |
+| `data/*-snapshot.json` | fallback Codeforces and GitHub stats if an API is down |
 
-**Missing facts** use `TODO("what's missing")`. TODOs show as dashed notes in
-`npm run dev` and Vercel preview deploys, and are hidden on the production
-deploy (`VERCEL_ENV=production`). Search the repo for `TODO(` to see what's left.
+Images live in `public/work/<slug>/` and `public/projects/<slug>/`; logos in `public/logos/`. Anything unconfirmed can be written as `TODO("what's missing")`: it shows as a dashed note in dev and preview deploys and is hidden in production.
 
-**Project images:** drop files in `public/projects/<slug>/`, then set `src` on
-`hero` or a `gallery` item, e.g. `{ src: "/projects/velocity/hero.png", alt: "…" }`.
-Until then each slot shows a soft cover with the project name.
+## How it works
 
-**Research chart:** the detail page shows the 4,096-token comparison now. When
-you have the full curve, replace `curve: TODO(…)` in `data/site.ts` with rows
-like `{ tokens: 1024, probe: 0.53, sampling: 0.66 }` and the line chart appears.
-
-## Codeforces
-
-The home page fetches `user.info`, `user.rating`, and `user.status` for
-`beansQ`, at least 2.1 s apart, cached for a day (`revalidate = 86400`). If the
-API fails, it falls back to `data/codeforces-snapshot.json`. Refresh the
-snapshot occasionally with:
-
-```bash
-npm run codeforces:snapshot
-```
-
-## Deploy
-
-Import the repo on Vercel (framework preset: Next.js, no env vars needed).
-Once the custom domain is live, set `NEXT_PUBLIC_SITE_URL=https://your.domain`
-so canonical URLs, OG images, and the sitemap use it.
+- `app/layout.tsx` sets up fonts, the theme (light by default, restored before paint), the nav, the background, mochi, the ask-mochi helper, and the easter eggs.
+- `app/page.tsx` renders the home page. It revalidates daily, which refreshes the Codeforces stats (`lib/codeforces.ts`, rate-limited to one call per ~2 s), the GitHub stats (`lib/github.ts`), and the event countdowns.
+- `app/work/[slug]`, `app/projects/[slug]`, and `app/research/[slug]` are the detail pages; each has its own OG image.
+- `components/mochi/` holds the mascot: the drawing, the companion's physics, the scripted ask-mochi helper, and the easter eggs. `components/game/` is the jetpack game, loaded only when someone presses Play.
 
 ## Secrets
 
-Type `mochi` or `matcha` anywhere, try the Konami code, click the orange date
-stamp, poke or throw mochi, and play the game at the bottom of the page.
+Type `mochi` or `matcha` anywhere, try the Konami code, click the orange date stamp, poke or throw mochi, and play the game at the bottom of the page.
 
-## QA builds beside `next dev`
+## Deploy
 
-`NEXT_DIST_DIR=.next-qa npm run build` builds into a separate folder so it
-never clobbers a running dev server's `.next`.
+Vercel, Next.js preset, no required env vars. Optional:
+
+- `NEXT_PUBLIC_SITE_URL`: the custom domain, used for canonical URLs, OG images, and the sitemap.
+- `GITHUB_TOKEN`: raises the GitHub API rate limit for the stats card.
+
+To run a production build next to `next dev` without sharing `.next`, use `NEXT_DIST_DIR=.next-qa npm run build`.
 
 ## Design notes
 
 - `PRODUCT.md`: who the site is for, and the facts it's allowed to claim.
-- `app/globals.css`: all colour tokens (light and dark), glass, the sky, motion.
+- `DESIGN.md`: the design system (tokens, type, motion, mochi, components).
 - `assets/fonts/README.md`: how the Shantell Sans subset was built.
 - `github-profile/`: a matching GitHub profile README.
-=======
-The tech stack was made with the purpose of being simple yet also powerful tools that allow aesthetically pleasing UI and functionality:
-
-- Next.js 14 (App Router) + TypeScript
-- Tailwind CSS (CSS themes)
-- next-themes (dark default, system preference disabled)
-- framer-motion (subtle scroll fade-ins only)
-- lucide-react (for icons)
-- Inter via `next/font/google`
-
-The site should run at http://localhost:3000.
-
-## Content
-
-The crux of the project! Hand-crafted content to provide explanations to projects and experiences. All details render from `/data/content.ts` (contains all the technical details of projects, experiences, etc.). It does these exports:
-
-1) `hero`: My name, age, one-line bio,
-2) `currently`: An array of `CurrentEntry` (role, entity, period, optional extra information via bullets)
-3) `awards`: An array of `Award` (name, optional organization)
-4) `projects`: An array of `Project` (slug, name, logo, short description, tech stack, period, links, what/why/how/results)
-5) `contact`: Contains my email, github, linkedin, twitter, instagram
-
-## How It Works
-
-The project layout in `/app/layout.ts` gathers everything in a ThemeProvider (such as themes, loading fonts, etc.).
-`/home` renders the hero page with a concise section on awards, project previews, and a rotating globe from 21st.dev.
-`/projects` contains the fill project index with scroll animations to show cards containing each project.
-`/public/logos` contains all the images needded to add a visual indicator to experiences, awards, projects, etc.
 
 ## Attribution
 
-All content was written by hand, various UI components were derived from https://https://21st.dev/. Claude Code was utilized to aid in developing the frontend.
->>>>>>> origin/main
+All content was written by hand. Claude Code was used to help design and build the frontend.
