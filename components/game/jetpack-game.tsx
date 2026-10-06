@@ -113,9 +113,9 @@ export default function JetpackGame({ target, onClose }: { target: number; onClo
     // flames
     const fl = Math.max(0, st.flame);
     if (fl > 0.02) {
-      for (const dx of [-14, 14]) {
-        const fx = MOCHI_X + dx * 1.05;
-        const fy = st.y + 15;
+      for (const dx of [-8.8, 8.8]) {
+        const fx = MOCHI_X + dx;
+        const fy = st.y + 15.8;
         const len = 10 + fl * 22 + Math.random() * 4;
         const grad = ctx.createLinearGradient(0, fy, 0, fy + len);
         grad.addColorStop(0, "#fff3b0");
@@ -281,7 +281,6 @@ export default function JetpackGame({ target, onClose }: { target: number; onClo
         }}
         aria-label="Jetpack mochi game. Press space or tap to fire the jetpack."
         className="block aspect-[720/400] w-full touch-none rounded-[16px] border border-rule"
-        data-cursor="flap"
       />
 
       {phase !== "play" ? (

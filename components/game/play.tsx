@@ -32,7 +32,6 @@ export function Play({ target }: { target: number }) {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            data-cursor="play"
             className="shrink-0 rounded-full bg-matcha-deep px-5 py-2.5 text-[15px] font-medium text-[var(--ground)] transition-transform hover:-translate-y-0.5"
           >
             Play

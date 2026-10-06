@@ -5,7 +5,6 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Sky } from "@/components/sky";
 import { Footer } from "@/components/footer";
-import { Cursor } from "@/components/cursor";
 import { AskMochi } from "@/components/mochi/ask-mochi";
 import { Companion } from "@/components/mochi/companion";
 import { EasterEggs } from "@/components/mochi/easter-eggs";
@@ -59,7 +58,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Companion />
         <AskMochi />
         <EasterEggs />
-        <Cursor />
       </body>
     </html>
   );

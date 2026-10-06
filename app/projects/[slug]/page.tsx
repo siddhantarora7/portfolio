@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BackLink, Bullets, Chips, DetailSection, ExternalButton, Pill } from "@/components/detail";
 import { LogoTile, Maybe, Todo } from "@/components/primitives";
-import { CursiveDemo } from "@/components/cursive-demo";
 import { HousingChart } from "@/components/housing-chart";
 import { ShotFrame } from "@/components/shot";
 import { getProject, projects } from "@/data/projects";
@@ -89,7 +88,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {p.hero?.caption ? <p className="hand mt-4 text-[15px] text-ink-2">{p.hero.caption}</p> : null}
 
-      {p.visual ? <div className="mt-12">{p.visual === "cursive-demo" ? <CursiveDemo /> : <HousingChart />}</div> : null}
+      {p.visual === "housing-chart" ? (
+        <div className="mt-12">
+          <HousingChart />
+        </div>
+      ) : null}
 
       {how.length ? (
         <DetailSection title="How it works">

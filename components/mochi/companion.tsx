@@ -59,6 +59,10 @@ export function Companion() {
     seen: new Set<string>(),
     justDragged: false,
     resting: false,
+    thrown: false,
+    scrollVel: 0,
+    lastScrollT: 0,
+    lean: 0,
     sayTimer: 0,
     moodTimer: 0,
   });
@@ -112,8 +116,11 @@ export function Companion() {
   const loop = useCallback(
     (now: number) => {
       const st = s.current;
-      const dt = Math.min(2.5, st.last ? (now - st.last) / 16.67 : 1);
+      // seconds since last frame, capped so a background tab doesn't explode the spring
+      const dts = Math.min(0.05, st.last ? (now - st.last) / 1000 : 1 / 60);
       st.last = now;
+      st.scrollVel *= Math.pow(0.82, dts * 60);
+      st.lean += (clamp(st.scrollVel * 16, -14, 14) - st.lean) * Math.min(1, dts * 7);
 
       let tx: number;
       let ty: number;
@@ -134,7 +141,7 @@ export function Companion() {
         } else {
           const f = flyPoint();
           tx = f.x;
-          ty = f.y + Math.sin(now / 520) * 5;
+          ty = f.y + Math.sin(now / 700) * 3.5 + st.lean;
         }
         if ((rest !== null) !== st.resting) {
           st.resting = rest !== null;
@@ -142,15 +149,16 @@ export function Companion() {
         }
       }
 
-      if (st.drag) {
-        // position is driven by the pointer
-      } else {
-        const k = st.flying ? 0.05 : 0.18;
-        const damp = st.flying ? 0.86 : 0.7;
-        st.vx = (st.vx + (tx - st.x) * k * dt) * Math.pow(damp, dt);
-        st.vy = (st.vy + (ty - st.y) * k * dt) * Math.pow(damp, dt);
-        st.x += st.vx * dt;
-        st.y += st.vy * dt;
+      if (!st.drag) {
+        // critically damped spring: glides to its spot without wobbling;
+        // a little bounce is allowed only on the way back from a throw
+        const w = st.flying ? 6.5 : 12;
+        const z = st.thrown ? 0.78 : 1;
+        st.vx += (w * w * (tx - st.x) - 2 * z * w * st.vx) * dts;
+        st.vy += (w * w * (ty - st.y) - 2 * z * w * st.vy) * dts;
+        st.x += st.vx * dts;
+        st.y += st.vy * dts;
+        if (st.thrown && Math.abs(tx - st.x) + Math.abs(ty - st.y) < 4) st.thrown = false;
       }
 
       // loop-de-loop
@@ -161,7 +169,7 @@ export function Companion() {
         const p = (now - st.swirlStart) / st.swirlDur;
         if (p >= 1) st.swirlDur = 0;
         else {
-          const e = 1 - Math.pow(1 - p, 2);
+          const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
           const a = e * Math.PI * 2 * st.swirlLoops;
           const R = 28;
           ex = Math.sin(a) * R;
@@ -170,12 +178,17 @@ export function Companion() {
         }
       }
 
-      const tilt = clamp(st.vx * 2.4, -30, 30);
-      const thrust = st.resting && !st.drag ? 0 : st.flying || st.drag ? clamp(0.55 - st.vy * 0.09 + Math.abs(st.vx) * 0.04 + (st.swirlDur ? 0.5 : 0), 0.35, 1.7) : 0;
+      const tilt = clamp(st.vx * 0.025, -14, 14) + clamp(st.scrollVel * 5, -6, 6);
+      const thrust =
+        st.resting && !st.drag
+          ? 0
+          : st.flying || st.drag
+            ? clamp(0.5 + Math.max(0, -st.vy) / 500 + Math.abs(st.vx) / 900 + Math.abs(st.scrollVel) * 0.35 + (st.swirlDur ? 0.5 : 0), 0.35, 1.6)
+            : 0;
       paint(tilt, ex, ey, spin, thrust);
       setBubbleLeft(st.x > window.innerWidth / 2);
 
-      const settled = (!st.flying || st.resting) && !st.drag && !st.swirlDur && Math.abs(st.vx) + Math.abs(st.vy) < 0.05 && Math.abs(tx - st.x) + Math.abs(ty - st.y) < 0.5;
+      const settled = (!st.flying || st.resting) && !st.drag && !st.swirlDur && Math.abs(st.vx) + Math.abs(st.vy) < 3 && Math.abs(tx - st.x) + Math.abs(ty - st.y) < 0.5;
       if (settled) {
         st.raf = 0;
         st.last = 0;
@@ -225,8 +238,11 @@ export function Companion() {
 
     const onScroll = () => {
       const y = window.scrollY;
+      const t = performance.now();
       const dy = y - st.lastScroll;
+      const dtm = Math.max(8, t - (st.lastScrollT || t - 16));
       st.lastScroll = y;
+      st.lastScrollT = t;
       const dock = shouldDock();
       if (st.reduced) {
         st.flying = !dock;
@@ -240,10 +256,9 @@ export function Companion() {
       } else if (!dock && !st.flying) {
         st.flying = true;
         setFlying(true);
-        st.vy = -7; // take off
-      } else if (st.flying && !st.drag) {
-        st.y -= clamp(dy * 0.55, -60, 60); // ride along with the page, then catch up
       }
+      // scrolling makes mochi lean and flare, it doesn't shove it around
+      st.scrollVel = clamp(dy / dtm, -4, 4);
       st.awake = true;
       kick();
     };
@@ -355,13 +370,15 @@ export function Companion() {
     if (!d) return;
     if (d.moved <= 6) return; // treated as a click
     st.justDragged = true;
-    st.vx = clamp(d.vx, -40, 40);
-    st.vy = clamp(d.vy, -40, 40);
+    // drag velocity is px per 16.7 ms; the spring works in px/s
+    st.vx = clamp(d.vx * 60, -2400, 2400);
+    st.vy = clamp(d.vy * 60, -2400, 2400);
+    st.thrown = true;
     if (!st.flying) {
       st.flying = true;
       setFlying(true);
     }
-    speak(Math.hypot(st.vx, st.vy) > 14 ? "wheeee!" : "okay, back to work.");
+    speak(Math.hypot(st.vx, st.vy) > 800 ? "wheeee!" : "okay, back to work.");
     kick();
   }
 
@@ -404,7 +421,6 @@ export function Companion() {
       <button
         type="button"
         aria-label="Mochi, the site's mascot. Poke for a hello."
-        data-cursor="poke"
         onClick={() => {
           if (s.current.justDragged) {
             s.current.justDragged = false;

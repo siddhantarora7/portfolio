@@ -27,7 +27,7 @@ export type Project = {
   hero?: Shot;
   gallery: Shot[];
   /** A drawn visual instead of (or alongside) screenshots. */
-  visual?: "cursive-demo" | "housing-chart";
+  visual?: "housing-chart";
 };
 
 /** Test-set results from the housing net's README, in the order they were run. */
@@ -42,6 +42,7 @@ export const projects: Project[] = [
   {
     slug: "velocity",
     name: "Velocity",
+    logo: "/logos/velocity.png",
     tagline: "Clocks how fast you kick a soccer ball, from a phone video.",
     year: "2026",
     links: { github: "https://github.com/siddhantarora7/velocity" },
@@ -103,23 +104,26 @@ export const projects: Project[] = [
   {
     slug: "cursive",
     name: "Cursive",
-    tagline: "A web text editor that finishes your sentences in ghost text.",
+    tagline: "Monkeytype for writing, with Copilot built in.",
     year: "2026",
-    mark: "Cu",
-    status: "In development",
-    links: { github: "https://github.com/siddhantarora7/Cursive" },
+    logo: "/logos/cursive.png",
+    result: "Live",
+    links: { live: "https://cursive-khaki.vercel.app", github: "https://github.com/siddhantarora7/Cursive" },
     about: [
-      "A writing app where suggestions appear inline, as faint ghost text, while you type.",
+      "A writing app built to be the most satisfying place on the internet to type. As you write, Cursive drafts the next few words in gray; press Tab to keep them or keep typing and they step aside.",
+      "It's local-first: no accounts, and documents never leave your browser.",
     ],
     how: [
-      "Completions come from a Groq and Gemini inference chain.",
-      "Bring your own key: Cursive runs on the writer's own API key.",
-      TODO("anything else worth saying about how Cursive works"),
+      "A Tiptap editor with a custom ghost-text extension, a suggestion policy that decides when to ask for a completion, and an LRU cache so repeated contexts return instantly.",
+      "Only about 1,000 characters before the caret (plus a one-line document intent) are sent for a suggestion.",
+      "Free-tier requests go through a Vercel Edge Function proxy with Upstash Redis caps; bring-your-own keys live in localStorage and go straight from the browser to the provider.",
+      "Documents persist to IndexedDB. Also: autocorrect, themes, typing effects, and an animated caret.",
+      "Vitest covers the suggestion policy, the ghost-text plugin, and the proxy; GitHub Actions runs typecheck, tests, and build.",
     ],
-    stack: ["Groq", "Gemini", TODO("Cursive's framework")],
-    results: [],
-    gallery: [],
-    visual: "cursive-demo",
+    stack: ["Vite", "TypeScript", "React", "Tiptap", "Vercel Edge Functions", "Upstash Redis", "IndexedDB"],
+    results: ["Live at cursive-khaki.vercel.app, free with no account."],
+    hero: { src: "/projects/cursive/home.jpg", alt: "Cursive landing page: Type half. Tab the rest.", caption: "Type half. Tab the rest." },
+    gallery: [{ src: "/projects/cursive/demo.jpg", alt: "Cursive's ghost-text demo with an accepted sentence", caption: "The draft arrives in gray; Tab makes it yours." }],
   },
   {
     slug: "calgary-housing",
@@ -145,7 +149,12 @@ export const projects: Project[] = [
       "R² of 0.986 in log space on held-out data, with a median absolute percentage error of about 6%.",
       "With the 1,000 most expensive properties excluded: R² 0.87 in dollars and about $66k mean absolute error.",
     ],
-    gallery: [],
+    hero: {
+      src: "/projects/calgary-housing/result.jpg",
+      alt: "The estimator's result page: an estimated assessed value of $1,565,146",
+      caption: "A real prediction from the trained model, run locally through the repo's Flask app.",
+    },
+    gallery: [{ src: "/projects/calgary-housing/form.jpg", alt: "The estimator's input form", caption: "Year built, land size, community, and zoning go in." }],
     visual: "housing-chart",
   },
   {

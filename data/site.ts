@@ -86,6 +86,7 @@ export const research: Research[] = [
     title: "From Correctness to Recoverability",
     subtitle: "Rethinking what hidden-state probes measure in chain-of-thought reasoning",
     org: "Algoverse AI Research",
+    logo: "/logos/algoverse.png",
     role: "AI/ML Researcher, Algoverse",
     period: "Jun 2026 – now",
     status: "Paper in progress",
@@ -293,12 +294,12 @@ export const events: Event[] = [
 export type Highlight = { name: string; detail: string; href?: string; logo?: string; mark?: string };
 
 export const highlights: Highlight[] = [
-  { name: "Codeforces Expert", detail: "1,000+ problems", href: "https://codeforces.com/profile/beansQ", mark: "CF" },
+  { name: "Codeforces Expert", detail: "1,000+ problems", href: "https://codeforces.com/profile/beansQ", logo: "/logos/codeforces.svg" },
   { name: "USACO Gold", detail: "2024 – 2026", logo: "/logos/usaco-clear.png" },
   { name: "CCC Group III", detail: "Top 3% nationally", logo: "/logos/cemc-clear.png" },
   { name: "AHSMC", detail: "Honourable Mention, top 20 in Alberta", logo: "/logos/uofa.jpeg" },
   { name: "CalgaryHacks 2026", detail: "3rd place, Tier 2 (500+ participants)", logo: "/logos/calgaryhacks.png" },
-  { name: "Reach for the Top", detail: "1st in Alberta, team", mark: "RT" },
+  { name: "Reach for the Top", detail: "1st in Alberta, team", logo: "/logos/reach-for-the-top.png" },
 ];
 
 // Unconfirmed bits still waiting on the owner.

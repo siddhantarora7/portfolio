@@ -63,19 +63,18 @@ export function MochiArt({
 
       {jetpack ? (
         <g className="jetpack">
-          {/* flames */}
-          {[12, 88].map((x) => (
-            <g key={x} className="flame" style={{ transformOrigin: `${x}px 76px` }}>
-              <path d={`M${x - 4.5} 76c0 8 3 15 4.5 21 1.5-6 4.5-13 4.5-21z`} fill={`url(#f${id})`} />
-              <path d={`M${x - 2.2} 76c0 5 1.3 8 2.2 11 1-3 2.2-6 2.2-11z`} fill="#fffbe0" opacity="0.9" />
+          {/* flames, straight down from under mochi */}
+          {[33, 67].map((x) => (
+            <g key={x} className="flame" style={{ transformOrigin: `${x}px 88px` }}>
+              <path d={`M${x - 4.5} 88c0 7 3 13 4.5 19 1.5-6 4.5-12 4.5-19z`} fill={`url(#f${id})`} />
+              <path d={`M${x - 2.2} 88c0 4.5 1.3 7.5 2.2 10 1-2.5 2.2-5.5 2.2-10z`} fill="#fffbe0" opacity="0.9" />
             </g>
           ))}
-          {/* thrusters */}
-          {[12, 88].map((x) => (
+          {/* two little thrusters tucked under the body; only the nozzles show */}
+          {[33, 67].map((x) => (
             <g key={x}>
-              <rect x={x - 6} y="47" width="12" height="27" rx="5.5" fill={`url(#p${id})`} stroke={ink} strokeWidth="2.2" />
-              <rect x={x - 4.5} y="71" width="9" height="5.5" rx="2" fill="#5e8b3e" stroke={ink} strokeWidth="1.8" />
-              <path d={`M${x - 2.5} 52v10`} stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+              <rect x={x - 6.5} y="66" width="13" height="18" rx="5" fill={`url(#p${id})`} stroke={ink} strokeWidth="2.2" />
+              <path d={`M${x - 5.5} 83h11l-1.6 5h-7.8z`} fill="#5e8b3e" stroke={ink} strokeWidth="1.8" strokeLinejoin="round" />
             </g>
           ))}
         </g>
@@ -96,10 +95,6 @@ export function MochiArt({
           <circle cx="41" cy="31" r="1" />
         </g>
         <path d="M22 50c2-9 9-17 19-20" stroke="#ffffff" strokeWidth="3.4" strokeLinecap="round" fill="none" opacity="0.85" />
-        {jetpack ? (
-          // harness strap across the front
-          <path d="M14 63c20 7 52 7 72 0" fill="none" stroke="#86b066" strokeWidth="3" strokeLinecap="round" opacity="0.9" />
-        ) : null}
 
         <ellipse cx={eyeL - 7} cy={60} rx="5" ry="3" fill="#f6a9b9" opacity="0.75" />
         <ellipse cx={eyeR + 7} cy={60} rx="5" ry="3" fill="#f6a9b9" opacity="0.75" />
