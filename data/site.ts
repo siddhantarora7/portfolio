@@ -1,5 +1,3 @@
-import { TODO } from "./todo";
-
 // ---------------------------------------------------------------------------
 // Everything on the home page comes from this file.
 // Edit freely; types keep the shape honest.
@@ -246,6 +244,11 @@ export const work: WorkEntry[] = [
     period: "Jun 2026 – now",
     logo: "/logos/ocmc.png",
     note: "Computer-vision pipelines that automate contest grading, plus Next.js contest delivery and registration for 500+ Ontario students.",
+    site: { label: "ontariocmc.ca", href: "https://www.ontariocmc.ca" },
+    shots: [
+      { src: "/work/ocmc/1.jpg", alt: "OCMC home page", caption: "Workshops and contests led by student mathematicians." },
+      { src: "/work/ocmc/2.jpg", alt: "OCMC mission section" },
+    ],
     about: [
       "The Ontario Competitive Mathematics Committee runs math contests for high school students across Ontario.",
       "I build computer-vision pipelines that automate contest grading and cut manual marking time, and Next.js features for contest delivery and registration used by 500+ students.",
@@ -301,8 +304,3 @@ export const highlights: Highlight[] = [
   { name: "CalgaryHacks 2026", detail: "3rd place, Tier 2 (500+ participants)", logo: "/logos/calgaryhacks.png" },
   { name: "Reach for the Top", detail: "1st in Alberta, team", logo: "/logos/reach-for-the-top.png" },
 ];
-
-// Unconfirmed bits still waiting on the owner.
-export const pending = {
-  ocmcSite: TODO("OCMC website URL"),
-};
