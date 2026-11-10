@@ -303,12 +303,15 @@ export default function JetpackGame({ target, onClose }: { target: number; onClo
                 </p>
               </>
             )}
-            <div className="mt-3 flex justify-center gap-2">
-              <button type="button" onClick={start} className="rounded-full bg-matcha-deep px-4 py-1.5 text-[14px] font-medium text-[var(--ground)]">
+            <div className="mt-4 flex flex-wrap justify-center gap-2.5 pb-1">
+              <button type="button" onClick={start} className="key-btn key-btn--primary">
+                {phase === "ready" ? <PlayIcon /> : <ReplayIcon />}
                 {phase === "ready" ? "Start" : "Fly again"}
+                <kbd>{phase === "ready" ? "space" : "enter"}</kbd>
               </button>
-              <button type="button" onClick={onClose} className="rounded-full border border-rule px-4 py-1.5 text-[14px]">
+              <button type="button" onClick={onClose} className="key-btn">
                 Close
+                <kbd>esc</kbd>
               </button>
             </div>
           </div>
@@ -325,5 +328,22 @@ export default function JetpackGame({ target, onClose }: { target: number; onClo
         {phase === "over" ? `Game over. Rated ${rating}, ${rankOf(rating)}. Best ${best}.` : ""}
       </p>
     </div>
+  );
+}
+
+function PlayIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="size-[15px]" fill="currentColor" aria-hidden="true">
+      <path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.3-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5Z" />
+    </svg>
+  );
+}
+
+function ReplayIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="size-[15px]" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M2.8 8a5.2 5.2 0 1 0 1.6-3.8" />
+      <path d="M2.6 2.4v2.9h2.9" />
+    </svg>
   );
 }

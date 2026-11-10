@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { BackLink, Bullets, Chips, DetailSection, ExternalButton, Pill } from "@/components/detail";
 import { LogoTile, Maybe, Todo } from "@/components/primitives";
 import { HousingChart } from "@/components/housing-chart";
-import { ShotFrame } from "@/components/shot";
+import { ClipPair, ShotFrame } from "@/components/shot";
+import { VideoEmbed } from "@/components/video-embed";
 import { getProject, projects } from "@/data/projects";
 import { isTodo, showTodos } from "@/data/todo";
 
@@ -33,6 +34,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const linkList = [
     { key: "live", label: "Visit site", href: p.links.live },
     { key: "demo", label: "Watch demo", href: p.links.demo },
+    { key: "devpost", label: "Devpost", href: p.links.devpost },
     { key: "github", label: "View on GitHub", href: p.links.github },
   ].filter((l) => l.href);
   const how = visible(p.how);
@@ -87,6 +89,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </DetailSection>
 
       {p.hero?.caption ? <p className="hand mt-4 text-[15px] text-ink-2">{p.hero.caption}</p> : null}
+
+      {p.clips?.length ? (
+        <div className="mt-12">
+          <ClipPair clips={p.clips} />
+        </div>
+      ) : null}
+
+      {p.video ? (
+        <DetailSection title="Demo">
+          <VideoEmbed {...p.video} />
+        </DetailSection>
+      ) : null}
 
       {p.visual === "housing-chart" ? (
         <div className="mt-12">

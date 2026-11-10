@@ -36,3 +36,24 @@ export function ShotFrame({
     </figure>
   );
 }
+
+/**
+ * Looping GIFs side by side, each in its own glass frame at its true shape.
+ * GIFs skip the image optimizer (it would freeze them to one frame).
+ */
+export function ClipPair({ clips }: { clips: Shot[] }) {
+  return (
+    <div className="grid grid-cols-2 items-start gap-3 sm:gap-5">
+      {clips.map((c) => (
+        <figure key={c.src} className="m-0">
+          <div className="glass rounded-[22px] p-2">
+            <div className="relative overflow-hidden rounded-[15px] border border-rule" style={{ aspectRatio: c.ratio ?? "9 / 16" }}>
+              <Image src={c.src} alt={c.alt} fill unoptimized sizes="(min-width: 768px) 330px, 50vw" className="object-cover" />
+            </div>
+          </div>
+          {c.caption ? <figcaption className="hand mt-2.5 px-1 text-[14.5px] text-ink-2">{c.caption}</figcaption> : null}
+        </figure>
+      ))}
+    </div>
+  );
+}

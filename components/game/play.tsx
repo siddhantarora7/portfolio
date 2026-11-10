@@ -29,11 +29,10 @@ export function Play({ target }: { target: number }) {
               that?
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="shrink-0 rounded-full bg-matcha-deep px-5 py-2.5 text-[15px] font-medium text-[var(--ground)] transition-transform hover:-translate-y-0.5"
-          >
+          <button type="button" onClick={() => setOpen(true)} className="key-btn key-btn--primary shrink-0 !px-6 !py-3.5 !text-[16px]">
+            <svg viewBox="0 0 16 16" className="size-[15px]" fill="currentColor" aria-hidden="true">
+              <path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.3-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5Z" />
+            </svg>
             Play
           </button>
         </div>

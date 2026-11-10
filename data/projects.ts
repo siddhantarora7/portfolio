@@ -17,7 +17,7 @@ export type Project = {
   /** Short badge on the card, e.g. an award. */
   result?: string;
   credit?: string;
-  links: { github?: string; live?: string; demo?: string };
+  links: { github?: string; live?: string; demo?: string; devpost?: string };
   /** What it is, in a few plain sentences. */
   about: string[];
   /** Technical details. */
@@ -25,6 +25,10 @@ export type Project = {
   stack: string[];
   results: string[];
   hero?: Shot;
+  /** Short looping GIFs, shown side by side (phone-shaped, so set a ratio). */
+  clips?: Shot[];
+  /** A demo video, embedded on the page. Only loads YouTube after a click. */
+  video?: { youtubeId: string; title: string; poster: string };
   gallery: Shot[];
   /** A drawn visual instead of (or alongside) screenshots. */
   visual?: "housing-chart";
@@ -39,6 +43,66 @@ export const housingRuns = [
 ];
 
 export const projects: Project[] = [
+  {
+    slug: "amble",
+    name: "Amble",
+    logo: "/logos/amble.png",
+    tagline: "Pairs you with someone nearby for a 20-minute quest at a real place.",
+    year: "2026",
+    result: "Winner, Best Use of Tiger Data",
+    credit: "Built in 24 hours with Danny Wang, Aaron He, and Jonas Huang at Hack the Change 2026.",
+    links: {
+      live: "https://amble.health",
+      demo: "https://www.youtube.com/watch?v=QhlJbPP4aZY",
+      devpost: "https://devpost.com/software/9dszkw-small-usage-limits-big-dreams-amble",
+      github: "https://github.com/ThePeeps191/hack-the-change-2026",
+    },
+    about: [
+      "Tap \"I'm free\" and Amble pairs you with someone nearby who's free too. You both get the same short quest at a real, public place: a game of foosball in the UCalgary engineering building, or filming each other running 100 m backwards and playing it in reverse. There's something to do besides small talk.",
+      "Send a photo or short video when you're done, and an AI referee checks it against the quest. Then you get a recap and choose whether to stay in touch. Crews of friends earn coins together and compete to claim spots around campus.",
+      "We built it because 23% of Canadians aged 15 to 24 always or often feel lonely, and only 46% of adults get 150 active minutes a week. We wrote every quest by hand, at places around Calgary that an AI wouldn't know about.",
+    ],
+    how: [
+      "One Next.js app on Vercel with no background workers: the game moves forward whenever a phone checks in, and every rule runs on the server inside a database transaction so two phones can't race each other into a bad state.",
+      "Postgres on Tiger Data stores everything, with location pings in a TimescaleDB hypertable and a 30-day retention policy. Auth0 handles sign-in.",
+      "Claude Haiku checks proof photos (and three still frames from each video) against the quest and writes the recap. Every AI call has a timeout and a fallback, so a slow model never leaves anyone stuck. It costs about $1 per 1,000 quests.",
+      "Safety is built in: you meet at a public spot, never at each other's location, your location is deleted the moment you're matched, and one tap during a quest opens 911 and Campus Security.",
+      "Comfort settings pick step-free places, an easier pace, or side-by-side quests. The app works with screen readers and respects Reduce Motion.",
+      "An end-to-end test plays the whole product over HTTP as a dozen simulated people.",
+    ],
+    stack: ["Next.js", "TypeScript", "Postgres", "Tiger Data (TimescaleDB)", "Auth0", "Claude Haiku", "MapLibre", "Vercel"],
+    results: [
+      "Winner, Best Use of Tiger Data at Hack the Change 2026 (204 participants, University of Calgary).",
+      "Live at amble.health: open it on two phones and tap \"Try the demo\", no account needed.",
+    ],
+    hero: {
+      src: "/projects/amble/hero.jpg",
+      alt: "Amble: a real game of foosball at UCalgary, the match screen, and the AI referee saying that counts for 15 coins",
+      caption: "A real quest: foosball in the engineering building, matched, played, and approved.",
+      ratio: "3 / 2",
+    },
+    clips: [
+      {
+        src: "/projects/amble/foosball.gif",
+        alt: "Two people playing foosball in the UCalgary engineering building, the real place behind one of Amble's quests",
+        caption: "The real place behind the quest.",
+        ratio: "280 / 498",
+      },
+      {
+        src: "/projects/amble/app-demo.gif",
+        alt: "Amble on a phone: Aaron picks a quest, gets matched with Siddhant, and a photo of the game earns 15 coins",
+        caption: "The same quest in the app.",
+        ratio: "280 / 609",
+      },
+    ],
+    video: { youtubeId: "QhlJbPP4aZY", title: "Amble demo video", poster: "/projects/amble/demo-poster.jpg" },
+    gallery: [
+      { src: "/projects/amble/referee.jpg", alt: "The AI referee approving a foosball photo, rejecting a ping pong photo, and the recap", caption: "Same foosball quest, two real photos. Ping pong doesn't count.", ratio: "3 / 2" },
+      { src: "/projects/amble/claim.jpg", alt: "The Claim map of campus, a zone challenge, and the You tab with 79 of 150 active minutes", caption: "Claim the campus with your crew; the You tab never ranks you.", ratio: "3 / 2" },
+      { src: "/projects/amble/crews.jpg", alt: "A crew page, the weekly crew board, and the crew character editor", caption: "Crews race on a weekly board.", ratio: "3 / 2" },
+      { src: "/projects/amble/safe.jpg", alt: "The safety sheet with 911 and Campus Security, comfort settings, and the plain-language data page", caption: "Built so anyone can join in.", ratio: "3 / 2" },
+    ],
+  },
   {
     slug: "velocity",
     name: "Velocity",
@@ -160,7 +224,7 @@ export const projects: Project[] = [
   {
     slug: "portfolio",
     name: "This website",
-    tagline: "The site you're on: frosted glass, one matcha glow, and a mochi with a jetpack.",
+    tagline: "The site you're on: frosted glass on graph paper, and a mochi with a jetpack.",
     year: "2026",
     logo: "/logos/mochi.svg",
     links: { github: "https://github.com/siddhantarora7/portfolio" },

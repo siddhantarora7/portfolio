@@ -23,4 +23,4 @@ I'm a junior at Westmount Charter School in Calgary. I research how reasoning mo
 
 Codeforces Expert ([beansQ](https://codeforces.com/profile/beansQ), 1,000+ problems), USACO Gold, CCC top 3%.
 
-[portfolio](https://TODO-your-domain) &nbsp;&nbsp; [linkedin](https://ca.linkedin.com/in/siddhant-arora-017023400) &nbsp;&nbsp; [email](mailto:siddaroraleo@gmail.com)
+[portfolio](https://siddhantarora.ink) &nbsp;&nbsp; [linkedin](https://ca.linkedin.com/in/siddhant-arora-017023400) &nbsp;&nbsp; [email](mailto:siddaroraleo@gmail.com)

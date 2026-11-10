@@ -10,8 +10,8 @@ export const profile = {
   location: "Calgary",
   bio: "Junior at Westmount Charter School in Calgary. I research how reasoning models notice (or fail to notice) their own mistakes, and I build things for math and CS students.",
   human: "Off-screen, catch me playing soccer, competitive trivia, or listening to K-pop.",
-  /** Three proof points shown in the hero. Keep them short and true. */
-  facts: ["usamo.guide: 3M+ visits, 50K+ users", "Codeforces Expert", "USACO Gold"],
+  /** Proof points shown in the hero. Keep them short and true. */
+  facts: ["usamo.guide: 3M+ visits, 50K+ users", "Codeforces Expert", "USACO Gold", "AIME 2027 qualifier"],
   /** Used for metadata and OG images. */
   summary:
     "High school researcher and builder in Calgary. Reasoning-model research at Algoverse; co-founder of usamo.guide.",
@@ -298,9 +298,11 @@ export type Highlight = { name: string; detail: string; href?: string; logo?: st
 
 export const highlights: Highlight[] = [
   { name: "Codeforces Expert", detail: "1,000+ problems", href: "https://codeforces.com/profile/beansQ", logo: "/logos/codeforces.svg" },
+  { name: "AIME qualifier", detail: "2027", mark: "AIME" },
   { name: "USACO Gold", detail: "2024 – 2026", logo: "/logos/usaco-clear.png" },
   { name: "CCC Group III", detail: "Top 3% nationally", logo: "/logos/cemc-clear.png" },
   { name: "AHSMC", detail: "Honourable Mention, top 20 in Alberta", logo: "/logos/uofa.jpeg" },
+  { name: "Hack the Change 2026", detail: "Winner, Best Use of Tiger Data (Amble)", href: "/projects/amble", logo: "/logos/hackthechange.png" },
   { name: "CalgaryHacks 2026", detail: "3rd place, Tier 2 (500+ participants)", logo: "/logos/calgaryhacks.png" },
   { name: "Reach for the Top", detail: "1st in Alberta, team", logo: "/logos/reach-for-the-top.png" },
 ];

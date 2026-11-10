@@ -11,6 +11,7 @@
   --ground: #f4f6f0;
   --field-a: #c4ddf3;
   --field-b: #c0dcf2;
+  --sky-dot: rgb(29 38 33 / 0.16);
   --ink: #1d2621;
   --ink-2: #56625b;
   --rule: rgb(29 38 33 / 0.09);
@@ -39,6 +40,7 @@
   --ground: #0f1512;
   --field-a: #16293d;
   --field-b: #15293d;
+  --sky-dot: rgb(230 237 231 / 0.13);
   --ink: #e6ede7;
   --ink-2: #a3b0a7;
   --rule: rgb(230 237 231 / 0.09);
@@ -174,46 +176,35 @@ textarea {
 }
 
 /* ---------------------------------------------------------------------------
-   Sky: two still, blurred fields + static film grain, fixed behind everything.
+   Sky: a still sheet of graph paper. A faint dot grid fixed behind
+   everything, strongest at the top and fading out, under static film grain.
+   Nothing here moves; glass blurs the dots, which is what makes it read
+   as glass.
    --------------------------------------------------------------------------- */
+@property --dot {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgb(29 38 33 / 0.16);
+}
+
 .sky {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
+  --dot: var(--sky-dot);
+  transition: --dot 1.6s var(--ease-out-expo);
 }
 
-.sky__glow {
+.sky__dots {
   position: absolute;
-  width: 95vmax;
-  height: 95vmax;
-  left: -30vmax;
-  top: -42vmax;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, var(--field-a), transparent 74%);
-  transition: filter 1.6s var(--ease-out-expo);
-}
-
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .sky__glow {
-      animation: glow-travel linear both;
-      animation-timeline: scroll(root block);
-    }
-  }
-}
-
-@keyframes glow-travel {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  45% {
-    transform: translate3d(62vw, 34vh, 0) scale(1.12);
-  }
-  100% {
-    transform: translate3d(14vw, 62vh, 0) scale(0.92);
-  }
+  inset: 0;
+  background-image: radial-gradient(var(--dot) 1.1px, transparent 1.5px);
+  background-size: 22px 22px;
+  background-position: 11px 11px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgb(0 0 0 / 0.55) 55%, rgb(0 0 0 / 0.2) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgb(0 0 0 / 0.55) 55%, rgb(0 0 0 / 0.2) 100%);
 }
 
 .sky__grain {
@@ -531,10 +522,98 @@ textarea {
   }
 }
 
-/* typed "matcha": the sky steeps for a few seconds */
-[data-matcha="on"] .sky__glow {
-  /* typed "matcha": the blue glow steeps green */
-  filter: hue-rotate(-95deg) saturate(1.7) brightness(0.96);
+/* typed "matcha": the graph paper steeps green for a few seconds */
+[data-matcha="on"] .sky {
+  --dot: color-mix(in srgb, var(--matcha) 55%, transparent);
+}
+
+/* ---------------------------------------------------------------------------
+   Key buttons: chunky keycaps with a real bottom edge. They lift on hover
+   and sink flush when pressed. A <kbd> inside names the keyboard shortcut;
+   it hides on touch screens.
+   --------------------------------------------------------------------------- */
+.key-btn {
+  --key-face: var(--glass-strong);
+  --key-ink: var(--ink);
+  --key-edge: color-mix(in srgb, var(--ink) 18%, var(--ground));
+  --key-depth: 4px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: 14px;
+  border: 1px solid var(--rule);
+  background: var(--key-face);
+  color: var(--key-ink);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    0 var(--key-depth) 0 var(--key-edge),
+    0 calc(var(--key-depth) + 8px) 16px -10px rgb(20 40 20 / 0.45);
+  transform: translateY(0);
+  transition:
+    transform 140ms var(--ease-out-expo),
+    box-shadow 140ms var(--ease-out-expo);
+}
+
+.key-btn--primary {
+  --key-face: var(--matcha-deep);
+  --key-ink: var(--ground);
+  --key-edge: color-mix(in srgb, var(--matcha-deep) 62%, #000);
+  border-color: color-mix(in srgb, var(--matcha-deep) 80%, #000);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    inset 0 -10px 18px -12px rgb(0 0 0 / 0.35),
+    0 var(--key-depth) 0 var(--key-edge),
+    0 calc(var(--key-depth) + 8px) 18px -10px color-mix(in srgb, var(--matcha-deep) 70%, transparent);
+}
+
+.key-btn kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 3px 6px 4px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  box-shadow: inset 0 -1.5px 0 color-mix(in srgb, var(--ink) 14%, transparent);
+  color: color-mix(in srgb, var(--key-ink) 75%, transparent);
+}
+
+.key-btn--primary kbd {
+  background: rgb(255 255 255 / 0.16);
+  box-shadow: inset 0 -1.5px 0 rgb(0 0 0 / 0.22);
+}
+
+@media (hover: hover) {
+  .key-btn:hover,
+  .group:hover .key-btn {
+    transform: translateY(-1.5px);
+    --key-depth: 5.5px;
+  }
+}
+
+.key-btn:active,
+.key-btn[data-pressed],
+.group:active .key-btn {
+  transform: translateY(4px);
+  --key-depth: 0px;
+}
+
+@media (hover: none) {
+  .key-btn kbd {
+    display: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
