@@ -186,7 +186,7 @@ A cool, low-chroma green-and-blue world with one warm spark reserved for the fil
 - **Matcha Ramp** (`heat-0` to `heat-4`): the Codeforces heatmap ramp and the empty track behind bars (`heat-0`). Inverted at night so the brightest cell stays the busiest day.
 
 ### Secondary
-- **Pale Sky** (`sky`): the second data series only (the comparison bar and curve in the AUROC chart). Never used for UI chrome.
+- **Pale Sky** (`sky`): the second data series only (comparison series in charts). Never used for UI chrome.
 
 ### Tertiary
 - **LED Orange** (`led-orange`, `night-led` at night): the film date stamp, rendered in Geist Mono with a soft glow, at the bottom-right of the hero card, image frames, and OG images.
@@ -243,7 +243,7 @@ Depth is a frosted-glass layer over a fixed sky, not a shadow scale. The sky (tw
 - **LED glow** (`text-shadow: 0 0 6px color-mix(in srgb, var(--led) 60%, transparent), 0 0 1px var(--led)`): the date stamp only.
 
 ### Named Rules
-**The Glass Budget Rule.** Glass is reserved for floating objects: the hero card, nav pill, project cards and the project-page image frame, the Codeforces card, the AUROC chart card, the back button, external-link buttons, the 404 home button, and the skip link. List rows, sections, and prose never sit in glass.
+**The Glass Budget Rule.** Glass is reserved for floating objects: the hero card, nav pill, project cards and the project-page image frame, the Codeforces card, the back button, external-link buttons, the 404 home button, and the skip link. List rows, sections, and prose never sit in glass.
 
 **The Still Sky Rule.** The sky fields and grain are fixed and static. Nothing in the background moves.
 

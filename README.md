@@ -34,7 +34,7 @@ All content lives in typed files under `data/`:
 
 | File | What's in it |
 | --- | --- |
-| `data/site.ts` | intro, links, research (with the chart's data), work (each gets a page at `/work/<slug>`), the compact "also" list, upcoming events, highlights |
+| `data/site.ts` | intro, links, research (a short, detail-free blurb), work (each gets a page at `/work/<slug>`), the compact "also" list, upcoming events, highlights |
 | `data/projects.ts` | projects; each gets a page at `/projects/<slug>` |
 | `data/*-snapshot.json` | fallback Codeforces and GitHub stats if an API is down |
 
@@ -44,7 +44,7 @@ Images live in `public/work/<slug>/` and `public/projects/<slug>/`; logos in `pu
 
 - `app/layout.tsx` sets up fonts, the theme (light by default, restored before paint), the nav, the background, mochi, the ask-mochi helper, and the easter eggs.
 - `app/page.tsx` renders the home page. It revalidates daily, which refreshes the Codeforces stats (`lib/codeforces.ts`, rate-limited to one call per ~2 s), the GitHub stats (`lib/github.ts`), and the event countdowns.
-- `app/work/[slug]`, `app/projects/[slug]`, and `app/research/[slug]` are the detail pages; each has its own OG image.
+- `app/work/[slug]` and `app/projects/[slug]` are the detail pages; each has its own OG image.
 - `components/mochi/` holds the mascot: the drawing, the companion's physics, the scripted ask-mochi helper, and the easter eggs. `components/game/` is the jetpack game, loaded only when someone presses Play.
 
 ## Secrets

@@ -6,7 +6,7 @@ import { ThemeToggle } from "./theme-toggle";
 const items: { href: string; label: string; wide?: boolean }[] = [
   { href: "/#work", label: "work" },
   { href: "/#projects", label: "projects" },
-  { href: "/research/recoverability", label: "research" },
+  { href: "/#research", label: "research" },
   { href: "/#play", label: "play" },
   { href: "/resume.pdf", label: "resume", wide: true },
 ];

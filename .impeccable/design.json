@@ -549,7 +549,7 @@
       },
       {
         "name": "The Glass Budget Rule",
-        "body": "Glass is reserved for floating objects: the hero card, nav pill, project cards and the project-page image frame, the Codeforces card, the AUROC chart card, the back button, external-link buttons, the 404 home button, and the skip link. List rows, sections, and prose never sit in glass.",
+        "body": "Glass is reserved for floating objects: the hero card, nav pill, project cards and the project-page image frame, the Codeforces card, the back button, external-link buttons, the 404 home button, and the skip link. List rows, sections, and prose never sit in glass.",
         "section": "elevation"
       },
       {

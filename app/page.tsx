@@ -7,7 +7,7 @@ import { stampLabel } from "@/components/led-stamp";
 import { Play } from "@/components/game/play";
 import { LinksDock } from "@/components/links-dock";
 import { NowTiles } from "@/components/now-tiles";
-import { InkIn, LogoTile, Row, Section } from "@/components/primitives";
+import { LogoTile, Row, Section } from "@/components/primitives";
 import { projects } from "@/data/projects";
 import { alsoWork, highlights, profile, research, work } from "@/data/site";
 import { getCodeforcesStats } from "@/lib/codeforces";
@@ -58,12 +58,9 @@ export default async function Home() {
       {/* --------------------------------------------------------- research */}
       <Section id="research" title="research" note="in progress">
         <ul className="focus-list">
-          <Row name={lead.title} role={lead.org} aside={lead.period} href={lead.href} logo={lead.logo} />
+          <Row name={lead.name} role={lead.org} aside={lead.period} logo={lead.logo} />
         </ul>
-        <InkIn text={lead.oneBreath} className="mt-7 text-[20px] leading-[1.55] tracking-[-0.005em] text-pretty sm:text-[22px]" />
-        <Link href={lead.href!} className="link mt-4 inline-block text-[15px] text-ink-2">
-          see the chart and findings
-        </Link>
+        <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.6] text-ink-2 text-pretty">{lead.blurb}</p>
       </Section>
 
       {/* ------------------------------------------------------------- work */}

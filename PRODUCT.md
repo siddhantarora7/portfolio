@@ -21,16 +21,16 @@ They arrive from a cold email, an application form, or a resume link. They give 
 
 ## Product Purpose
 
-A personal portfolio for Siddhant Arora, a junior at Westmount Charter School in Calgary. He researches how reasoning models notice (or fail to notice) their own mistakes, and he builds things for math and CS students. Success means the reader understands who he is, what he has shipped, and how to reach him, fast, and remembers the site.
+A personal portfolio for Siddhant Arora, a junior at Westmount Charter School in Calgary. He does AI/ML research, and he builds things for math and CS students. Success means the reader understands who he is, what he has shipped, and how to reach him, fast, and remembers the site.
 
 ## Positioning
 
-A high schooler doing actual ML research (hidden-state probes on chain-of-thought) who also co-runs a platform at real scale (usamo.guide), with competitive programming and olympiad credentials. Few portfolios can honestly claim research, product scale, and contest results together.
+A high schooler doing actual ML research who also co-runs a platform at real scale (usamo.guide), with competitive programming and olympiad credentials. Few portfolios can honestly claim research, product scale, and contest results together.
 
 ## Capabilities and Constraints
 
 - Sections: intro, research (top), work, projects (detail pages), highlights/awards, Codeforces showcase, links.
-- Research detail page with one chart (owner supplies the data).
+- Research is a short mention only: no title, findings, data, or detail page until the paper is public.
 - Project detail pages: overview, problem, what was built, the hard part, stack, results, links, and image slots the owner fills later.
 - Codeforces showcase uses the public API (`user.info`, `user.rating`, `user.status`, handle `beansQ`), fetched at build time with daily revalidation, under ~1 request per 2 s, cached.
 - Required: dark mode, `prefers-reduced-motion`, visible keyboard focus, semantic HTML, Lighthouse 95+ in every category, per-page OG images, sitemap.
@@ -49,7 +49,7 @@ The resume (Google Doc, Oct 2026) is the source of truth for numbers and dates.
 **Intro:** Siddhant Arora, junior, Westmount Charter School, Calgary. Human line (owner's draft, final wording open): "Off-screen, catch me playing soccer, competitive trivia, or listening to K-pop."
 
 **Research**
-- Algoverse AI Research, AI/ML Researcher, Jun 2026 to present. Paper in progress: "From Correctness to Recoverability: Rethinking What Hidden-State Probes Measure in Chain-of-Thought Reasoning." DeepSeek-R1-Distill-Qwen-1.5B, MATH-500 levels 3–5. Early hidden-state correctness probes largely track difficulty and length. Continuation sampling from the same prefixes predicts eventual correctness far better (AUROC ~0.81 vs ~0.55 at 4,096 tokens). Many wrong-ending traces are still recoverable mid-reasoning. Methods: recoverability metrics, tree-based and logistic-regression probes, error injection. He designed experiments, ran training and ablations, and built the eval pipeline. Status "in progress"; a soft mention of targeting AAAI / ICLR (conferences and workshops) is allowed, with no acceptance claims.
+- Algoverse AI Research, AI/ML Researcher, Jun 2026 to present. Paper in progress. Keep every specific (title, topic, model, data, results, venue) off the site until it is public.
 
 **Work**
 - usamo.guide: Co-founder & COO, Mar 2026 to present. Free olympiad math platform, 50+ modules from AMC 8 to USAMO, 40+ person team. 3M+ site visits, 50K+ registered users in under two months (SEO and outreach). Architected the MDX content pipeline, tiered problem database, progress tracking, and auth (Gatsby, React).

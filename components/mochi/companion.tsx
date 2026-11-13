@@ -15,7 +15,7 @@ const POKES = [
 ];
 
 const SECTION_LINES: Record<string, string> = {
-  research: "that's the paper. there's a chart!",
+  research: "top secret paper. no peeking.",
   work: "click one. there are screenshots.",
   projects: "velocity clocked a 41.4 km/h kick.",
   codeforces: "1,000+ problems. i counted. (i did not count.)",

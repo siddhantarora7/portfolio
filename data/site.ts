@@ -8,13 +8,13 @@ export const profile = {
   /** Shown lowercase in the hero. */
   display: "siddhant arora",
   location: "Calgary",
-  bio: "Junior at Westmount Charter School in Calgary. I research how reasoning models notice (or fail to notice) their own mistakes, and I build things for math and CS students.",
+  bio: "Junior at Westmount Charter School in Calgary. I do AI/ML research at Algoverse, and I build things for math and CS students.",
   human: "Off-screen, catch me playing soccer, competitive trivia, or listening to K-pop.",
   /** Proof points shown in the hero. Keep them short and true. */
   facts: ["usamo.guide: 3M+ visits, 50K+ users", "Codeforces Expert", "USACO Gold", "AIME 2027 qualifier"],
   /** Used for metadata and OG images. */
   summary:
-    "High school researcher and builder in Calgary. Reasoning-model research at Algoverse; co-founder of usamo.guide.",
+    "High school researcher and builder in Calgary. AI/ML research at Algoverse; co-founder of usamo.guide.",
 };
 
 export const links = {
@@ -42,100 +42,20 @@ export type Row = {
 };
 
 // ---------------------------------------------------------------------------
-// Research
+// Research. Details stay off the site until the paper is public.
 // ---------------------------------------------------------------------------
 
-export type CeilingPoint = { tokens: number; auroc: number; lo: number; hi: number };
-export type ProbePoint = { tokens: number; auroc: number };
-
-export type Research = Row & {
-  slug: string;
-  title: string;
-  subtitle: string;
-  status: string;
-  org: string;
-  model: string;
-  dataset: string;
-  /** Read out word by word as you scroll. */
-  oneBreath: string;
-  findings: string[];
-  contributions: string[];
-  methods: string[];
-  venue: string;
-  /**
-   * The figure. Only the parts that carry the argument:
-   * the recoverability ceiling (with its 95% CI), the probe on the same
-   * prefixes, the strict-sweep probe, and the last-token comparison.
-   */
-  chart: {
-    ceiling: CeilingPoint[];
-    probeSame: ProbePoint[];
-    probeStrict: ProbePoint[];
-    gaps: { tokens: number; gap: number; lo: number; hi: number }[];
-    lastToken: { probe: number; length: number; diff: number; lo: number; hi: number };
-    notes: string[];
-  };
-};
+export type Research = Row & { org: string; blurb: string };
 
 export const research: Research[] = [
   {
-    slug: "recoverability",
-    name: "From Correctness to Recoverability",
-    title: "From Correctness to Recoverability",
-    subtitle: "Rethinking what hidden-state probes measure in chain-of-thought reasoning",
+    name: "AI/ML research",
     org: "Algoverse AI Research",
     logo: "/logos/algoverse.png",
     role: "AI/ML Researcher, Algoverse",
     period: "Jun 2026 – now",
-    status: "Paper in progress",
-    href: "/research/recoverability",
-    model: "DeepSeek-R1-Distill-Qwen-1.5B",
-    dataset: "MATH-500, levels 3–5",
-    oneBreath:
-      "Hidden-state probes look like they can tell whether a reasoning trace will end correctly. Within a single problem they sit at chance, and at the last token they do no better than the trace's length. Re-rolling the same prefix does far better, and shows that many traces that end wrong were still recoverable mid-reasoning.",
-    findings: [
-      "Within a problem, probes can't tell a trace that will end right from one that will end wrong. Across 2,202 traces from 106 mixed-outcome problems, every 95% interval from 128 to 4,096 tokens contains 0.5.",
-      "Re-rolling 8 continuations from the same prefix predicts the outcome far better: 0.63 AUROC at 512 tokens, rising to 0.81 at 4,096. That's a gap of +0.26 over the probe on the same prefixes.",
-      "At the last token the probe scores 0.809, but trace length alone scores 0.787, and the difference isn't significant. The probe mostly reads out difficulty.",
-    ],
-    contributions: ["Designed the experiments", "Ran training and ablations", "Built the evaluation pipeline"],
-    methods: [
-      "Recoverability metrics",
-      "Logistic-regression and gradient-boosted probes",
-      "Text baselines (length, TF-IDF)",
-      "Error injection",
-    ],
-    venue:
-      "Co-authoring a technical paper we're aiming to submit to AAAI and ICLR conferences and workshops. These are working numbers and may change before the paper is out.",
-    chart: {
-      ceiling: [
-        { tokens: 512, auroc: 0.626, lo: 0.56, hi: 0.69 },
-        { tokens: 2048, auroc: 0.655, lo: 0.58, hi: 0.72 },
-        { tokens: 4096, auroc: 0.811, lo: 0.76, hi: 0.86 },
-      ],
-      probeSame: [
-        { tokens: 512, auroc: 0.5 },
-        { tokens: 2048, auroc: 0.53 },
-        { tokens: 4096, auroc: 0.55 },
-      ],
-      probeStrict: [
-        { tokens: 128, auroc: 0.549 },
-        { tokens: 256, auroc: 0.519 },
-        { tokens: 512, auroc: 0.487 },
-        { tokens: 1024, auroc: 0.547 },
-        { tokens: 2048, auroc: 0.495 },
-        { tokens: 4096, auroc: 0.498 },
-      ],
-      gaps: [
-        { tokens: 512, gap: 0.13, lo: 0.03, hi: 0.21 },
-        { tokens: 4096, gap: 0.26, lo: 0.18, hi: 0.34 },
-      ],
-      lastToken: { probe: 0.809, length: 0.787, diff: 0.022, lo: -0.004, hi: 0.048 },
-      notes: [
-        "Recoverability: 448 traces, 88 problems, 8 re-rolls per prefix, scored by 1 − r̂. It's a lower bound, since 8 re-rolls leave 10–20% of pairs tied.",
-        "Strict sweep: 2,202 traces, 106 mixed-outcome problems, nested cross-validation, within-problem.",
-      ],
-    },
+    blurb:
+      "I'm co-authoring a paper on language models at Algoverse. I'm keeping the specifics off this site until it's public; I'll post it here once it's out.",
   },
 ];
 

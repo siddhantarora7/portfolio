@@ -7,7 +7,7 @@ export const contentType = ogContentType;
 
 export default function Image() {
   return renderOg({
-    title: "Research on reasoning models, and things for math and CS students",
-    subtitle: "Junior in Calgary. Reasoning-model research at Algoverse, co-founder of usamo.guide, Codeforces Expert.",
+    title: "AI/ML research, and things for math and CS students",
+    subtitle: "Junior in Calgary. AI/ML research at Algoverse, co-founder of usamo.guide, Codeforces Expert.",
   });
 }

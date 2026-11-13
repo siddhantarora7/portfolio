@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { events, research } from "@/data/site";
 import type { CfStats } from "@/lib/codeforces";
-import { RecoverabilitySpark } from "./recoverability-chart";
 
 const TZ = "America/Edmonton";
 const today = () =>
@@ -54,18 +53,13 @@ export function NowTiles({ cf }: { cf: CfStats }) {
       ) : null}
 
       <li className="placed" style={{ ["--tilt" as string]: "0.8deg" }}>
-        <Link href={lead.href!} className="glass group block h-full rounded-[22px] p-4">
+        <a href="#research" className="glass group block h-full rounded-[22px] p-4">
           <p className="hand text-[15px] text-ink-2">researching</p>
           <p className="mt-2 text-[14.5px] leading-snug font-medium group-hover:underline">
-            What do hidden-state probes actually measure?
+            AI/ML research at {lead.org.replace(" AI Research", "")}
           </p>
-          <div className="mt-3">
-            <RecoverabilitySpark r={lead} />
-          </div>
-          <p className="mt-1.5 text-[12.5px] text-ink-2">
-            <span className="text-matcha-deep">re-rolling</span> vs <span className="text-[color:var(--sky-ink)]">probe</span>
-          </p>
-        </Link>
+          <p className="mt-3 text-[13px] leading-snug text-ink-2">Paper in progress. Details once it&apos;s public.</p>
+        </a>
       </li>
 
       <li className="placed" style={{ ["--tilt" as string]: "-0.5deg" }}>

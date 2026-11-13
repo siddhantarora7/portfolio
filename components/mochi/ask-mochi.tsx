@@ -28,21 +28,19 @@ const INTENTS: Intent[] = [
     match: /\b(now|working|doing|current|lately|busy)\b/i,
     answer: () => (
       <>
-        Right now: research at Algoverse on what hidden-state probes really measure in chain-of-thought (paper in
-        progress), running <L href="/work/usamo-guide">usamo.guide</L> as co-founder and COO, and getting{" "}
+        Right now: AI/ML research at Algoverse (paper in progress), running <L href="/work/usamo-guide">usamo.guide</L> as co-founder and COO, and getting{" "}
         <L href="/work/olympiad4everyone">Olympiad4Everyone</L>&apos;s first edition ready for Nov 7.
       </>
     ),
   },
   {
     id: "research",
-    ask: "the research, in one breath?",
-    match: /\b(research|paper|probe|probes|reasoning|algoverse|auroc|llm|model)\b/i,
+    ask: "what's the research about?",
+    match: /\b(research|paper|algoverse|llm|ml|ai)\b/i,
     answer: () => (
       <>
-        Probes on a model&apos;s hidden states look like they predict whether its reasoning will end correctly, but
-        within one problem they&apos;re at chance. Re-rolling the same prefix does much better (0.81 vs 0.55 AUROC at
-        4,096 tokens). <L href="/research/recoverability">The chart is here.</L>
+        He&apos;s co-authoring an AI/ML paper at Algoverse. The details stay under wraps until it&apos;s public, so
+        even i don&apos;t know them yet. Check back once it&apos;s out!
       </>
     ),
   },

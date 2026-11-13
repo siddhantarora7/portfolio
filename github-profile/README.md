@@ -3,11 +3,11 @@
   <img alt="siddhant arora" src="./assets/header-light.svg" width="100%">
 </picture>
 
-I'm a junior at Westmount Charter School in Calgary. I research how reasoning models notice (or fail to notice) their own mistakes, and I build things for math and CS students.
+I'm a junior at Westmount Charter School in Calgary. I do AI/ML research at Algoverse, and I build things for math and CS students.
 
 ### now
 
-- Researching what hidden-state probes really measure in chain-of-thought reasoning at Algoverse AI Research (paper in progress)
+- AI/ML research at Algoverse AI Research (paper in progress, details once it's public)
 - Co-founder & COO of [usamo.guide](https://www.usamoguide.com), a free olympiad math platform with 3M+ visits
 - Co-founder of [Olympiad4Everyone](https://olympiad4everyone.com), a free proctored math olympiad that pays AMC fees for schools that can't
 
